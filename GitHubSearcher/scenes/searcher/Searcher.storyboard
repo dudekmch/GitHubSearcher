@@ -35,16 +35,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nCm-p6-XSr">
-                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                <rect key="frame" x="8" y="72" width="359" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="bpn-EY-nfW"/>
+                                    <constraint firstAttribute="height" constant="40" id="bpn-EY-nfW"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRo-ia-3as">
-                                <rect key="frame" x="0.0" y="158" width="375" height="509"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -54,9 +54,9 @@
                             <constraint firstItem="aRo-ia-3as" firstAttribute="bottom" secondItem="9hg-sl-HgO" secondAttribute="bottom" id="8u3-V2-8L1"/>
                             <constraint firstItem="aRo-ia-3as" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" id="D20-VX-agH"/>
                             <constraint firstItem="aRo-ia-3as" firstAttribute="trailing" secondItem="9hg-sl-HgO" secondAttribute="trailing" id="Mm9-pl-R0e"/>
-                            <constraint firstItem="nCm-p6-XSr" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" id="Mrx-c4-Wha"/>
-                            <constraint firstItem="9hg-sl-HgO" firstAttribute="trailing" secondItem="nCm-p6-XSr" secondAttribute="trailing" id="URJ-MI-S7h"/>
-                            <constraint firstItem="nCm-p6-XSr" firstAttribute="top" secondItem="LvW-M1-YPK" secondAttribute="top" constant="100" id="vhD-AY-9wo"/>
+                            <constraint firstItem="nCm-p6-XSr" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" constant="8" id="Mrx-c4-Wha"/>
+                            <constraint firstItem="9hg-sl-HgO" firstAttribute="trailing" secondItem="nCm-p6-XSr" secondAttribute="trailing" constant="8" id="URJ-MI-S7h"/>
+                            <constraint firstItem="nCm-p6-XSr" firstAttribute="top" secondItem="9hg-sl-HgO" secondAttribute="top" constant="8" id="jfp-Ka-LVg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9hg-sl-HgO"/>
                     </view>

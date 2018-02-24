@@ -54,6 +54,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         super.viewDidLoad()
         searcherTableView.delegate = self
         searcherTableView.dataSource = self
+        searcherTextField.delegate = self
         registerNib(identifire: UserTableViewCell.identifier)
         registerNib(identifire: RepositoryTableViewCell.identifier)
         doSomething()
@@ -95,5 +96,10 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         let nib = UINib(nibName: identifire, bundle: nil)
         searcherTableView.register(nib, forCellReuseIdentifier: identifire)
     }
+}
+
+//Mark: Methods of UITextFieldDelegate
+
+extension SearcherViewController: UITextFieldDelegate {
     
 }
