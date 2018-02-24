@@ -15,6 +15,12 @@
 		F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21852041915C00FD72A7 /* GitHubApiService.swift */; };
 		F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE218B204195AA00FD72A7 /* Searcher.storyboard */; };
 		F4FE218F20419E6800FD72A7 /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE218E20419E6800FD72A7 /* Details.storyboard */; };
+		F4FE21982041A4A200FD72A7 /* SearcherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21922041A4A200FD72A7 /* SearcherPresenter.swift */; };
+		F4FE21992041A4A200FD72A7 /* SearcherWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21932041A4A200FD72A7 /* SearcherWorker.swift */; };
+		F4FE219A2041A4A200FD72A7 /* SearcherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21942041A4A200FD72A7 /* SearcherRouter.swift */; };
+		F4FE219B2041A4A200FD72A7 /* SearcherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21952041A4A200FD72A7 /* SearcherModels.swift */; };
+		F4FE219C2041A4A200FD72A7 /* SearcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21962041A4A200FD72A7 /* SearcherViewController.swift */; };
+		F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,12 @@
 		F4FE21852041915C00FD72A7 /* GitHubApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApiService.swift; sourceTree = "<group>"; };
 		F4FE218B204195AA00FD72A7 /* Searcher.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Searcher.storyboard; sourceTree = "<group>"; };
 		F4FE218E20419E6800FD72A7 /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = "<group>"; };
+		F4FE21922041A4A200FD72A7 /* SearcherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherPresenter.swift; sourceTree = "<group>"; };
+		F4FE21932041A4A200FD72A7 /* SearcherWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherWorker.swift; sourceTree = "<group>"; };
+		F4FE21942041A4A200FD72A7 /* SearcherRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherRouter.swift; sourceTree = "<group>"; };
+		F4FE21952041A4A200FD72A7 /* SearcherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherModels.swift; sourceTree = "<group>"; };
+		F4FE21962041A4A200FD72A7 /* SearcherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherViewController.swift; sourceTree = "<group>"; };
+		F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +162,12 @@
 			isa = PBXGroup;
 			children = (
 				F4FE218B204195AA00FD72A7 /* Searcher.storyboard */,
+				F4FE21922041A4A200FD72A7 /* SearcherPresenter.swift */,
+				F4FE21932041A4A200FD72A7 /* SearcherWorker.swift */,
+				F4FE21942041A4A200FD72A7 /* SearcherRouter.swift */,
+				F4FE21952041A4A200FD72A7 /* SearcherModels.swift */,
+				F4FE21962041A4A200FD72A7 /* SearcherViewController.swift */,
+				F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */,
 			);
 			path = searcher;
 			sourceTree = "<group>";
@@ -316,8 +334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE219C2041A4A200FD72A7 /* SearcherViewController.swift in Sources */,
+				F4FE219B2041A4A200FD72A7 /* SearcherModels.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
+				F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */,
 				F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */,
+				F4FE21992041A4A200FD72A7 /* SearcherWorker.swift in Sources */,
+				F4FE21982041A4A200FD72A7 /* SearcherPresenter.swift in Sources */,
+				F4FE219A2041A4A200FD72A7 /* SearcherRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
