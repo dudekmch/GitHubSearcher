@@ -44,6 +44,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9hg-sl-HgO"/>
                     </view>
+                    <connections>
+                        <outlet property="searcherTableView" destination="aRo-ia-3as" id="ZZN-XF-4TH"/>
+                        <outlet property="searcherTextField" destination="nCm-p6-XSr" id="NTE-QF-BEz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aow-8d-WYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
