@@ -52,11 +52,20 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searcherTableView.delegate = self
+        searcherTableView.dataSource = self
+        searcherTextField.delegate = self
+        registerNib(identifire: UserTableViewCell.identifier)
+        registerNib(identifire: RepositoryTableViewCell.identifier)
         doSomething()
     }
     
+    //MARK: Properties
+    
     @IBOutlet weak var searcherTextField: UITextField!
     @IBOutlet weak var searcherTableView: UITableView!
+    
+    private let mockNumberOfRowsInSection = 15
     
     
     func doSomething() {
@@ -67,4 +76,30 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     func displaySomething(viewModel: Searcher.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+}
+
+//MARK: Methods of TableViewDelegate, DataSource
+
+extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mockNumberOfRowsInSection
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UserTableViewCell()
+        cell.textLabel?.text = String(indexPath.row)
+        return cell
+    }
+    
+    private func registerNib(identifire: String) {
+        let nib = UINib(nibName: identifire, bundle: nil)
+        searcherTableView.register(nib, forCellReuseIdentifier: identifire)
+    }
+}
+
+//Mark: Methods of UITextFieldDelegate
+
+extension SearcherViewController: UITextFieldDelegate {
+    
 }

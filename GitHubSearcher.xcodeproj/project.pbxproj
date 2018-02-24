@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		84A07EE614A7B0E4F51BFA8E /* Pods_GitHubSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */; };
 		F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */; };
-		F4FE215120417C0C00FD72A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE214F20417C0C00FD72A7 /* Main.storyboard */; };
 		F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215220417C0C00FD72A7 /* Assets.xcassets */; };
 		F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */; };
 		F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21852041915C00FD72A7 /* GitHubApiService.swift */; };
@@ -58,7 +57,6 @@
 		DDD169C8C532B68570DF789C /* Pods-GitHubSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.debug.xcconfig"; sourceTree = "<group>"; };
 		F4FE214820417C0C00FD72A7 /* GitHubSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F4FE215020417C0C00FD72A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4FE215220417C0C00FD72A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4FE215520417C0C00FD72A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4FE215720417C0C00FD72A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				F4FE21B82041AF4F00FD72A7 /* enums */,
 				F4FE21B32041ADF200FD72A7 /* extensions */,
 				F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */,
-				F4FE214F20417C0C00FD72A7 /* Main.storyboard */,
 				F4FE215220417C0C00FD72A7 /* Assets.xcassets */,
 				F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */,
 			);
@@ -345,7 +342,6 @@
 				F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */,
 				F4FE21CE2041BE7300FD72A7 /* RepositoryTableViewCell.xib in Resources */,
 				F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */,
-				F4FE215120417C0C00FD72A7 /* Main.storyboard in Resources */,
 				F4FE21C52041BCFE00FD72A7 /* UserTableViewCell.xib in Resources */,
 				F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */,
 			);
@@ -436,14 +432,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F4FE214F20417C0C00FD72A7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4FE215020417C0C00FD72A7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
