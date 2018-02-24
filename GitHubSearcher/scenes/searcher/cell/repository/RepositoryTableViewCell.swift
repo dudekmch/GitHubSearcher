@@ -1,6 +1,8 @@
 import UIKit
 
 class RepositoryTableViewCell: UITableViewCell {
+    
+    static let identifier = "RepositoryTableViewCell"
 
     override func awakeFromNib() {
         super.awakeFromNib()

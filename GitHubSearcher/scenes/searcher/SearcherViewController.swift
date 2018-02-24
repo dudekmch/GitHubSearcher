@@ -54,6 +54,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         super.viewDidLoad()
         searcherTableView.delegate = self
         searcherTableView.dataSource = self
+        registerNib(identifire: UserTableViewCell.identifier)
+        registerNib(identifire: RepositoryTableViewCell.identifier)
         doSomething()
     }
     
@@ -75,7 +77,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     }
 }
 
-//MARK: methods of TableViewDelegate, DataSource
+//MARK: Methods of TableViewDelegate, DataSource
 
 extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -84,8 +86,14 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = UserTableViewCell()
+        cell.textLabel?.text = String(indexPath.row)
         return cell
+    }
+    
+    private func registerNib(identifire: String) {
+        let nib = UINib(nibName: identifire, bundle: nil)
+        searcherTableView.register(nib, forCellReuseIdentifier: identifire)
     }
     
 }

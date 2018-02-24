@@ -2,6 +2,8 @@ import UIKit
 
 class UserTableViewCell: UITableViewCell {
 
+    static let identifier = "UserTableViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
