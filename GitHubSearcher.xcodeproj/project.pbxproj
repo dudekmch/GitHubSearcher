@@ -27,6 +27,8 @@
 		F4FE21AB2041A66A00FD72A7 /* DetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21A52041A66A00FD72A7 /* DetailsModels.swift */; };
 		F4FE21AC2041A66A00FD72A7 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21A62041A66A00FD72A7 /* DetailsViewController.swift */; };
 		F4FE21AD2041A66A00FD72A7 /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21A72041A66A00FD72A7 /* DetailsInteractor.swift */; };
+		F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */; };
+		F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		F4FE21A52041A66A00FD72A7 /* DetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModels.swift; sourceTree = "<group>"; };
 		F4FE21A62041A66A00FD72A7 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		F4FE21A72041A66A00FD72A7 /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
+		F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 		F4FE215D20417D4900FD72A7 /* commons */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE21B82041AF4F00FD72A7 /* enums */,
+				F4FE21B32041ADF200FD72A7 /* extensions */,
 				F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */,
 				F4FE214F20417C0C00FD72A7 /* Main.storyboard */,
 				F4FE215220417C0C00FD72A7 /* Assets.xcassets */,
@@ -196,6 +202,22 @@
 				F4FE21A72041A66A00FD72A7 /* DetailsInteractor.swift */,
 			);
 			path = details;
+			sourceTree = "<group>";
+		};
+		F4FE21B32041ADF200FD72A7 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		F4FE21B82041AF4F00FD72A7 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */,
+			);
+			path = enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,11 +374,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */,
 				F4FE21AB2041A66A00FD72A7 /* DetailsModels.swift in Sources */,
 				F4FE21AD2041A66A00FD72A7 /* DetailsInteractor.swift in Sources */,
 				F4FE21AA2041A66A00FD72A7 /* DetailsRouter.swift in Sources */,
 				F4FE219C2041A4A200FD72A7 /* SearcherViewController.swift in Sources */,
 				F4FE219B2041A4A200FD72A7 /* SearcherModels.swift in Sources */,
+				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
 				F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */,
 				F4FE21A92041A66A00FD72A7 /* DetailsWorker.swift in Sources */,
