@@ -7,43 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84A07EE614A7B0E4F51BFA8E /* Pods_GitHubSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */; };
 		F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */; };
+		F4FE214E20417C0C00FD72A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE214D20417C0C00FD72A7 /* ViewController.swift */; };
 		F4FE215120417C0C00FD72A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE214F20417C0C00FD72A7 /* Main.storyboard */; };
 		F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215220417C0C00FD72A7 /* Assets.xcassets */; };
 		F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */; };
-		F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21852041915C00FD72A7 /* GitHubApiService.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F4FE21812041914700FD72A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F4FE217C2041914700FD72A7 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2FEA01266D0642459191BB90ED134064;
-			remoteInfo = Alamofire;
-		};
-		F4FE21832041914700FD72A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F4FE217C2041914700FD72A7 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 051746533F7BC42CAE45C54E6422D103;
-			remoteInfo = "Pods-GitHubSearcher";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		7BECB81967B79B96D8D0BF7B /* Pods-GitHubSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.release.xcconfig"; sourceTree = "<group>"; };
-		B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDD169C8C532B68570DF789C /* Pods-GitHubSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.debug.xcconfig"; sourceTree = "<group>"; };
 		F4FE214820417C0C00FD72A7 /* GitHubSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F4FE214D20417C0C00FD72A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F4FE215020417C0C00FD72A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F4FE215220417C0C00FD72A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4FE215520417C0C00FD72A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4FE215720417C0C00FD72A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4FE217C2041914700FD72A7 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
-		F4FE21852041915C00FD72A7 /* GitHubApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,38 +29,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84A07EE614A7B0E4F51BFA8E /* Pods_GitHubSearcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		226FCE91D35FA00BB8EB7E64 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DDD169C8C532B68570DF789C /* Pods-GitHubSearcher.debug.xcconfig */,
-				7BECB81967B79B96D8D0BF7B /* Pods-GitHubSearcher.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		3B9228D9DFF80C11DD594B7F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F4FE213F20417C0C00FD72A7 = {
 			isa = PBXGroup;
 			children = (
-				F4FE217C2041914700FD72A7 /* Pods.xcodeproj */,
 				F4FE214A20417C0C00FD72A7 /* GitHubSearcher */,
 				F4FE214920417C0C00FD72A7 /* Products */,
-				226FCE91D35FA00BB8EB7E64 /* Pods */,
-				3B9228D9DFF80C11DD594B7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,47 +54,14 @@
 		F4FE214A20417C0C00FD72A7 /* GitHubSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				F4FE217B2041913B00FD72A7 /* service */,
-				F4FE215E20417DA800FD72A7 /* scenes */,
-				F4FE215D20417D4900FD72A7 /* commons */,
-				F4FE215720417C0C00FD72A7 /* Info.plist */,
-			);
-			path = GitHubSearcher;
-			sourceTree = "<group>";
-		};
-		F4FE215D20417D4900FD72A7 /* commons */ = {
-			isa = PBXGroup;
-			children = (
 				F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */,
+				F4FE214D20417C0C00FD72A7 /* ViewController.swift */,
 				F4FE214F20417C0C00FD72A7 /* Main.storyboard */,
 				F4FE215220417C0C00FD72A7 /* Assets.xcassets */,
 				F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */,
+				F4FE215720417C0C00FD72A7 /* Info.plist */,
 			);
-			path = commons;
-			sourceTree = "<group>";
-		};
-		F4FE215E20417DA800FD72A7 /* scenes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = scenes;
-			sourceTree = "<group>";
-		};
-		F4FE217B2041913B00FD72A7 /* service */ = {
-			isa = PBXGroup;
-			children = (
-				F4FE21852041915C00FD72A7 /* GitHubApiService.swift */,
-			);
-			path = service;
-			sourceTree = "<group>";
-		};
-		F4FE217D2041914700FD72A7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F4FE21822041914700FD72A7 /* Alamofire.framework */,
-				F4FE21842041914700FD72A7 /* Pods_GitHubSearcher.framework */,
-			);
-			name = Products;
+			path = GitHubSearcher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,12 +71,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4FE215A20417C0C00FD72A7 /* Build configuration list for PBXNativeTarget "GitHubSearcher" */;
 			buildPhases = (
-				3C94BC5E3026A1458206F22A /* [CP] Check Pods Manifest.lock */,
 				F4FE214420417C0C00FD72A7 /* Sources */,
 				F4FE214520417C0C00FD72A7 /* Frameworks */,
 				F4FE214620417C0C00FD72A7 /* Resources */,
-				AD1C151776BE6233580F4AAD /* [CP] Embed Pods Frameworks */,
-				4331879203833549A52ED107 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,35 +111,12 @@
 			mainGroup = F4FE213F20417C0C00FD72A7;
 			productRefGroup = F4FE214920417C0C00FD72A7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F4FE217D2041914700FD72A7 /* Products */;
-					ProjectRef = F4FE217C2041914700FD72A7 /* Pods.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F4FE214720417C0C00FD72A7 /* GitHubSearcher */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F4FE21822041914700FD72A7 /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = F4FE21812041914700FD72A7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F4FE21842041914700FD72A7 /* Pods_GitHubSearcher.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Pods_GitHubSearcher.framework;
-			remoteRef = F4FE21832041914700FD72A7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F4FE214620417C0C00FD72A7 /* Resources */ = {
@@ -233,67 +131,13 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		3C94BC5E3026A1458206F22A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GitHubSearcher-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4331879203833549A52ED107 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AD1C151776BE6233580F4AAD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F4FE214420417C0C00FD72A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE214E20417C0C00FD72A7 /* ViewController.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
-				F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +272,6 @@
 		};
 		F4FE215B20417C0C00FD72A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDD169C8C532B68570DF789C /* Pods-GitHubSearcher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -444,7 +287,6 @@
 		};
 		F4FE215C20417C0C00FD72A7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BECB81967B79B96D8D0BF7B /* Pods-GitHubSearcher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

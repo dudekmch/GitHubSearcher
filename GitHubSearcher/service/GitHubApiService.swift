@@ -1,5 +1,0 @@
-import Alamofire
-
-class GitHubApiService {
-    
-}
