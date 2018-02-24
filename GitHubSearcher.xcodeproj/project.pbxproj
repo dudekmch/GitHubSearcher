@@ -13,6 +13,8 @@
 		F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215220417C0C00FD72A7 /* Assets.xcassets */; };
 		F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */; };
 		F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21852041915C00FD72A7 /* GitHubApiService.swift */; };
+		F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE218B204195AA00FD72A7 /* Searcher.storyboard */; };
+		F4FE218F20419E6800FD72A7 /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE218E20419E6800FD72A7 /* Details.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		F4FE215720417C0C00FD72A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4FE217C2041914700FD72A7 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		F4FE21852041915C00FD72A7 /* GitHubApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApiService.swift; sourceTree = "<group>"; };
+		F4FE218B204195AA00FD72A7 /* Searcher.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Searcher.storyboard; sourceTree = "<group>"; };
+		F4FE218E20419E6800FD72A7 /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +101,7 @@
 		F4FE214A20417C0C00FD72A7 /* GitHubSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				F4FE217B2041913B00FD72A7 /* service */,
+				F4FE217B2041913B00FD72A7 /* services */,
 				F4FE215E20417DA800FD72A7 /* scenes */,
 				F4FE215D20417D4900FD72A7 /* commons */,
 				F4FE215720417C0C00FD72A7 /* Info.plist */,
@@ -119,16 +123,18 @@
 		F4FE215E20417DA800FD72A7 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE218D2041963300FD72A7 /* details */,
+				F4FE218A2041957600FD72A7 /* searcher */,
 			);
 			path = scenes;
 			sourceTree = "<group>";
 		};
-		F4FE217B2041913B00FD72A7 /* service */ = {
+		F4FE217B2041913B00FD72A7 /* services */ = {
 			isa = PBXGroup;
 			children = (
 				F4FE21852041915C00FD72A7 /* GitHubApiService.swift */,
 			);
-			path = service;
+			path = services;
 			sourceTree = "<group>";
 		};
 		F4FE217D2041914700FD72A7 /* Products */ = {
@@ -138,6 +144,22 @@
 				F4FE21842041914700FD72A7 /* Pods_GitHubSearcher.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F4FE218A2041957600FD72A7 /* searcher */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE218B204195AA00FD72A7 /* Searcher.storyboard */,
+			);
+			path = searcher;
+			sourceTree = "<group>";
+		};
+		F4FE218D2041963300FD72A7 /* details */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE218E20419E6800FD72A7 /* Details.storyboard */,
+			);
+			path = details;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,9 +247,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE218F20419E6800FD72A7 /* Details.storyboard in Resources */,
 				F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */,
 				F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */,
 				F4FE215120417C0C00FD72A7 /* Main.storyboard in Resources */,
+				F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
