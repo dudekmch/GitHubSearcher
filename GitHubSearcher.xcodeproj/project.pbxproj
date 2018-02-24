@@ -29,6 +29,8 @@
 		F4FE21AD2041A66A00FD72A7 /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21A72041A66A00FD72A7 /* DetailsInteractor.swift */; };
 		F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */; };
 		F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */; };
+		F4FE21C42041BCFE00FD72A7 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21C22041BCFE00FD72A7 /* UserTableViewCell.swift */; };
+		F4FE21C52041BCFE00FD72A7 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4FE21C32041BCFE00FD72A7 /* UserTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		F4FE21A72041A66A00FD72A7 /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSide.swift; sourceTree = "<group>"; };
+		F4FE21C22041BCFE00FD72A7 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F4FE21C32041BCFE00FD72A7 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,7 @@
 		F4FE218A2041957600FD72A7 /* searcher */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE21BE2041BC9D00FD72A7 /* cell */,
 				F4FE218B204195AA00FD72A7 /* Searcher.storyboard */,
 				F4FE21922041A4A200FD72A7 /* SearcherPresenter.swift */,
 				F4FE21932041A4A200FD72A7 /* SearcherWorker.swift */,
@@ -218,6 +223,23 @@
 				F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */,
 			);
 			path = enums;
+			sourceTree = "<group>";
+		};
+		F4FE21BE2041BC9D00FD72A7 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE21C12041BCB200FD72A7 /* user */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		F4FE21C12041BCB200FD72A7 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE21C22041BCFE00FD72A7 /* UserTableViewCell.swift */,
+				F4FE21C32041BCFE00FD72A7 /* UserTableViewCell.xib */,
+			);
+			path = user;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +331,7 @@
 				F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */,
 				F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */,
 				F4FE215120417C0C00FD72A7 /* Main.storyboard in Resources */,
+				F4FE21C52041BCFE00FD72A7 /* UserTableViewCell.xib in Resources */,
 				F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +412,7 @@
 				F4FE21982041A4A200FD72A7 /* SearcherPresenter.swift in Sources */,
 				F4FE219A2041A4A200FD72A7 /* SearcherRouter.swift in Sources */,
 				F4FE21AC2041A66A00FD72A7 /* DetailsViewController.swift in Sources */,
+				F4FE21C42041BCFE00FD72A7 /* UserTableViewCell.swift in Sources */,
 				F4FE21A82041A66A00FD72A7 /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
