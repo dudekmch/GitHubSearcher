@@ -20,4 +20,9 @@ extension UIView {
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.masksToBounds = false
     }
+
+    func roundCorners(){
+        self.layer.cornerRadius = 5
+        self.layer.masksToBounds = true
+    }
 }
