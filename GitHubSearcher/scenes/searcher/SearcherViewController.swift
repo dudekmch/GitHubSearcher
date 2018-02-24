@@ -52,11 +52,17 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searcherTableView.delegate = self
+        searcherTableView.dataSource = self
         doSomething()
     }
     
+    //MARK: Properties
+    
     @IBOutlet weak var searcherTextField: UITextField!
     @IBOutlet weak var searcherTableView: UITableView!
+    
+    private let mockNumberOfRowsInSection = 15
     
     
     func doSomething() {
@@ -67,4 +73,19 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     func displaySomething(viewModel: Searcher.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+}
+
+//MARK: methods of TableViewDelegate, DataSource
+
+extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mockNumberOfRowsInSection
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        return cell
+    }
+    
 }
