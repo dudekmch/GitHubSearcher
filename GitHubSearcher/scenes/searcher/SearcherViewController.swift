@@ -53,9 +53,9 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         doSomething()
     }
     
-    // MARK: Do something
+    @IBOutlet weak var searcherTextField: UITextField!
+    @IBOutlet weak var searcherTableView: UITableView!
     
-    //@IBOutlet weak var nameTextField: UITextField!
     
     func doSomething() {
         let request = Searcher.Something.Request()
