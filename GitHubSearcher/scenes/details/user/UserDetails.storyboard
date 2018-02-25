@@ -17,7 +17,47 @@
                     <view key="view" contentMode="scaleToFill" id="7w3-bO-iXp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-Q4-Q4Y">
+                                <rect key="frame" x="8" y="255" width="359" height="404"/>
+                                <color key="backgroundColor" red="0.55932092666625977" green="0.085684813559055328" blue="0.1281314492225647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="hFK-Ao-y0O">
+                                <rect key="frame" x="8" y="28" width="359" height="133"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acS-su-DeR">
+                                <rect key="frame" x="8" y="214" width="359" height="21"/>
+                                <color key="backgroundColor" red="0.60264706611633301" green="0.74604612588882446" blue="0.92070174217224121" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.60264706611633301" green="0.74604612588882446" blue="0.92070174217224121" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J78-Vu-5Kw">
+                                <rect key="frame" x="8" y="177" width="359" height="21"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="d4g-Q4-Q4Y" firstAttribute="top" secondItem="acS-su-DeR" secondAttribute="bottom" constant="20" id="1Wh-qH-KWe"/>
+                            <constraint firstItem="HRa-fW-64Q" firstAttribute="trailing" secondItem="hFK-Ao-y0O" secondAttribute="trailing" constant="8" id="4eH-uN-46a"/>
+                            <constraint firstItem="HRa-fW-64Q" firstAttribute="trailing" secondItem="J78-Vu-5Kw" secondAttribute="trailing" constant="8" id="DZu-zj-Unm"/>
+                            <constraint firstItem="J78-Vu-5Kw" firstAttribute="leading" secondItem="HRa-fW-64Q" secondAttribute="leading" constant="8" id="Hig-bl-TuB"/>
+                            <constraint firstItem="d4g-Q4-Q4Y" firstAttribute="leading" secondItem="HRa-fW-64Q" secondAttribute="leading" constant="8" id="JI0-jj-NzW"/>
+                            <constraint firstItem="HRa-fW-64Q" firstAttribute="trailing" secondItem="acS-su-DeR" secondAttribute="trailing" constant="8" id="N5G-14-iuq"/>
+                            <constraint firstItem="HRa-fW-64Q" firstAttribute="trailing" secondItem="d4g-Q4-Q4Y" secondAttribute="trailing" constant="8" id="YG3-Oo-zff"/>
+                            <constraint firstItem="hFK-Ao-y0O" firstAttribute="top" secondItem="HRa-fW-64Q" secondAttribute="top" constant="8" id="dsA-Ac-f0w"/>
+                            <constraint firstItem="J78-Vu-5Kw" firstAttribute="top" secondItem="hFK-Ao-y0O" secondAttribute="bottom" constant="16" id="gjm-Eh-yED"/>
+                            <constraint firstItem="acS-su-DeR" firstAttribute="leading" secondItem="HRa-fW-64Q" secondAttribute="leading" constant="8" id="lMm-RM-Qf8"/>
+                            <constraint firstItem="acS-su-DeR" firstAttribute="top" secondItem="J78-Vu-5Kw" secondAttribute="bottom" constant="16" id="o68-Mw-uB7"/>
+                            <constraint firstItem="HRa-fW-64Q" firstAttribute="bottom" secondItem="d4g-Q4-Q4Y" secondAttribute="bottom" constant="8" id="uvf-kq-B3l"/>
+                            <constraint firstItem="hFK-Ao-y0O" firstAttribute="leading" secondItem="HRa-fW-64Q" secondAttribute="leading" constant="8" id="vj9-MD-Ftf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HRa-fW-64Q"/>
                     </view>
                 </viewController>
@@ -26,4 +66,7 @@
             <point key="canvasLocation" x="89" y="-212"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image" width="133" height="133"/>
+    </resources>
 </document>
