@@ -40,6 +40,9 @@
 		F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */; };
 		F4FE22082042D42B00FD72A7 /* RepositoryDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE22072042D42B00FD72A7 /* RepositoryDetails.storyboard */; };
 		F4FE220A2042D56C00FD72A7 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22092042D56C00FD72A7 /* FilterType.swift */; };
+		F4FE22132042FD2300FD72A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22122042FD2300FD72A7 /* User.swift */; };
+		F4FE22152042FD3400FD72A7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22142042FD3400FD72A7 /* Repository.swift */; };
+		F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221D204351F600FD72A7 /* Formatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,9 @@
 		F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsInteractor.swift; sourceTree = "<group>"; };
 		F4FE22072042D42B00FD72A7 /* RepositoryDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RepositoryDetails.storyboard; sourceTree = "<group>"; };
 		F4FE22092042D56C00FD72A7 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		F4FE22122042FD2300FD72A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4FE22142042FD3400FD72A7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		F4FE221D204351F600FD72A7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,7 @@
 		F4FE215D20417D4900FD72A7 /* commons */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE220F2042FD0400FD72A7 /* models */,
 				F4FE217B2041913B00FD72A7 /* services */,
 				F4FE21B82041AF4F00FD72A7 /* enums */,
 				F4FE21B32041ADF200FD72A7 /* extensions */,
@@ -225,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */,
+				F4FE221D204351F600FD72A7 /* Formatter.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -291,6 +299,15 @@
 				F4FE22072042D42B00FD72A7 /* RepositoryDetails.storyboard */,
 			);
 			path = repository;
+			sourceTree = "<group>";
+		};
+		F4FE220F2042FD0400FD72A7 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE22122042FD2300FD72A7 /* User.swift */,
+				F4FE22142042FD3400FD72A7 /* Repository.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FE22132042FD2300FD72A7 /* User.swift in Sources */,
 				F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */,
 				F4FE22032042D3BB00FD72A7 /* RepositoryDetailsRouter.swift in Sources */,
 				F4FE21F62042D1D400FD72A7 /* UserDetailsModels.swift in Sources */,
@@ -458,6 +476,7 @@
 				F4FE219B2041A4A200FD72A7 /* SearcherModels.swift in Sources */,
 				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
+				F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */,
 				F4FE21F52042D1D400FD72A7 /* UserDetailsRouter.swift in Sources */,
 				F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */,
 				F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */,
@@ -474,6 +493,7 @@
 				F4FE21F32042D1D400FD72A7 /* UserDetailsPresenter.swift in Sources */,
 				F4FE21C42041BCFE00FD72A7 /* UserTableViewCell.swift in Sources */,
 				F4FE22022042D3BB00FD72A7 /* RepositoryDetailsWorker.swift in Sources */,
+				F4FE22152042FD3400FD72A7 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
