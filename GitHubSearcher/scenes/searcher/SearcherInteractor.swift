@@ -10,14 +10,14 @@ protocol SearcherDataStore {
 
 class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     var presenter: SearcherPresentationLogic?
-    var service: SearcherWorker?
+    var service: GitHubApiService?
     //var name: String = ""
     
     // MARK: Search users
     
     func searchUsers(request: Searcher.Users.Request) {
-        service = SearcherWorker()
-        service?.doSomeWork()
+        service = GitHubApiService.shared
+        service?.getUsers()
         
         let response = Searcher.Users.Response()
         presenter?.presentUsers(response: response)
