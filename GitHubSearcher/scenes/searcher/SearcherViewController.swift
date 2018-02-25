@@ -105,7 +105,7 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mockDataStorName = "name"
-        interactor?.setDataStore(name: mockDataStorName, filterType: .users)
+        interactor?.setDataStore(name: mockDataStorName, filterType: .repositories)
         router?.routeToDetails()
     }
     

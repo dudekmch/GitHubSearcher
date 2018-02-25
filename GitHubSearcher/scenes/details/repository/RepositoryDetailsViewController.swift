@@ -1,11 +1,3 @@
-//
-//  RepositoryDetailsViewController.swift
-//  GitHubSearcher
-//
-//  Created by Pawel Dudek on 25.02.2018.
-//  Copyright (c) 2018 cookieIT. All rights reserved.
-//
-
 import UIKit
 
 protocol RepositoryDetailsDisplayLogic: class {
@@ -59,12 +51,16 @@ class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDispla
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        usersTableView.delegate = self
+        usersTableView.dataSource = self
         doSomething()
     }
     
     // MARK: Do something
     
-    //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var repositoryNameLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var usersTableView: UITableView!
     
     func doSomething() {
         let request = RepositoryDetails.Something.Request()
@@ -74,4 +70,16 @@ class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDispla
     func displaySomething(viewModel: RepositoryDetails.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+}
+
+extension RepositoryDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        return UITableViewCell()
+    }
+    
+    
 }

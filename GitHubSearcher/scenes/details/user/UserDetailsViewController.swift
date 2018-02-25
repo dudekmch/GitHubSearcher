@@ -1,11 +1,3 @@
-//
-//  UserDetailsViewController.swift
-//  GitHubSearcher
-//
-//  Created by Pawel Dudek on 25.02.2018.
-//  Copyright (c) 2018 cookieIT. All rights reserved.
-//
-
 import UIKit
 
 protocol UserDetailsDisplayLogic: class {
@@ -59,6 +51,8 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        repositoriesTableView.dataSource = self
+        repositoriesTableView.delegate = self
         doSomething()
     }
     
@@ -77,4 +71,16 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     func displaySomething(viewModel: UserDetails.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+}
+
+extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 15
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        return UITableViewCell()
+    }
+    
+    
 }
