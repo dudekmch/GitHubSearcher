@@ -1,12 +1,20 @@
+//
+//  UserDetailsViewController.swift
+//  GitHubSearcher
+//
+//  Created by Pawel Dudek on 25.02.2018.
+//  Copyright (c) 2018 cookieIT. All rights reserved.
+//
+
 import UIKit
 
-protocol DetailsDisplayLogic: class {
-    func displaySomething(viewModel: Details.Something.ViewModel)
+protocol UserDetailsDisplayLogic: class {
+    func displaySomething(viewModel: UserDetails.Something.ViewModel)
 }
 
-class DetailsViewController: UIViewController, DetailsDisplayLogic {
-    var interactor: DetailsBusinessLogic?
-    var router: (NSObjectProtocol & DetailsRoutingLogic & DetailsDataPassing)?
+class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
+    var interactor: UserDetailsBusinessLogic?
+    var router: (NSObjectProtocol & UserDetailsRoutingLogic & UserDetailsDataPassing)?
     
     // MARK: Object lifecycle
     
@@ -24,9 +32,9 @@ class DetailsViewController: UIViewController, DetailsDisplayLogic {
     
     private func setup() {
         let viewController = self
-        let interactor = DetailsInteractor()
-        let presenter = DetailsPresenter()
-        let router = DetailsRouter()
+        let interactor = UserDetailsInteractor()
+        let presenter = UserDetailsPresenter()
+        let router = UserDetailsRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -59,11 +67,11 @@ class DetailsViewController: UIViewController, DetailsDisplayLogic {
     //@IBOutlet weak var nameTextField: UITextField!
     
     func doSomething() {
-        let request = Details.Something.Request()
+        let request = UserDetails.Something.Request()
         interactor?.doSomething(request: request)
     }
     
-    func displaySomething(viewModel: Details.Something.ViewModel) {
+    func displaySomething(viewModel: UserDetails.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
 }

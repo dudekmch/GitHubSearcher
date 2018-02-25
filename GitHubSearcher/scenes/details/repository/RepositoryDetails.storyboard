@@ -10,21 +10,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Details View Controller-->
-        <scene sceneID="mdP-wV-gVc">
+        <!--Repository Details View Controller-->
+        <scene sceneID="QWj-OQ-t6u">
             <objects>
-                <viewController storyboardIdentifier="DetailsViewController" id="eLX-kL-F1e" customClass="DetailsViewController" customModule="GitHubSearcher" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0fr-s3-mi3">
+                <viewController storyboardIdentifier="RepositoryDetailsViewController" id="PNr-RU-hx6" customClass="RepositoryDetailsViewController" customModule="GitHubSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SgH-Xf-Nyp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="P2V-BF-V4b"/>
+                        <viewLayoutGuide key="safeArea" id="N0i-lZ-PlF"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Ur-qP-deE"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ACT-bS-F2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dmv-Fk-ZfQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-790" y="135"/>
+            <point key="canvasLocation" x="121" y="157"/>
         </scene>
     </scenes>
 </document>

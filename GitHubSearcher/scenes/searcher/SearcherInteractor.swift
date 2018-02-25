@@ -3,11 +3,12 @@ import UIKit
 protocol SearcherBusinessLogic {
     func searchUsers(request: Searcher.Users.Request)
     func searchRepositories(request: Searcher.Repositories.Request)
-    func setDataStore(name: String)
+    func setDataStore(name: String, filterType: FilterType)
 }
 
 protocol SearcherDataStore {
     var name: String? { get set }
+    var filterType: FilterType? { get set }
 }
 
 class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
@@ -15,6 +16,7 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     var presenter: SearcherPresentationLogic?
     var service: GitHubApiService?
     var name: String?
+    var filterType: FilterType?
     
     // MARK: Search users
     
@@ -38,7 +40,8 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     
     //MARK: Set data store
     
-    func setDataStore(name: String){
+    func setDataStore(name: String, filterType: FilterType){
         self.name = name
+        self.filterType = filterType
     }
 }

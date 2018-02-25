@@ -1,16 +1,24 @@
+//
+//  RepositoryDetailsRouter.swift
+//  GitHubSearcher
+//
+//  Created by Pawel Dudek on 25.02.2018.
+//  Copyright (c) 2018 cookieIT. All rights reserved.
+//
+
 import UIKit
 
-@objc protocol DetailsRoutingLogic {
+@objc protocol RepositoryDetailsRoutingLogic {
     //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol DetailsDataPassing {
-    var dataStore: DetailsDataStore? { get }
+protocol RepositoryDetailsDataPassing {
+    var dataStore: RepositoryDetailsDataStore? { get }
 }
 
-class DetailsRouter: NSObject, DetailsRoutingLogic, DetailsDataPassing {
-    weak var viewController: DetailsViewController?
-    var dataStore: DetailsDataStore?
+class RepositoryDetailsRouter: NSObject, RepositoryDetailsRoutingLogic, RepositoryDetailsDataPassing {
+    weak var viewController: RepositoryDetailsViewController?
+    var dataStore: RepositoryDetailsDataStore?
     
     // MARK: Routing
     
@@ -31,14 +39,14 @@ class DetailsRouter: NSObject, DetailsRoutingLogic, DetailsDataPassing {
     
     // MARK: Navigation
     
-    //func navigateToSomewhere(source: DetailsViewController, destination: SomewhereViewController)
+    //func navigateToSomewhere(source: RepositoryDetailsViewController, destination: SomewhereViewController)
     //{
     //  source.show(destination, sender: nil)
     //}
     
     // MARK: Passing data
     
-    //func passDataToSomewhere(source: DetailsDataStore, destination: inout SomewhereDataStore)
+    //func passDataToSomewhere(source: RepositoryDetailsDataStore, destination: inout SomewhereDataStore)
     //{
     //  destination.name = source.name
     //}
