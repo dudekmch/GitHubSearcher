@@ -1,7 +1,5 @@
 import UIKit
 
-typealias JSON = Dictionary<String, Any>
-
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Users.ViewModel)
     func displayRepositories(viewModel: Searcher.Repositories.ViewModel)

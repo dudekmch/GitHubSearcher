@@ -1,5 +1,7 @@
 import Alamofire
 
+typealias JSON = Dictionary<String, Any>
+
 class GitHubApiService {
     
     static let shared = GitHubApiService()
