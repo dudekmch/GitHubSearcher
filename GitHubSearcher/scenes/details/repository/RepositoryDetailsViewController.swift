@@ -58,6 +58,7 @@ class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDispla
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         doSomething()
     }
     

@@ -14,7 +14,7 @@
         <scene sceneID="BmO-UV-PRl">
             <objects>
                 <viewController storyboardIdentifier="UserDetailsViewController" id="f9N-g4-Zab" customClass="UserDetailsViewController" customModule="GitHubSearcher" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7w3-bO-iXp" customClass="UserDetails">
+                    <view key="view" contentMode="scaleToFill" id="7w3-bO-iXp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

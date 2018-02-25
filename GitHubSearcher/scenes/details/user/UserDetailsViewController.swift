@@ -58,6 +58,7 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         doSomething()
     }
     
