@@ -16,4 +16,18 @@ enum Searcher {
             
         }
     }
+    
+    enum Repositories {
+        struct Request {
+            
+        }
+        
+        struct Response {
+            
+        }
+        
+        struct ViewModel {
+            
+        }
+    }
 }
