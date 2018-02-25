@@ -5,13 +5,13 @@ protocol DetailsBusinessLogic {
 }
 
 protocol DetailsDataStore {
-    //var name: String { get set }
+    var name: String {get set}
 }
 
 class DetailsInteractor: DetailsBusinessLogic, DetailsDataStore {
     var presenter: DetailsPresentationLogic?
     var worker: DetailsWorker?
-    //var name: String = ""
+    var name: String = ""
     
     // MARK: Do something
     

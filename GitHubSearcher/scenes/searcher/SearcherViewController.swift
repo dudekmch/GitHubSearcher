@@ -4,6 +4,7 @@ typealias JSON = Dictionary<String, Any>
 
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Users.ViewModel)
+    func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
 }
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
@@ -77,6 +78,15 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     func displayUsers(viewModel: Searcher.Users.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+    
+    func searchRepositories() {
+        let request = Searcher.Repositories.Request()
+        interactor?.searchRepositories(request: request)
+    }
+    
+    func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
+        //nameTextField.text = viewModel.name
+    }
 }
 
 //MARK: Methods of TableViewDelegate, DataSource
@@ -93,13 +103,19 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mockDataStorName = "name"
+        interactor?.setDataStore(name: mockDataStorName)
+        router?.routeToDetails()
+    }
+    
     private func registerNib(identifire: String) {
         let nib = UINib(nibName: identifire, bundle: nil)
         searcherTableView.register(nib, forCellReuseIdentifier: identifire)
     }
 }
 
-//Mark: Methods of UITextFieldDelegate
+//MARK: Methods of UITextFieldDelegate
 
 extension SearcherViewController: UITextFieldDelegate {
     
