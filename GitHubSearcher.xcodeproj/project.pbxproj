@@ -135,7 +135,6 @@
 		F4FE214A20417C0C00FD72A7 /* GitHubSearcher */ = {
 			isa = PBXGroup;
 			children = (
-				F4FE217B2041913B00FD72A7 /* services */,
 				F4FE215E20417DA800FD72A7 /* scenes */,
 				F4FE215D20417D4900FD72A7 /* commons */,
 				F4FE215720417C0C00FD72A7 /* Info.plist */,
@@ -146,6 +145,7 @@
 		F4FE215D20417D4900FD72A7 /* commons */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE217B2041913B00FD72A7 /* services */,
 				F4FE21B82041AF4F00FD72A7 /* enums */,
 				F4FE21B32041ADF200FD72A7 /* extensions */,
 				F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */,
