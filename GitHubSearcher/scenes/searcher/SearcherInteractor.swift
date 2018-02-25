@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SearcherBusinessLogic {
-    func doSomething(request: Searcher.Something.Request)
+    func searchUsers(request: Searcher.Users.Request)
 }
 
 protocol SearcherDataStore {
@@ -10,16 +10,16 @@ protocol SearcherDataStore {
 
 class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     var presenter: SearcherPresentationLogic?
-    var worker: SearcherWorker?
+    var service: SearcherWorker?
     //var name: String = ""
     
-    // MARK: Do something
+    // MARK: Search users
     
-    func doSomething(request: Searcher.Something.Request) {
-        worker = SearcherWorker()
-        worker?.doSomeWork()
+    func searchUsers(request: Searcher.Users.Request) {
+        service = SearcherWorker()
+        service?.doSomeWork()
         
-        let response = Searcher.Something.Response()
-        presenter?.presentSomething(response: response)
+        let response = Searcher.Users.Response()
+        presenter?.presentUsers(response: response)
     }
 }

@@ -3,7 +3,7 @@ import UIKit
 enum Searcher {
     // MARK: Use cases
     
-    enum Something {
+    enum Users {
         struct Request {
             
         }
