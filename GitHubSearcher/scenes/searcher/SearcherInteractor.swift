@@ -2,6 +2,7 @@ import UIKit
 
 protocol SearcherBusinessLogic {
     func searchUsers(request: Searcher.Users.Request)
+    func searchRepositories(request: Searcher.Repositories.Request)
 }
 
 protocol SearcherDataStore {
@@ -21,5 +22,13 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
         
         let response = Searcher.Users.Response()
         presenter?.presentUsers(response: response)
+    }
+    
+    func searchRepositories(request: Searcher.Repositories.Request) {
+        service = GitHubApiService.shared
+        service?.getRepositories()
+        
+        let response = Searcher.Repositories.Response()
+        presenter?.presentRepositories(response: response)
     }
 }
