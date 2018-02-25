@@ -103,6 +103,12 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mockDataStorName = "name"
+        interactor?.setDataStore(name: mockDataStorName)
+        router?.routeToDetails()
+    }
+    
     private func registerNib(identifire: String) {
         let nib = UINib(nibName: identifire, bundle: nil)
         searcherTableView.register(nib, forCellReuseIdentifier: identifire)

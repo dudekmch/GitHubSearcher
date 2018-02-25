@@ -50,6 +50,7 @@ class DetailsViewController: UIViewController, DetailsDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         doSomething()
     }
     
