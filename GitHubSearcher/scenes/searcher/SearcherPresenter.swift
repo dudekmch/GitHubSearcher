@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SearcherPresentationLogic {
-    func presentSomething(response: Searcher.Something.Response)
+    func presentUsers(response: Searcher.Users.Response)
 }
 
 class SearcherPresenter: SearcherPresentationLogic {
@@ -9,8 +9,8 @@ class SearcherPresenter: SearcherPresentationLogic {
     
     // MARK: Do something
     
-    func presentSomething(response: Searcher.Something.Response) {
-        let viewModel = Searcher.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentUsers(response: Searcher.Users.Response) {
+        let viewModel = Searcher.Users.ViewModel()
+        viewController?.displayUsers(viewModel: viewModel)
     }
 }

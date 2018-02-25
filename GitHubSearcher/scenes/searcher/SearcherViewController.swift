@@ -3,7 +3,7 @@ import UIKit
 typealias JSON = Dictionary<String, Any>
 
 protocol SearcherDisplayLogic: class {
-    func displaySomething(viewModel: Searcher.Something.ViewModel)
+    func displayUsers(viewModel: Searcher.Users.ViewModel)
 }
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
@@ -57,7 +57,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         searcherTextField.delegate = self
         registerNib(identifire: UserTableViewCell.identifier)
         registerNib(identifire: RepositoryTableViewCell.identifier)
-        doSomething()
+        self.navigationController?.isNavigationBarHidden = true
+        searchUsers()
     }
     
     //MARK: Properties
@@ -68,12 +69,12 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     private let mockNumberOfRowsInSection = 15
     
     
-    func doSomething() {
-        let request = Searcher.Something.Request()
-        interactor?.doSomething(request: request)
+    func searchUsers() {
+        let request = Searcher.Users.Request()
+        interactor?.searchUsers(request: request)
     }
     
-    func displaySomething(viewModel: Searcher.Something.ViewModel) {
+    func displayUsers(viewModel: Searcher.Users.ViewModel) {
         //nameTextField.text = viewModel.name
     }
 }
