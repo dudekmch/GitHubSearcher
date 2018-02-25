@@ -39,6 +39,12 @@
 		F4FE21F72042D1D400FD72A7 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21F12042D1D400FD72A7 /* UserDetailsViewController.swift */; };
 		F4FE21F82042D1D400FD72A7 /* UserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21F22042D1D400FD72A7 /* UserDetailsInteractor.swift */; };
 		F4FE21FA2042D29800FD72A7 /* UserDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE21F92042D29800FD72A7 /* UserDetails.storyboard */; };
+		F4FE22012042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FB2042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift */; };
+		F4FE22022042D3BB00FD72A7 /* RepositoryDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FC2042D3BB00FD72A7 /* RepositoryDetailsWorker.swift */; };
+		F4FE22032042D3BB00FD72A7 /* RepositoryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FD2042D3BB00FD72A7 /* RepositoryDetailsRouter.swift */; };
+		F4FE22042042D3BB00FD72A7 /* RepositoryDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FE2042D3BB00FD72A7 /* RepositoryDetailsModels.swift */; };
+		F4FE22052042D3BB00FD72A7 /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FF2042D3BB00FD72A7 /* RepositoryDetailsViewController.swift */; };
+		F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +102,12 @@
 		F4FE21F12042D1D400FD72A7 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		F4FE21F22042D1D400FD72A7 /* UserDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsInteractor.swift; sourceTree = "<group>"; };
 		F4FE21F92042D29800FD72A7 /* UserDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetails.storyboard; sourceTree = "<group>"; };
+		F4FE21FB2042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsPresenter.swift; sourceTree = "<group>"; };
+		F4FE21FC2042D3BB00FD72A7 /* RepositoryDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsWorker.swift; sourceTree = "<group>"; };
+		F4FE21FD2042D3BB00FD72A7 /* RepositoryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsRouter.swift; sourceTree = "<group>"; };
+		F4FE21FE2042D3BB00FD72A7 /* RepositoryDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsModels.swift; sourceTree = "<group>"; };
+		F4FE21FF2042D3BB00FD72A7 /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
+		F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +298,12 @@
 		F4FE21EC2042D17C00FD72A7 /* repository */ = {
 			isa = PBXGroup;
 			children = (
+				F4FE21FB2042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift */,
+				F4FE21FC2042D3BB00FD72A7 /* RepositoryDetailsWorker.swift */,
+				F4FE21FD2042D3BB00FD72A7 /* RepositoryDetailsRouter.swift */,
+				F4FE21FE2042D3BB00FD72A7 /* RepositoryDetailsModels.swift */,
+				F4FE21FF2042D3BB00FD72A7 /* RepositoryDetailsViewController.swift */,
+				F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */,
 			);
 			path = repository;
 			sourceTree = "<group>";
@@ -449,26 +467,32 @@
 				F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */,
 				F4FE21AB2041A66A00FD72A7 /* DetailsModels.swift in Sources */,
 				F4FE21AD2041A66A00FD72A7 /* DetailsInteractor.swift in Sources */,
+				F4FE22032042D3BB00FD72A7 /* RepositoryDetailsRouter.swift in Sources */,
 				F4FE21F62042D1D400FD72A7 /* UserDetailsModels.swift in Sources */,
 				F4FE21AA2041A66A00FD72A7 /* DetailsRouter.swift in Sources */,
 				F4FE219C2041A4A200FD72A7 /* SearcherViewController.swift in Sources */,
+				F4FE22012042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift in Sources */,
 				F4FE21F82042D1D400FD72A7 /* UserDetailsInteractor.swift in Sources */,
 				F4FE219B2041A4A200FD72A7 /* SearcherModels.swift in Sources */,
 				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
 				F4FE21F52042D1D400FD72A7 /* UserDetailsRouter.swift in Sources */,
+				F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */,
 				F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */,
 				F4FE21CD2041BE7300FD72A7 /* RepositoryTableViewCell.swift in Sources */,
 				F4FE21F72042D1D400FD72A7 /* UserDetailsViewController.swift in Sources */,
 				F4FE21A92041A66A00FD72A7 /* DetailsWorker.swift in Sources */,
 				F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */,
+				F4FE22052042D3BB00FD72A7 /* RepositoryDetailsViewController.swift in Sources */,
 				F4FE21992041A4A200FD72A7 /* SearcherWorker.swift in Sources */,
 				F4FE21F42042D1D400FD72A7 /* UserDetailsWorker.swift in Sources */,
 				F4FE21982041A4A200FD72A7 /* SearcherPresenter.swift in Sources */,
 				F4FE219A2041A4A200FD72A7 /* SearcherRouter.swift in Sources */,
+				F4FE22042042D3BB00FD72A7 /* RepositoryDetailsModels.swift in Sources */,
 				F4FE21F32042D1D400FD72A7 /* UserDetailsPresenter.swift in Sources */,
 				F4FE21AC2041A66A00FD72A7 /* DetailsViewController.swift in Sources */,
 				F4FE21C42041BCFE00FD72A7 /* UserTableViewCell.swift in Sources */,
+				F4FE22022042D3BB00FD72A7 /* RepositoryDetailsWorker.swift in Sources */,
 				F4FE21A82041A66A00FD72A7 /* DetailsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
