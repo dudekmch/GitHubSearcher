@@ -70,7 +70,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     
     func searchUsers() {
         let request = Searcher.Users.Request()
-        interactor?.searchUsers(request: request)
+        interactor?.searchUsers(filter: "p", request: request)
     }
     
     func displayUsers(viewModel: Searcher.Users.ViewModel) {
