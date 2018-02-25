@@ -64,7 +64,10 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     
     // MARK: Do something
     
-    //@IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var repositoriesTableView: UITableView!
     
     func doSomething() {
         let request = UserDetails.Something.Request()
