@@ -17,7 +17,39 @@
                     <view key="view" contentMode="scaleToFill" id="SgH-Xf-Nyp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erm-ER-jiU">
+                                <rect key="frame" x="8" y="16" width="359" height="21"/>
+                                <color key="backgroundColor" red="0.60264706611633301" green="0.74604612588882446" blue="0.92070174217224121" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBo-rd-x2T">
+                                <rect key="frame" x="8" y="45" width="359" height="21"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bLc-Y8-f1T">
+                                <rect key="frame" x="8" y="82" width="359" height="577"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Erm-ER-jiU" firstAttribute="leading" secondItem="SgH-Xf-Nyp" secondAttribute="leading" constant="8" id="0vV-ZX-TPp"/>
+                            <constraint firstItem="aBo-rd-x2T" firstAttribute="top" secondItem="Erm-ER-jiU" secondAttribute="bottom" constant="8" id="1Ib-Da-Q6G"/>
+                            <constraint firstAttribute="trailing" secondItem="Erm-ER-jiU" secondAttribute="trailing" constant="8" id="2Fm-Ok-sh0"/>
+                            <constraint firstItem="bLc-Y8-f1T" firstAttribute="leading" secondItem="N0i-lZ-PlF" secondAttribute="leading" constant="8" id="MiU-0D-6hV"/>
+                            <constraint firstItem="bLc-Y8-f1T" firstAttribute="top" secondItem="aBo-rd-x2T" secondAttribute="bottom" constant="16" id="RWZ-Xd-CuI"/>
+                            <constraint firstItem="aBo-rd-x2T" firstAttribute="leading" secondItem="N0i-lZ-PlF" secondAttribute="leading" constant="8" id="SvE-Vu-1h0"/>
+                            <constraint firstItem="N0i-lZ-PlF" firstAttribute="trailing" secondItem="aBo-rd-x2T" secondAttribute="trailing" constant="8" id="Ypl-vu-sFy"/>
+                            <constraint firstItem="Erm-ER-jiU" firstAttribute="top" secondItem="SgH-Xf-Nyp" secondAttribute="top" constant="16" id="b1r-Wf-WgP"/>
+                            <constraint firstItem="N0i-lZ-PlF" firstAttribute="bottom" secondItem="bLc-Y8-f1T" secondAttribute="bottom" constant="8" id="obx-Ih-ARk"/>
+                            <constraint firstItem="N0i-lZ-PlF" firstAttribute="trailing" secondItem="bLc-Y8-f1T" secondAttribute="trailing" constant="8" id="uEk-gi-5tU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="N0i-lZ-PlF"/>
                     </view>
                 </viewController>
