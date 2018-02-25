@@ -45,6 +45,7 @@
 		F4FE22042042D3BB00FD72A7 /* RepositoryDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FE2042D3BB00FD72A7 /* RepositoryDetailsModels.swift */; };
 		F4FE22052042D3BB00FD72A7 /* RepositoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21FF2042D3BB00FD72A7 /* RepositoryDetailsViewController.swift */; };
 		F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */; };
+		F4FE22082042D42B00FD72A7 /* RepositoryDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE22072042D42B00FD72A7 /* RepositoryDetails.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		F4FE21FE2042D3BB00FD72A7 /* RepositoryDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsModels.swift; sourceTree = "<group>"; };
 		F4FE21FF2042D3BB00FD72A7 /* RepositoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsViewController.swift; sourceTree = "<group>"; };
 		F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsInteractor.swift; sourceTree = "<group>"; };
+		F4FE22072042D42B00FD72A7 /* RepositoryDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RepositoryDetails.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 				F4FE21FE2042D3BB00FD72A7 /* RepositoryDetailsModels.swift */,
 				F4FE21FF2042D3BB00FD72A7 /* RepositoryDetailsViewController.swift */,
 				F4FE22002042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift */,
+				F4FE22072042D42B00FD72A7 /* RepositoryDetails.storyboard */,
 			);
 			path = repository;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FE218F20419E6800FD72A7 /* Details.storyboard in Resources */,
+				F4FE22082042D42B00FD72A7 /* RepositoryDetails.storyboard in Resources */,
 				F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */,
 				F4FE21CE2041BE7300FD72A7 /* RepositoryTableViewCell.xib in Resources */,
 				F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */,
