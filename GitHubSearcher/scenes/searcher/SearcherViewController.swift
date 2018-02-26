@@ -2,7 +2,7 @@ import UIKit
 
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Users.ViewModel)
-//    func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
+    func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
 }
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
@@ -67,6 +67,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     
     private let mockNumberOfRowsInSection = 15
     private var userList: [User]?
+    private var repositoryList: [Repository]?
     
     
     func searchUsers() {
@@ -79,14 +80,15 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         searcherTableView.reloadData()
     }
     
-//    func searchRepositories() {
-//        let request = Searcher.Users.Request()
-//        interactor?.searchRepositories(request: request)
-//    }
-//    
-//    func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
-//        //nameTextField.text = viewModel.name
-//    }
+    func searchRepositories() {
+        let request = Searcher.Repositories.Request(filter: "zo")
+        interactor?.searchRepositories(request: request)
+    }
+    
+    func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
+        self.repositoryList = viewModel.repositoryList
+        searcherTableView.reloadData()
+    }
 }
 
 //MARK: Methods of TableViewDelegate, DataSource
@@ -101,7 +103,7 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UserTableViewCell()
         guard let userList = self.userList else { return cell }
-        cell.textLabel?.text = userList[indexPath.row].login
+        cell.textLabel?.text = String(userList[indexPath.row].id)
         return cell
     }
     

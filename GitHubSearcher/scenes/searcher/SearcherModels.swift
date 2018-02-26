@@ -31,4 +31,29 @@ enum Searcher {
             let usersList: [User]
         }
     }
+    
+    enum Repositories {
+        struct Request {
+            let filter: String
+        }
+        
+        struct Response {
+            
+            init(json: JSON) {
+                self.success = true
+                self.models = Searcher.models(from: json) as [Repository]?
+            }
+            
+            init() {
+                self.success = false
+            }
+            
+            var success: Bool
+            var models: [Repository]?
+        }
+        
+        struct ViewModel {
+            let repositoryList: [Repository]
+        }
+    }
 }

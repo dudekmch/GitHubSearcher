@@ -2,6 +2,7 @@ import Foundation
 
 class Repository: ResponseModel {
     
+    let id: Int
     let privateRepository: Bool
     let repositoryURL: URL
     let description: String?
@@ -10,7 +11,8 @@ class Repository: ResponseModel {
     let language: String?
     let score: Double
     
-    init(privateRepository: Bool, repositoryURL: String, description: String?, created: String, updated: String, language: String?, score: Double){
+    init(id: Int, privateRepository: Bool, repositoryURL: String, description: String?, created: String, updated: String, language: String?, score: Double){
+        self.id = id
         self.privateRepository = privateRepository
         self.repositoryURL = URL.init(string: repositoryURL)!
         self.description = description
@@ -22,6 +24,7 @@ class Repository: ResponseModel {
     
     convenience required init?(json: JSON){
         guard
+            let id = json["id"] as? Int,
             let privateRepository = json["private"] as? Bool,
             let repositoryURL = json["html_url"] as? String,
             let created = json["created_at"] as? String,
@@ -33,7 +36,7 @@ class Repository: ResponseModel {
         let description = json["description"] as? String
         let language = json["language"] as? String
         
-        self.init(privateRepository: privateRepository, repositoryURL: repositoryURL, description: description, created: created, updated: updated, language: language, score: score)
+        self.init(id: id, privateRepository: privateRepository, repositoryURL: repositoryURL, description: description, created: created, updated: updated, language: language, score: score)
     }
   
 }
