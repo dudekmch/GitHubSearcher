@@ -2,7 +2,7 @@ import UIKit
 
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Users.ViewModel)
-    func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
+//    func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
 }
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
@@ -66,25 +66,27 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     @IBOutlet weak var searcherTableView: UITableView!
     
     private let mockNumberOfRowsInSection = 15
+    private var userList: [User]?
     
     
     func searchUsers() {
-        let request = Searcher.Users.Request()
-        interactor?.searchUsers(filter: "p", request: request)
+        let request = Searcher.Users.Request(filter: "pa")
+        interactor?.searchUsers(request: request)
     }
     
     func displayUsers(viewModel: Searcher.Users.ViewModel) {
-        //nameTextField.text = viewModel.name
+        userList = viewModel.usersList
+        searcherTableView.reloadData()
     }
     
-    func searchRepositories() {
-        let request = Searcher.Repositories.Request()
-        interactor?.searchRepositories(request: request)
-    }
-    
-    func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
-        //nameTextField.text = viewModel.name
-    }
+//    func searchRepositories() {
+//        let request = Searcher.Users.Request()
+//        interactor?.searchRepositories(request: request)
+//    }
+//    
+//    func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
+//        //nameTextField.text = viewModel.name
+//    }
 }
 
 //MARK: Methods of TableViewDelegate, DataSource
@@ -92,12 +94,14 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
 extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mockNumberOfRowsInSection
+        guard let userList = self.userList else { return 0 }
+        return userList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UserTableViewCell()
-        cell.textLabel?.text = String(indexPath.row)
+        guard let userList = self.userList else { return cell }
+        cell.textLabel?.text = userList[indexPath.row].login
         return cell
     }
     

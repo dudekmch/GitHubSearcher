@@ -43,6 +43,7 @@
 		F4FE22132042FD2300FD72A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22122042FD2300FD72A7 /* User.swift */; };
 		F4FE22152042FD3400FD72A7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22142042FD3400FD72A7 /* Repository.swift */; };
 		F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221D204351F600FD72A7 /* Formatter.swift */; };
+		F4FE2220204496FA00FD72A7 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221F204496FA00FD72A7 /* ResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		F4FE22122042FD2300FD72A7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4FE22142042FD3400FD72A7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F4FE221D204351F600FD72A7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		F4FE221F204496FA00FD72A7 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +308,7 @@
 			children = (
 				F4FE22122042FD2300FD72A7 /* User.swift */,
 				F4FE22142042FD3400FD72A7 /* Repository.swift */,
+				F4FE221F204496FA00FD72A7 /* ResponseModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				F4FE21CD2041BE7300FD72A7 /* RepositoryTableViewCell.swift in Sources */,
 				F4FE21F72042D1D400FD72A7 /* UserDetailsViewController.swift in Sources */,
 				F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */,
+				F4FE2220204496FA00FD72A7 /* ResponseModel.swift in Sources */,
 				F4FE220A2042D56C00FD72A7 /* FilterType.swift in Sources */,
 				F4FE22052042D3BB00FD72A7 /* RepositoryDetailsViewController.swift in Sources */,
 				F4FE21992041A4A200FD72A7 /* SearcherWorker.swift in Sources */,
