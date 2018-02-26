@@ -9,11 +9,21 @@ enum Searcher {
         }
         
         struct Response {
+            init(json: JSON?) {
+            self.success = true
+            self.json = json
+            }
             
+            init() {
+                self.success = false
+            }
+            
+            var success: Bool
+            var json: JSON?
         }
         
         struct ViewModel {
-            
+            let usersList: [User]
         }
     }
     

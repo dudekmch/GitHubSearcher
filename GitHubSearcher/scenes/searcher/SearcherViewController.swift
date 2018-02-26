@@ -1,7 +1,5 @@
 import UIKit
 
-typealias JSON = Dictionary<String, Any>
-
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Users.ViewModel)
     func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
@@ -72,7 +70,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     
     func searchUsers() {
         let request = Searcher.Users.Request()
-        interactor?.searchUsers(request: request)
+        interactor?.searchUsers(filter: "p", request: request)
     }
     
     func displayUsers(viewModel: Searcher.Users.ViewModel) {
