@@ -107,7 +107,9 @@
                         <outlet property="filterTypeView" destination="SUL-Id-DTI" id="eSe-nH-J3z"/>
                         <outlet property="searcherTableView" destination="aRo-ia-3as" id="ZZN-XF-4TH"/>
                         <outlet property="searcherTextField" destination="nCm-p6-XSr" id="NTE-QF-BEz"/>
-                        <outlet property="showFilterTypeButton" destination="LFm-h0-Iyh" id="sp4-Co-HNU"/>
+                        <outlet property="setRepositoryFilterTypeButton" destination="gYV-Oh-CWC" id="Tn1-fP-7a4"/>
+                        <outlet property="setUserFilterTypeButton" destination="XKC-B1-V7x" id="cM0-oc-i1g"/>
+                        <outlet property="showFilterTypeViewButton" destination="LFm-h0-Iyh" id="sp4-Co-HNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aow-8d-WYX" userLabel="First Responder" sceneMemberID="firstResponder"/>

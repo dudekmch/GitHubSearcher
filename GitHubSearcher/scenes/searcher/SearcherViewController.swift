@@ -8,7 +8,7 @@ protocol SearcherDisplayLogic: class {
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
     var interactor: SearcherBusinessLogic?
     var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
-    var filterTypeViewHandler: FilterTypeDisplayingLogic?
+    var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue)?
 
     // MARK: Object lifecycle
 
@@ -61,10 +61,12 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         registerNib(identifire: RepositoryTableViewCell.identifier)
         self.navigationController?.isNavigationBarHidden = true
         filterTypeView.isHidden = true
-        searcherTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
+        filterTypeViewHandler?.configureDefaultFilterTypeButtonColors(setUserFilterTypeButton, setRepositoryFilterTypeButton)
+        searcherTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
             for: UIControlEvents.editingChanged)
-        showFilterTypeButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
-
+        showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
+        setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
+        setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
     }
 
     //MARK: Properties
@@ -72,12 +74,12 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     @IBOutlet weak var searcherTextField: UITextField!
     @IBOutlet weak var searcherTableView: UITableView!
     @IBOutlet weak var filterTypeView: UIView!
-    @IBOutlet weak var showFilterTypeButton: UIButton!
-
-    private let mockNumberOfRowsInSection = 15
+    @IBOutlet weak var showFilterTypeViewButton: UIButton!
+    @IBOutlet weak var setUserFilterTypeButton: UIButton!
+    @IBOutlet weak var setRepositoryFilterTypeButton: UIButton!
+    
     private var userList: [User]?
     private var repositoryList: [Repository]?
-    private var isFilterTypeViewDisplayed: Bool = false
 
 
     private func searchUsers(for filter: String) {
@@ -100,13 +102,21 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         searcherTableView.reloadData()
     }
 
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    @objc private func searcherTextFieldDidChange(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
         searchUsers(for: searchText)
     }
 
-    @objc func filterTypeDisplayingHandler(_ button: UIButton) {
+    @objc private func filterTypeDisplayingHandler(_ button: UIButton) {
         filterTypeViewHandler?.filterTypeViewHandler(of: filterTypeView)
+    }
+    
+    @objc private func usersFilterTypeButtonHandler(_ button: UIButton){
+        filterTypeViewHandler?.usersFilterTypeButtonSelected(setUserFilterTypeButton, setRepositoryFilterTypeButton, in: filterTypeView)
+    }
+    
+    @objc private func repositoriesFilterTypeButtonHandler(_ button: UIButton){
+        filterTypeViewHandler?.repositoriesFilterTypeButtonSelected(setUserFilterTypeButton, setRepositoryFilterTypeButton, in: filterTypeView)
     }
 }
 
