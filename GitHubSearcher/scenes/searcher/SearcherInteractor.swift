@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SearcherBusinessLogic {
-    func searchUsers(filter: String, request: Searcher.Users.Request)
+    func searchUsers(request: Searcher.Users.Request)
     func searchRepositories(request: Searcher.Repositories.Request)
     func setDataStore(name: String, filterType: FilterType)
 }
@@ -12,37 +12,37 @@ protocol SearcherDataStore {
 }
 
 class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
-    
+
     var presenter: SearcherPresentationLogic?
     var service: GitHubApiService?
     var name: String?
     var filterType: FilterType?
-    
+
     // MARK: Search users
-    
-    func searchUsers(filter: String, request: Searcher.Users.Request) {
+
+    func searchUsers(request: Searcher.Users.Request) {
         service = GitHubApiService.shared
-        service?.searchUsers(filter: filter, result: { (response) in
+        service?.searchUsers(filter: request.filter, result: { (response) in
+
             self.presenter?.presentUsers(response: response)
         })
-        
-        let response = Searcher.Users.Response()
-        presenter?.presentUsers(response: response)
     }
-    
+
     //MARK: Search repositories
-    
+
     func searchRepositories(request: Searcher.Repositories.Request) {
-        service = GitHubApiService.shared
-        service?.getRepositories()
+        GitHubApiService.shared.searchRepositories(filter: request.filter, result: { (response) in
+            
+             self.presenter?.presentRepositories(response: response)
+        })
+
         
-        let response = Searcher.Repositories.Response()
-        presenter?.presentRepositories(response: response)
+       
     }
-    
+
     //MARK: Set data store
-    
-    func setDataStore(name: String, filterType: FilterType){
+
+    func setDataStore(name: String, filterType: FilterType) {
         self.name = name
         self.filterType = filterType
     }

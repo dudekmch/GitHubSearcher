@@ -1,17 +1,23 @@
 import UIKit
 
 enum Searcher {
-    // MARK: Use cases
+    
+    static func models<T: ResponseModel>(from json: JSON) -> [T]? {
+        guard let items = json["items"] else { return nil }
+        let modelsJSON: [JSON] = items as! [JSON]
+        return modelsJSON.flatMap { T(json: $0) }
+    }
     
     enum Users {
         struct Request {
-            
+            let filter: String 
         }
         
         struct Response {
-            init(json: JSON?) {
-            self.success = true
-            self.json = json
+            
+            init(json: JSON) {
+                self.success = true
+                self.models = Searcher.models(from: json) as [User]?
             }
             
             init() {
@@ -19,7 +25,7 @@ enum Searcher {
             }
             
             var success: Bool
-            var json: JSON?
+            var models: [User]?
         }
         
         struct ViewModel {
@@ -29,15 +35,26 @@ enum Searcher {
     
     enum Repositories {
         struct Request {
-            
+            let filter: String
         }
         
         struct Response {
             
+            init(json: JSON) {
+                self.success = true
+                self.models = Searcher.models(from: json) as [Repository]?
+            }
+            
+            init() {
+                self.success = false
+            }
+            
+            var success: Bool
+            var models: [Repository]?
         }
         
         struct ViewModel {
-            
+            let repositoryList: [Repository]
         }
     }
 }
