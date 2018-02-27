@@ -8,6 +8,7 @@ protocol SearcherDisplayLogic: class {
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
     var interactor: SearcherBusinessLogic?
     var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
+    var filterTypeViewHandler: FilterTypeDisplayingLogic?
 
     // MARK: Object lifecycle
 
@@ -28,12 +29,14 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         let interactor = SearcherInteractor()
         let presenter = SearcherPresenter()
         let router = SearcherRouter()
+        let filterTypeViewHandler = FilterTypeViewHandler()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+        viewController.filterTypeViewHandler = filterTypeViewHandler
     }
 
     // MARK: Routing
@@ -57,18 +60,24 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         registerNib(identifire: UserTableViewCell.identifier)
         registerNib(identifire: RepositoryTableViewCell.identifier)
         self.navigationController?.isNavigationBarHidden = true
+        filterTypeView.isHidden = true
         searcherTextField.addTarget(self, action: #selector(textFieldDidChange(_:)),
             for: UIControlEvents.editingChanged)
+        showFilterTypeButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
+
     }
 
     //MARK: Properties
 
     @IBOutlet weak var searcherTextField: UITextField!
     @IBOutlet weak var searcherTableView: UITableView!
+    @IBOutlet weak var filterTypeView: UIView!
+    @IBOutlet weak var showFilterTypeButton: UIButton!
 
     private let mockNumberOfRowsInSection = 15
     private var userList: [User]?
     private var repositoryList: [Repository]?
+    private var isFilterTypeViewDisplayed: Bool = false
 
 
     private func searchUsers(for filter: String) {
@@ -90,10 +99,14 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         self.repositoryList = viewModel.repositoryList
         searcherTableView.reloadData()
     }
-    
+
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
         searchUsers(for: searchText)
+    }
+
+    @objc func filterTypeDisplayingHandler(_ button: UIButton) {
+        filterTypeViewHandler?.filterTypeViewHandler(of: filterTypeView)
     }
 }
 
@@ -130,6 +143,6 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearcherViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-       
+
     }
 }
