@@ -104,6 +104,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
 
     @objc private func searcherTextFieldDidChange(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
+        filterTypeViewHandler?.filterTypeViewHandler(of: filterTypeView)
         searchUsers(for: searchText)
     }
 
