@@ -3,7 +3,8 @@ import UIKit
 enum Searcher {
     
     static func models<T: ResponseModel>(from json: JSON) -> [T]? {
-        let modelsJSON: [JSON] = json["items"] as! [JSON]
+        guard let items = json["items"] else { return nil }
+        let modelsJSON: [JSON] = items as! [JSON]
         return modelsJSON.flatMap { T(json: $0) }
     }
     
