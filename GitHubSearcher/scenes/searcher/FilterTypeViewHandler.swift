@@ -8,7 +8,7 @@ protocol FilterTypeDisplayingLogic {
 protocol FilterTypeButtonsLogic {
     func usersFilterTypeButtonSelected(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton, in filterView: UIView)
     func repositoriesFilterTypeButtonSelected(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton, in filterView: UIView)
-    func configureDefaultFilterTypeButtonColors(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton)
+    func configureDefaultFilterTypeButtonProperties(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton)
 }
 
 protocol FilterTypeValue {
@@ -21,7 +21,7 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
 
     private var isFilterTypeViewDisplayed: Bool = false
 
-    func configureDefaultFilterTypeButtonColors(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton) {
+    func configureDefaultFilterTypeButtonProperties(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton) {
         usersFilterButton.backgroundColor = .green
         usersFilterButton.setTitle("Users", for: UIControlState.normal)
         repositoriesFilterButton.backgroundColor = .blue

@@ -61,7 +61,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         registerNib(identifire: RepositoryTableViewCell.identifier)
         self.navigationController?.isNavigationBarHidden = true
         filterTypeView.isHidden = true
-        filterTypeViewHandler?.configureDefaultFilterTypeButtonColors(setUserFilterTypeButton, setRepositoryFilterTypeButton)
+        filterTypeViewHandler?.configureDefaultFilterTypeButtonProperties(setUserFilterTypeButton, setRepositoryFilterTypeButton)
         searcherTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
             for: UIControlEvents.editingChanged)
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
