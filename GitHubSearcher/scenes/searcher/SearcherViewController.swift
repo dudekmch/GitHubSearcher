@@ -8,7 +8,7 @@ protocol SearcherDisplayLogic: class {
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
     var interactor: SearcherBusinessLogic?
     var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
-    var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue)?
+    var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue & FilterTypeButtonConfigurator)?
 
     // MARK: Object lifecycle
 
@@ -61,7 +61,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         registerNib(identifire: RepositoryTableViewCell.identifier)
         self.navigationController?.isNavigationBarHidden = true
         filterTypeView.isHidden = true
-        filterTypeViewHandler?.configureDefaultFilterTypeButtonProperties(setUserFilterTypeButton, setRepositoryFilterTypeButton)
+        filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties(setUserFilterTypeButton, setRepositoryFilterTypeButton)
+        filterTypeViewHandler?.configureShowFilterTypeViewButton(showFilterTypeViewButton)
         searcherTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
             for: UIControlEvents.editingChanged)
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
