@@ -44,6 +44,7 @@
 		F4FE22152042FD3400FD72A7 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22142042FD3400FD72A7 /* Repository.swift */; };
 		F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221D204351F600FD72A7 /* Formatter.swift */; };
 		F4FE2220204496FA00FD72A7 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221F204496FA00FD72A7 /* ResponseModel.swift */; };
+		F4FE222A2045F02500FD72A7 /* FilterTypeViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		F4FE22142042FD3400FD72A7 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F4FE221D204351F600FD72A7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		F4FE221F204496FA00FD72A7 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
+		F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeViewHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				F4FE21952041A4A200FD72A7 /* SearcherModels.swift */,
 				F4FE21962041A4A200FD72A7 /* SearcherViewController.swift */,
 				F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */,
+				F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */,
 			);
 			path = searcher;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
 				F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */,
+				F4FE222A2045F02500FD72A7 /* FilterTypeViewHandler.swift in Sources */,
 				F4FE21F52042D1D400FD72A7 /* UserDetailsRouter.swift in Sources */,
 				F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */,
 				F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */,
