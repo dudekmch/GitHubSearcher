@@ -1,6 +1,6 @@
 import UIKit
 
-enum Searcher {
+enum Searcher{
     
     static func models<T: ResponseModel>(from json: JSON) -> [T]? {
         guard let items = json["items"] else { return nil }
@@ -8,16 +8,17 @@ enum Searcher {
         return modelsJSON.flatMap { T(json: $0) }
     }
     
-    enum Users {
+    enum Data {
         struct Request {
-            let filter: String 
+            let searchTerm: String
+            let filterType: FilterType
         }
         
-        struct Response {
+        struct Response<T: ResponseModel> {
             
             init(json: JSON) {
                 self.success = true
-                self.models = Searcher.models(from: json) as [User]?
+                self.models = Searcher.models(from: json)
             }
             
             init() {
@@ -25,11 +26,11 @@ enum Searcher {
             }
             
             var success: Bool
-            var models: [User]?
+            var models: [T]?
         }
         
-        struct ViewModel {
-            let usersList: [User]
+        struct ViewModel<T: ResponseModel>  {
+            let dataList: [T]
         }
     }
     

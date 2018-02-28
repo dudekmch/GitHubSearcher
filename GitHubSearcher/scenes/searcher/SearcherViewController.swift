@@ -1,8 +1,8 @@
 import UIKit
 
 protocol SearcherDisplayLogic: class {
-    func displayUsers(viewModel: Searcher.Users.ViewModel)
-    func displayRepositories(viewModel: Searcher.Repositories.ViewModel)
+    func displayUsers(viewModel: Searcher.Data.ViewModel<User>)
+    func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
 }
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic {
@@ -75,23 +75,18 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     private var repositoryList: [Repository]?
 
 
-    private func searchUsers(for filter: String) {
-        let request = Searcher.Users.Request(filter: filter)
+    private func searchData(with filter: FilterType, for searchTerm: String) {
+        let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: .users)
         interactor?.searchUsers(request: request)
     }
 
-    func displayUsers(viewModel: Searcher.Users.ViewModel) {
-        userList = viewModel.usersList
+    func displayUsers(viewModel: Searcher.Data.ViewModel<User>) {
+        userList = viewModel.dataList
         searcherTableView.reloadData()
     }
 
-    private func searchRepositories(for filter: String) {
-        let request = Searcher.Repositories.Request(filter: filter)
-        interactor?.searchRepositories(request: request)
-    }
-
-    func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
-        self.repositoryList = viewModel.repositoryList
+    func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>) {
+        self.repositoryList = viewModel.dataList
         searcherTableView.reloadData()
     }
     
@@ -110,7 +105,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     @objc private func searcherTextFieldDidChange(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
         filterTypeViewHandler?.filterTypeViewHandler(of: filterTypeView)
-        searchUsers(for: searchText)
+        searchData(with: .users, for: searchText)
     }
 
     @objc private func filterTypeDisplayingHandler(_ button: UIButton) {

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SearcherBusinessLogic {
-    func searchUsers(request: Searcher.Users.Request)
+    func searchUsers(request: Searcher.Data.Request)
     func searchRepositories(request: Searcher.Repositories.Request)
     func setDataStore(name: String, filterType: FilterType)
 }
@@ -20,9 +20,9 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
 
     // MARK: Search users
 
-    func searchUsers(request: Searcher.Users.Request) {
+    func searchUsers(request: Searcher.Data.Request) {
         service = GitHubApiService.shared
-        service?.searchUsers(filter: request.filter, result: { (response) in
+        service?.searchUsers(filter: request.searchTerm, result: { (response) in
 
             self.presenter?.presentUsers(response: response)
         })

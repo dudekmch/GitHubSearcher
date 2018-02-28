@@ -1,8 +1,8 @@
 import UIKit
 
 protocol SearcherPresentationLogic {
-    func presentUsers(response: Searcher.Users.Response)
-    func presentRepositories(response: Searcher.Repositories.Response)
+    func presentUsers(response: Searcher.Data.Response<User>)
+    func presentRepositories(response: Searcher.Data.Response<Repository>)
 }
 
 class SearcherPresenter: SearcherPresentationLogic {
@@ -10,15 +10,15 @@ class SearcherPresenter: SearcherPresentationLogic {
 
     // MARK: Do something
 
-    func presentUsers(response: Searcher.Users.Response) {
+    func presentUsers(response: Searcher.Data.Response<User>) {
         guard let userList = response.models else { return }
-        let viewModel = Searcher.Users.ViewModel(usersList: userList.sorted { $0.id < $1.id })
+        let viewModel = Searcher.Data.ViewModel(dataList: userList.sorted { $0.id < $1.id })
         viewController?.displayUsers(viewModel: viewModel)
     }
 
-    func presentRepositories(response: Searcher.Repositories.Response) {
+    func presentRepositories(response: Searcher.Data.Response<Repository>) {
         guard let repositoryList = response.models else { return }
-        let viewModel = Searcher.Repositories.ViewModel(repositoryList: repositoryList.sorted { $0.id < $1.id })
+        let viewModel = Searcher.Data.ViewModel(dataList: repositoryList.sorted { $0.id < $1.id })
         viewController?.displayRepositories(viewModel: viewModel)
     }
 }
