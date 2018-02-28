@@ -15,6 +15,7 @@
             <objects>
                 <navigationController id="Her-R4-J35" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IUp-e6-fyh">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -50,14 +51,14 @@
                                 <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKC-B1-V7x">
-                                        <rect key="frame" x="50" y="20" width="46" height="30"/>
-                                        <state key="normal" title="Button">
+                                        <rect key="frame" x="50" y="20" width="40" height="30"/>
+                                        <state key="normal" title="Users">
                                             <color key="titleColor" red="0.55932092666625977" green="0.085684813559055328" blue="0.1281314492225647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYV-Oh-CWC">
-                                        <rect key="frame" x="224" y="20" width="46" height="30"/>
-                                        <state key="normal" title="Button">
+                                        <rect key="frame" x="185" y="20" width="85" height="30"/>
+                                        <state key="normal" title="Repositories">
                                             <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
@@ -80,7 +81,7 @@
                                     <constraint firstAttribute="height" constant="40" id="yrP-rd-UGR"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Filter"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

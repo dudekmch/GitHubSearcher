@@ -121,8 +121,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     @objc private func repositoriesFilterTypeButtonHandler(_ button: UIButton) {
         filterTypeViewHandler?.repositoriesFilterTypeButtonSelected(setUserFilterTypeButton, setRepositoryFilterTypeButton, in: filterTypeView)
     }
-    
-    private func hideKeyboard(){
+
+    private func hideKeyboard() {
         self.view.endEditing(true)
     }
 }
