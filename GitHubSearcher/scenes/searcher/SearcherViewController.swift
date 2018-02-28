@@ -59,15 +59,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         searcherTextField.delegate = self
         registerNib(identifire: UserTableViewCell.identifier)
         registerNib(identifire: RepositoryTableViewCell.identifier)
-        self.navigationController?.isNavigationBarHidden = true
-        filterTypeView.isHidden = true
-        filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties(setUserFilterTypeButton, setRepositoryFilterTypeButton)
-        filterTypeViewHandler?.configureShowFilterTypeViewButton(showFilterTypeViewButton)
-        searcherTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
-            for: UIControlEvents.editingChanged)
-        showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
-        setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
-        setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
+        prepareInteractiveViewElements()
     }
 
     //MARK: Properties
@@ -101,6 +93,18 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     func displayRepositories(viewModel: Searcher.Repositories.ViewModel) {
         self.repositoryList = viewModel.repositoryList
         searcherTableView.reloadData()
+    }
+    
+    private func prepareInteractiveViewElements(){
+        self.navigationController?.isNavigationBarHidden = true
+        filterTypeView.isHidden = true
+        filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties(setUserFilterTypeButton, setRepositoryFilterTypeButton)
+        filterTypeViewHandler?.configureShowFilterTypeViewButton(showFilterTypeViewButton)
+        searcherTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
+                                    for: UIControlEvents.editingChanged)
+        showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
+        setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
+        setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
     }
 
     @objc private func searcherTextFieldDidChange(_ textField: UITextField) {
