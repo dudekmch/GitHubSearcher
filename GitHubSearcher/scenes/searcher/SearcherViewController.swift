@@ -77,7 +77,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
         let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: .users)
-        interactor?.searchUsers(request: request)
+        interactor?.searchData(request: request)
     }
 
     func displayUsers(viewModel: Searcher.Data.ViewModel<User>) {
@@ -104,7 +104,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
 
     @objc private func searcherTextFieldDidChange(_ textField: UITextField) {
         guard let searchText = textField.text else { return }
-        filterTypeViewHandler?.filterTypeViewHandler(of: filterTypeView)
+        filterTypeViewHandler?.beginTypingHide(view: filterTypeView)
         searchData(with: .users, for: searchText)
     }
 

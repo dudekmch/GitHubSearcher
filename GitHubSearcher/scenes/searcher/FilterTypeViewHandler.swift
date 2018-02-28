@@ -3,6 +3,7 @@ import UIKit
 
 protocol FilterTypeDisplayingLogic {
     func filterTypeViewHandler(of view: UIView)
+    func beginTypingHide(view: UIView)
 }
 
 protocol FilterTypeButtonsLogic {
@@ -24,8 +25,8 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
     var currentFilterType: FilterType = .users
 
     private var isFilterTypeViewDisplayed: Bool = false
-    
-    func configureShowFilterTypeViewButton(_ button: UIButton){
+
+    func configureShowFilterTypeViewButton(_ button: UIButton) {
         button.setTitle("Filter", for: UIControlState.normal)
         button.roundCorners()
     }
@@ -60,6 +61,12 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
         } else {
             self.show(view: view)
             isFilterTypeViewDisplayed = true
+        }
+    }
+
+    func beginTypingHide(view: UIView) {
+        if isFilterTypeViewDisplayed {
+            hide(view: view)
         }
     }
 
