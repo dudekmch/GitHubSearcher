@@ -1,5 +1,5 @@
 
-enum FilterType {
+enum FilterType: String {
     case users
     case repositories
 }

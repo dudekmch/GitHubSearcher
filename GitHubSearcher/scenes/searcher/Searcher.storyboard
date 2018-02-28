@@ -15,7 +15,6 @@
             <objects>
                 <navigationController id="Her-R4-J35" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IUp-e6-fyh">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -105,8 +104,8 @@
                     <navigationItem key="navigationItem" id="ua3-j8-sUN"/>
                     <connections>
                         <outlet property="filterTypeView" destination="SUL-Id-DTI" id="eSe-nH-J3z"/>
+                        <outlet property="searchTermTextField" destination="nCm-p6-XSr" id="NTE-QF-BEz"/>
                         <outlet property="searcherTableView" destination="aRo-ia-3as" id="ZZN-XF-4TH"/>
-                        <outlet property="searcherTextField" destination="nCm-p6-XSr" id="NTE-QF-BEz"/>
                         <outlet property="setRepositoryFilterTypeButton" destination="gYV-Oh-CWC" id="Tn1-fP-7a4"/>
                         <outlet property="setUserFilterTypeButton" destination="XKC-B1-V7x" id="cM0-oc-i1g"/>
                         <outlet property="showFilterTypeViewButton" destination="LFm-h0-Iyh" id="sp4-Co-HNU"/>

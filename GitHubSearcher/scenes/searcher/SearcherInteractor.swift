@@ -35,8 +35,7 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
             })
         }
     }
-
-
+    
 //MARK: Set data store
 
     func setDataStore(name: String, filterType: FilterType) {
