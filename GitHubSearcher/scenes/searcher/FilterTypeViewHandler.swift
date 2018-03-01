@@ -2,18 +2,18 @@ import Foundation
 import UIKit
 
 protocol FilterTypeDisplayingLogic {
-    func filterTypeViewHandler(of view: UIView)
-    func beginTypingHide(view: UIView)
+    func filterTypeViewHandler()
+    func beginTypingHideView()
 }
 
 protocol FilterTypeButtonsLogic {
-    func usersFilterTypeButtonSelected(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton, in filterView: UIView)
-    func repositoriesFilterTypeButtonSelected(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton, in filterView: UIView)
+    func usersFilterTypeButtonSelected()
+    func repositoriesFilterTypeButtonSelected()
 }
 
 protocol FilterTypeButtonConfigurator {
-    func configureDefaultFilterTypeButtonsProperties(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton)
-    func configureShowFilterTypeViewButton(_ button: UIButton)
+    func configureDefaultFilterTypeButtonsProperties()
+    func configureShowFilterTypeViewButton()
 }
 
 protocol FilterTypeValue {
@@ -22,69 +22,84 @@ protocol FilterTypeValue {
 
 class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, FilterTypeValue, FilterTypeButtonConfigurator {
 
+    //.user is start value
     var currentFilterType: FilterType = .users
 
     private var isFilterTypeViewDisplayed: Bool = false
 
-    func configureShowFilterTypeViewButton(_ button: UIButton) {
-        button.setTitle("Filter", for: UIControlState.normal)
-        button.roundCorners()
+    init(of controller: FilterTypeViewElements) {
+        self.filterTypeViewElements = controller
     }
 
-    func configureDefaultFilterTypeButtonsProperties(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton) {
-        usersFilterButton.backgroundColor = .green
-        usersFilterButton.setTitle("Users", for: UIControlState.normal)
-        usersFilterButton.roundCorners()
-        repositoriesFilterButton.backgroundColor = .blue
-        repositoriesFilterButton.setTitle("Repositories", for: UIControlState.normal)
-        repositoriesFilterButton.roundCorners()
+    let filterTypeViewElements: FilterTypeViewElements
+
+    func configureShowFilterTypeViewButton() {
+        filterTypeViewElements.showFilterTypeViewButton.setTitle("Filter", for: UIControlState.normal)
+        filterTypeViewElements.showFilterTypeViewButton.roundCorners()
     }
 
-    func usersFilterTypeButtonSelected(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton, in filterView: UIView) {
+    func configureDefaultFilterTypeButtonsProperties() {
+        setupSetUserFilterTypeButton()
+        setupSetRepositoryFilterTypeButton()
+    }
+
+    func usersFilterTypeButtonSelected() {
         currentFilterType = .users
-        usersFilterButton.backgroundColor = .green
-        repositoriesFilterButton.backgroundColor = .blue
-        filterTypeViewHandler(of: filterView)
+        filterTypeViewElements.setUserFilterTypeButton.backgroundColor = .green
+        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .blue
+        filterTypeViewHandler()
     }
 
-    func repositoriesFilterTypeButtonSelected(_ usersFilterButton: UIButton, _ repositoriesFilterButton: UIButton, in filterView: UIView) {
+    func repositoriesFilterTypeButtonSelected() {
         currentFilterType = .repositories
-        usersFilterButton.backgroundColor = .blue
-        repositoriesFilterButton.backgroundColor = .green
-        filterTypeViewHandler(of: filterView)
+        filterTypeViewElements.setUserFilterTypeButton.backgroundColor = .blue
+        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .green
+        filterTypeViewHandler()
     }
 
-    func filterTypeViewHandler(of view: UIView) {
+    func filterTypeViewHandler() {
         if isFilterTypeViewDisplayed {
-            self.hide(view: view)
+            self.hideView()
             isFilterTypeViewDisplayed = false
         } else {
-            self.show(view: view)
+            self.showView()
             isFilterTypeViewDisplayed = true
         }
     }
 
-    func beginTypingHide(view: UIView) {
+    func beginTypingHideView() {
         if isFilterTypeViewDisplayed {
-            hide(view: view)
+            self.hideView()
         }
     }
 
-    private func hide(view: UIView) {
+    private func hideView() {
         UIView.animate(withDuration: 0.3, animations: {
-            view.alpha = 0
+            self.filterTypeViewElements.filterTypeView.alpha = 0
         }, completion: {
                 (value: Bool) in
-                view.isHidden = true
+                self.filterTypeViewElements.filterTypeView.isHidden = true
             })
     }
 
-    private func show(view: UIView) {
-        view.alpha = 0
-        view.isHidden = false
+    private func showView() {
+        filterTypeViewElements.filterTypeView.alpha = 0
+        filterTypeViewElements.filterTypeView.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
-            view.alpha = 1
+            self.filterTypeViewElements.filterTypeView.alpha = 1
         }, completion: nil)
+    }
+
+    private func setupSetUserFilterTypeButton() {
+        filterTypeViewElements.setUserFilterTypeButton.backgroundColor = .green
+        filterTypeViewElements.setUserFilterTypeButton.setTitle("Users", for: UIControlState.normal)
+        filterTypeViewElements.setUserFilterTypeButton.roundCorners()
+    }
+
+    private func setupSetRepositoryFilterTypeButton() {
+        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .blue
+        filterTypeViewElements.setRepositoryFilterTypeButton.setTitle("Repositories", for: UIControlState.normal)
+        filterTypeViewElements.setRepositoryFilterTypeButton.roundCorners()
     }
 
 

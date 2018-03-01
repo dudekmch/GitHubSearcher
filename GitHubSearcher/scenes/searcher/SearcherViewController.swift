@@ -5,12 +5,19 @@ protocol SearcherDisplayLogic: class {
     func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
 }
 
-protocol SearchViewData: class {
+protocol SearchViewData {
     var userList: [User]? { get }
     var repositoryList: [Repository]? { get }
 }
 
-class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData {
+protocol FilterTypeViewElements {
+    var filterTypeView: UIView! { get set }
+    var showFilterTypeViewButton: UIButton! { get set }
+    var setUserFilterTypeButton: UIButton! { get set }
+    var setRepositoryFilterTypeButton: UIButton! { get set }
+}
+
+class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData, FilterTypeViewElements {
     var interactor: SearcherBusinessLogic?
     var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
     var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue & FilterTypeButtonConfigurator)?
@@ -34,7 +41,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         let interactor = SearcherInteractor()
         let presenter = SearcherPresenter()
         let router = SearcherRouter()
-        let filterTypeViewHandler = FilterTypeViewHandler()
+        let filterTypeViewHandler = FilterTypeViewHandler(of: self)
         let dataTableViewProvider = DataTableViewHandler(of: self)
         viewController.interactor = interactor
         viewController.router = router
@@ -101,8 +108,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     private func prepareInteractiveViewElements() {
         self.navigationController?.isNavigationBarHidden = true
         filterTypeView.isHidden = true
-        filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties(setUserFilterTypeButton, setRepositoryFilterTypeButton)
-        filterTypeViewHandler?.configureShowFilterTypeViewButton(showFilterTypeViewButton)
+        filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties()
+        filterTypeViewHandler?.configureShowFilterTypeViewButton()
         searchTermTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
             for: UIControlEvents.editingChanged)
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
@@ -117,16 +124,16 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     }
 
     @objc private func filterTypeDisplayingHandler(_ button: UIButton) {
-        filterTypeViewHandler?.filterTypeViewHandler(of: filterTypeView)
+        filterTypeViewHandler?.filterTypeViewHandler()
         hideKeyboard()
     }
 
     @objc private func usersFilterTypeButtonHandler(_ button: UIButton) {
-        filterTypeViewHandler?.usersFilterTypeButtonSelected(setUserFilterTypeButton, setRepositoryFilterTypeButton, in: filterTypeView)
+        filterTypeViewHandler?.usersFilterTypeButtonSelected()
     }
 
     @objc private func repositoriesFilterTypeButtonHandler(_ button: UIButton) {
-        filterTypeViewHandler?.repositoriesFilterTypeButtonSelected(setUserFilterTypeButton, setRepositoryFilterTypeButton, in: filterTypeView)
+        filterTypeViewHandler?.repositoriesFilterTypeButtonSelected()
     }
 
     private func hideKeyboard() {
@@ -168,9 +175,13 @@ extension SearcherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
         if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
-            filterTypeViewHandler?.beginTypingHide(view: filterTypeView)
+            filterTypeViewHandler?.beginTypingHideView()
             searchData(with: filterType, for: searchTerm)
         }
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        filterTypeViewHandler?.beginTypingHideView()
     }
 }
