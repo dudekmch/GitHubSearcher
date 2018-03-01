@@ -1,8 +1,10 @@
 import Foundation
 
 class Repository: ResponseModel {
-    
+
     let id: Int
+    let name: String
+    let fullName: String
     let privateRepository: Bool
     let repositoryURL: URL
     let description: String?
@@ -10,9 +12,12 @@ class Repository: ResponseModel {
     let updated: Date
     let language: String?
     let score: Double
-    
-    init(id: Int, privateRepository: Bool, repositoryURL: String, description: String?, created: String, updated: String, language: String?, score: Double){
+    let owner: String?
+
+    init(id: Int, name: String, fullName: String, privateRepository: Bool, repositoryURL: String, description: String?, created: String, updated: String, language: String?, score: Double, owner: Owner?) {
         self.id = id
+        self.name = name
+        self.fullName = fullName
         self.privateRepository = privateRepository
         self.repositoryURL = URL.init(string: repositoryURL)!
         self.description = description
@@ -20,23 +25,46 @@ class Repository: ResponseModel {
         self.updated = Formatter.iso8601.date(from: updated)!
         self.language = language
         self.score = score
+        if let owner = owner {
+            self.owner = owner.login
+        } else {
+            self.owner = nil
+        }
     }
-    
-    convenience required init?(json: JSON){
+
+    convenience required init?(json: JSON) {
         guard
             let id = json["id"] as? Int,
+            let name = json["name"] as? String,
+            let fullName = json["full_name"] as? String,
             let privateRepository = json["private"] as? Bool,
             let repositoryURL = json["html_url"] as? String,
             let created = json["created_at"] as? String,
             let updated = json["updated_at"] as? String,
-            let score = json["score"] as? Double
-        
+            let score = json["score"] as? Double,
+            let owner = json["owner"] as? JSON
             else { return nil }
-        
+
         let description = json["description"] as? String
         let language = json["language"] as? String
-        
-        self.init(id: id, privateRepository: privateRepository, repositoryURL: repositoryURL, description: description, created: created, updated: updated, language: language, score: score)
+
+        self.init(id: id, name: name, fullName: fullName, privateRepository: privateRepository, repositoryURL: repositoryURL, description: description, created: created, updated: updated, language: language, score: score, owner: Owner.init(json: owner))
     }
-  
+
+    class Owner {
+        let login: String
+
+        init(login: String) {
+            self.login = login
+        }
+
+        convenience init?(json: JSON) {
+            guard
+                let login = json["login"] as? String
+                else { return nil }
+
+            self.init(login: login)
+        }
+    }
+
 }

@@ -45,6 +45,7 @@
 		F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221D204351F600FD72A7 /* Formatter.swift */; };
 		F4FE2220204496FA00FD72A7 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221F204496FA00FD72A7 /* ResponseModel.swift */; };
 		F4FE222A2045F02500FD72A7 /* FilterTypeViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */; };
+		F4FE22322048673A00FD72A7 /* DataTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22312048673A00FD72A7 /* DataTableViewHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		F4FE221D204351F600FD72A7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		F4FE221F204496FA00FD72A7 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeViewHandler.swift; sourceTree = "<group>"; };
+		F4FE22312048673A00FD72A7 /* DataTableViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				F4FE21962041A4A200FD72A7 /* SearcherViewController.swift */,
 				F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */,
 				F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */,
+				F4FE22312048673A00FD72A7 /* DataTableViewHandler.swift */,
 			);
 			path = searcher;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				F4FE21F52042D1D400FD72A7 /* UserDetailsRouter.swift in Sources */,
 				F4FE22062042D3BB00FD72A7 /* RepositoryDetailsInteractor.swift in Sources */,
 				F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */,
+				F4FE22322048673A00FD72A7 /* DataTableViewHandler.swift in Sources */,
 				F4FE21CD2041BE7300FD72A7 /* RepositoryTableViewCell.swift in Sources */,
 				F4FE21F72042D1D400FD72A7 /* UserDetailsViewController.swift in Sources */,
 				F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */,
