@@ -10,14 +10,14 @@ protocol SearchViewData {
     var repositoryList: [Repository]? { get }
 }
 
-protocol FilterTypeViewElements {
+protocol FilterTypeViewUIElements {
     var filterTypeView: UIView! { get set }
     var showFilterTypeViewButton: UIButton! { get set }
     var setUserFilterTypeButton: UIButton! { get set }
     var setRepositoryFilterTypeButton: UIButton! { get set }
 }
 
-class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData, FilterTypeViewElements {
+class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData, FilterTypeViewUIElements {
     var interactor: SearcherBusinessLogic?
     var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
     var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue & FilterTypeButtonConfigurator)?
@@ -73,7 +73,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         searchTermTextField.delegate = self
         registerNib(identifire: UserTableViewCell.identifier)
         registerNib(identifire: RepositoryTableViewCell.identifier)
-        prepareInteractiveViewElements()
+        preparUIElements()
     }
 
     //MARK: Properties
@@ -105,7 +105,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         searcherTableView.reloadData()
     }
 
-    private func prepareInteractiveViewElements() {
+    private func preparUIElements() {
         self.navigationController?.isNavigationBarHidden = true
         filterTypeView.isHidden = true
         filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties()
@@ -152,7 +152,7 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let dataTableViewHandler = self.dataTableViewHandler else { return UITableViewCell() }
-        return dataTableViewHandler.prepareCellWithData(for: filterTypeViewHandler?.currentFilterType, with: indexPath)
+        return dataTableViewHandler.prepareCellWithData(for: filterTypeViewHandler?.currentFilterType, with: indexPath, register: tableView)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

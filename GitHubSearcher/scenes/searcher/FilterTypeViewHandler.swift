@@ -27,11 +27,12 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
 
     private var isFilterTypeViewDisplayed: Bool = false
 
-    init(of controller: FilterTypeViewElements) {
+    init(of controller: FilterTypeViewUIElements) {
         self.filterTypeViewElements = controller
     }
 
-    let filterTypeViewElements: FilterTypeViewElements
+    private let filterTypeViewElements: FilterTypeViewUIElements
+    
 
     func configureShowFilterTypeViewButton() {
         filterTypeViewElements.showFilterTypeViewButton.setTitle("Filter", for: UIControlState.normal)
