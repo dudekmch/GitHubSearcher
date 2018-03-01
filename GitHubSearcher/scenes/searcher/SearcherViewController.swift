@@ -5,11 +5,16 @@ protocol SearcherDisplayLogic: class {
     func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
 }
 
-class SearcherViewController: UIViewController, SearcherDisplayLogic {
+protocol SearchViewData: class {
+    var userList: [User]? { get }
+    var repositoryList: [Repository]? { get }
+}
+
+class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData {
     var interactor: SearcherBusinessLogic?
     var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
     var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue & FilterTypeButtonConfigurator)?
-
+    var dataTableViewHandler: DataTableViewProvider?
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -30,6 +35,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         let presenter = SearcherPresenter()
         let router = SearcherRouter()
         let filterTypeViewHandler = FilterTypeViewHandler()
+        let dataTableViewProvider = DataTableViewHandler(of: self)
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -37,6 +43,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
         router.viewController = viewController
         router.dataStore = interactor
         viewController.filterTypeViewHandler = filterTypeViewHandler
+        viewController.dataTableViewHandler = dataTableViewProvider
     }
 
     // MARK: Routing
@@ -71,8 +78,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
     @IBOutlet weak var setUserFilterTypeButton: UIButton!
     @IBOutlet weak var setRepositoryFilterTypeButton: UIButton!
 
-    private var userList: [User]?
-    private var repositoryList: [Repository]?
+    var userList: [User]?
+    var repositoryList: [Repository]?
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
@@ -132,22 +139,13 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic {
 extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getListElementsCount()
+        guard let dataTableViewHandler = self.dataTableViewHandler else { return 0 }
+        return dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let currentFilter = filterTypeViewHandler?.currentFilterType else { return UserTableViewCell() }
-        let cell = UserTableViewCell()
-        switch currentFilter {
-        case .users:
-            guard let userList = self.userList else { return cell }
-            cell.textLabel?.text = "\(userList[indexPath.row].id) \(userList[indexPath.row].login)"
-            return cell
-        case .repositories:
-            guard let repositoryList = self.repositoryList else { return cell }
-            cell.textLabel?.text = "\(repositoryList[indexPath.row].id) \(repositoryList[indexPath.row].name)"
-            return cell
-        }
+        guard let dataTableViewHandler = self.dataTableViewHandler else { return UITableViewCell() }
+        return dataTableViewHandler.prepareCellWithData(for: filterTypeViewHandler?.currentFilterType, with: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -161,17 +159,6 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         searcherTableView.register(nib, forCellReuseIdentifier: identifire)
     }
 
-    private func getListElementsCount() -> Int {
-        guard let currentFilter = filterTypeViewHandler?.currentFilterType else { return 0 }
-        switch currentFilter {
-        case .users:
-            guard let userList = self.userList else { return 0 }
-            return userList.count
-        case .repositories:
-            guard let repositoryList = self.repositoryList else { return 0 }
-            return repositoryList.count
-        }
-    }
 }
 
 //MARK: Methods of UITextFieldDelegate
