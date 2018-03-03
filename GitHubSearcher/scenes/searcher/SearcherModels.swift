@@ -33,6 +33,29 @@ enum Searcher {
             let dataList: [T]
         }
     }
+
+    enum UserWithAvatar {
+        struct Request {
+            let userList: [User]
+        }
+
+        struct Response {
+            init(users: [User]) {
+                self.success = true
+                self.models = users
+            }
+
+            init() {
+                self.success = false
+            }
+
+            var success: Bool
+            var models: [User]?
+        }
+        struct ViewModel {
+            let dataList: [User]
+        }
+    }
 }
 
 

@@ -8,6 +8,7 @@ protocol SearcherDisplayLogic: class {
 protocol SearchViewData {
     var userList: [User]? { get }
     var repositoryList: [Repository]? { get }
+    var avatarList: [UIImage]? { get set }
 }
 
 protocol FilterTypeViewUIElements {
@@ -87,6 +88,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
 
     var userList: [User]?
     var repositoryList: [Repository]?
+    var avatarList: [UIImage]?
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
