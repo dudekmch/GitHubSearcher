@@ -21,8 +21,6 @@
 		F4FE219D2041A4A200FD72A7 /* SearcherInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */; };
 		F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */; };
 		F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */; };
-		F4FE21C42041BCFE00FD72A7 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21C22041BCFE00FD72A7 /* UserTableViewCell.swift */; };
-		F4FE21C52041BCFE00FD72A7 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4FE21C32041BCFE00FD72A7 /* UserTableViewCell.xib */; };
 		F4FE21CD2041BE7300FD72A7 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21CB2041BE7300FD72A7 /* RepositoryTableViewCell.swift */; };
 		F4FE21CE2041BE7300FD72A7 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4FE21CC2041BE7300FD72A7 /* RepositoryTableViewCell.xib */; };
 		F4FE21F32042D1D400FD72A7 /* UserDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE21ED2042D1D400FD72A7 /* UserDetailsPresenter.swift */; };
@@ -46,6 +44,10 @@
 		F4FE2220204496FA00FD72A7 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE221F204496FA00FD72A7 /* ResponseModel.swift */; };
 		F4FE222A2045F02500FD72A7 /* FilterTypeViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */; };
 		F4FE22322048673A00FD72A7 /* DataTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE22312048673A00FD72A7 /* DataTableViewHandler.swift */; };
+		F4FE2239204AA35400FD72A7 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE2238204AA35400FD72A7 /* DoubleExtension.swift */; };
+		F4FE2240204AAC0D00FD72A7 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE223E204AAC0D00FD72A7 /* UserTableViewCell.swift */; };
+		F4FE2241204AAC0D00FD72A7 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4FE223F204AAC0D00FD72A7 /* UserTableViewCell.xib */; };
+		F4FE2243204AB40900FD72A7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE2242204AB40900FD72A7 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +87,6 @@
 		F4FE21972041A4A200FD72A7 /* SearcherInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcherInteractor.swift; sourceTree = "<group>"; };
 		F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		F4FE21BA2041AF7D00FD72A7 /* ShadowSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSide.swift; sourceTree = "<group>"; };
-		F4FE21C22041BCFE00FD72A7 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		F4FE21C32041BCFE00FD72A7 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		F4FE21CB2041BE7300FD72A7 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		F4FE21CC2041BE7300FD72A7 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
 		F4FE21ED2042D1D400FD72A7 /* UserDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -110,6 +110,10 @@
 		F4FE221F204496FA00FD72A7 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		F4FE22292045F02500FD72A7 /* FilterTypeViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeViewHandler.swift; sourceTree = "<group>"; };
 		F4FE22312048673A00FD72A7 /* DataTableViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewHandler.swift; sourceTree = "<group>"; };
+		F4FE2238204AA35400FD72A7 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		F4FE223E204AAC0D00FD72A7 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F4FE223F204AAC0D00FD72A7 /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		F4FE2242204AB40900FD72A7 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,8 @@
 			children = (
 				F4FE21B62041AE1100FD72A7 /* UIViewExtension.swift */,
 				F4FE221D204351F600FD72A7 /* Formatter.swift */,
+				F4FE2238204AA35400FD72A7 /* DoubleExtension.swift */,
+				F4FE2242204AB40900FD72A7 /* UIImageExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -266,8 +272,8 @@
 		F4FE21C12041BCB200FD72A7 /* user */ = {
 			isa = PBXGroup;
 			children = (
-				F4FE21C22041BCFE00FD72A7 /* UserTableViewCell.swift */,
-				F4FE21C32041BCFE00FD72A7 /* UserTableViewCell.xib */,
+				F4FE223E204AAC0D00FD72A7 /* UserTableViewCell.swift */,
+				F4FE223F204AAC0D00FD72A7 /* UserTableViewCell.xib */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -407,8 +413,8 @@
 				F4FE22082042D42B00FD72A7 /* RepositoryDetails.storyboard in Resources */,
 				F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */,
 				F4FE21CE2041BE7300FD72A7 /* RepositoryTableViewCell.xib in Resources */,
+				F4FE2241204AAC0D00FD72A7 /* UserTableViewCell.xib in Resources */,
 				F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */,
-				F4FE21C52041BCFE00FD72A7 /* UserTableViewCell.xib in Resources */,
 				F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */,
 				F4FE21FA2042D29800FD72A7 /* UserDetails.storyboard in Resources */,
 			);
@@ -483,6 +489,7 @@
 				F4FE22012042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift in Sources */,
 				F4FE21F82042D1D400FD72A7 /* UserDetailsInteractor.swift in Sources */,
 				F4FE219B2041A4A200FD72A7 /* SearcherModels.swift in Sources */,
+				F4FE2239204AA35400FD72A7 /* DoubleExtension.swift in Sources */,
 				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
 				F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */,
@@ -494,16 +501,17 @@
 				F4FE21CD2041BE7300FD72A7 /* RepositoryTableViewCell.swift in Sources */,
 				F4FE21F72042D1D400FD72A7 /* UserDetailsViewController.swift in Sources */,
 				F4FE21862041915C00FD72A7 /* GitHubApiService.swift in Sources */,
+				F4FE2240204AAC0D00FD72A7 /* UserTableViewCell.swift in Sources */,
 				F4FE2220204496FA00FD72A7 /* ResponseModel.swift in Sources */,
 				F4FE220A2042D56C00FD72A7 /* FilterType.swift in Sources */,
 				F4FE22052042D3BB00FD72A7 /* RepositoryDetailsViewController.swift in Sources */,
 				F4FE21992041A4A200FD72A7 /* SearcherWorker.swift in Sources */,
 				F4FE21F42042D1D400FD72A7 /* UserDetailsWorker.swift in Sources */,
+				F4FE2243204AB40900FD72A7 /* UIImageExtension.swift in Sources */,
 				F4FE21982041A4A200FD72A7 /* SearcherPresenter.swift in Sources */,
 				F4FE219A2041A4A200FD72A7 /* SearcherRouter.swift in Sources */,
 				F4FE22042042D3BB00FD72A7 /* RepositoryDetailsModels.swift in Sources */,
 				F4FE21F32042D1D400FD72A7 /* UserDetailsPresenter.swift in Sources */,
-				F4FE21C42041BCFE00FD72A7 /* UserTableViewCell.swift in Sources */,
 				F4FE22022042D3BB00FD72A7 /* RepositoryDetailsWorker.swift in Sources */,
 				F4FE22152042FD3400FD72A7 /* Repository.swift in Sources */,
 			);

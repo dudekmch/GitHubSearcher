@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,37 +25,37 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFP-Db-R2S">
-                        <rect key="frame" x="267.5" y="19" width="44.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Description Description Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Rs-dvV">
-                        <rect key="frame" x="8" y="37" width="214.5" height="35"/>
+                        <rect key="frame" x="8" y="37" width="217.5" height="35"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0h-sD-NFx" customClass="Re">
-                        <rect key="frame" x="230.5" y="48" width="81.5" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0h-sD-NFx" customClass="Re">
+                        <rect key="frame" x="230.5" y="44.5" width="81.5" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFP-Db-R2S">
+                        <rect key="frame" x="267.5" y="8" width="44.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="HFP-Db-R2S" secondAttribute="trailing" constant="8" id="1ZR-DC-FtV"/>
                     <constraint firstAttribute="bottom" secondItem="IbQ-Rs-dvV" secondAttribute="bottom" constant="8" id="7fn-wJ-Dhw"/>
                     <constraint firstAttribute="trailing" secondItem="G0h-sD-NFx" secondAttribute="trailing" constant="8" id="EdE-1r-lSj"/>
-                    <constraint firstItem="HFP-Db-R2S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="F3u-Aj-h8V"/>
-                    <constraint firstItem="G0h-sD-NFx" firstAttribute="top" secondItem="HFP-Db-R2S" secondAttribute="bottom" constant="8" id="G6h-L5-WeN"/>
                     <constraint firstItem="IbQ-Rs-dvV" firstAttribute="top" secondItem="3Gb-cz-7HG" secondAttribute="bottom" constant="8" id="MQ4-z8-Ser"/>
+                    <constraint firstItem="HFP-Db-R2S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="SM3-VY-Ooj"/>
                     <constraint firstItem="3Gb-cz-7HG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="crV-hn-BtJ"/>
-                    <constraint firstItem="G0h-sD-NFx" firstAttribute="leading" secondItem="IbQ-Rs-dvV" secondAttribute="trailing" constant="8" id="d9e-35-Gfa"/>
+                    <constraint firstItem="G0h-sD-NFx" firstAttribute="leading" secondItem="IbQ-Rs-dvV" secondAttribute="trailing" constant="5" id="d9e-35-Gfa"/>
                     <constraint firstItem="3Gb-cz-7HG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="eeA-6N-7zV"/>
                     <constraint firstItem="IbQ-Rs-dvV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gby-In-ouQ"/>
                     <constraint firstAttribute="bottom" secondItem="G0h-sD-NFx" secondAttribute="bottom" constant="8" id="gct-37-2a8"/>
+                    <constraint firstItem="G0h-sD-NFx" firstAttribute="top" secondItem="HFP-Db-R2S" secondAttribute="bottom" constant="16" id="syP-aj-hCJ"/>
+                    <constraint firstAttribute="trailing" secondItem="HFP-Db-R2S" secondAttribute="trailing" constant="8" id="xMe-kt-OlW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -18,9 +18,9 @@ class RepositoryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func setData(name: String, score: Double, description: String?, userName: String?) {
+    func setData(name: String, score: String, description: String?, userName: String?) {
         nameLabel.text = name
-        scoreLabel.text = String(score)
+        scoreLabel.text = "score: \(score)"
         if let description = description {
             descriptionLabel.text = description
         } else {
