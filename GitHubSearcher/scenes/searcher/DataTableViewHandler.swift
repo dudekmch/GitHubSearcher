@@ -33,12 +33,10 @@ class DataTableViewHandler: DataTableViewProvider {
         switch currentFilter {
         case .users:
             guard let userList = controller.userList else { return UITableViewCell() }
-            let cell = UserTableViewCell()
-            cell.textLabel?.text = "\(userList[indexPath.row].id) \(userList[indexPath.row].login)"
-            return cell
+            return createUserCell(with: indexPath.row, from: userList, for: tableView)
         case .repositories:
             guard let repositoryList = controller.repositoryList else { return UITableViewCell() }
-            
+
             return createRepositoryCell(with: indexPath.row, from: repositoryList, for: tableView)
         }
     }
@@ -46,7 +44,32 @@ class DataTableViewHandler: DataTableViewProvider {
     private func createRepositoryCell(with indexPathRow: Int, from list: [Repository], for tableView: UITableView) -> RepositoryTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier) as! RepositoryTableViewCell
         let repository = list[indexPathRow]
-        cell.setData(name: repository.name, score: repository.score.rounded(), description: repository.description, userName: repository.owner)
+        cell.setData(name: repository.name, score: formatScore(score: repository.score), description: repository.description, userName: repository.owner)
         return cell
+    }
+
+    private func createUserCell(with indexPathRow: Int, from list: [User], for tableView: UITableView) -> UserTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
+        let user = list[indexPathRow]
+        cell.setData(avatar: prepareAvatarFrom(image: #imageLiteral(resourceName: "mock-avatar")), login: user.login, score: formatScore(score: user.score))
+        return cell
+    }
+
+    private func formatScore(score: Double) -> String {
+        let score = String(score.rounded(toPlaces: 1))
+        return score
+    }
+    
+    private func prepareAvatarFrom(image: UIImage) -> UIImage {
+        if let resizedImage = resize(image: image) {
+            return resizedImage
+        }
+        return #imageLiteral(resourceName: "na-avatar")
+    }
+
+    private func resize(image: UIImage) -> UIImage? {
+        let rect = CGRect.init(x: 0, y: 0, width: 40, height: 40)
+        let size = CGSize.init(width: 40, height: 40)
+        return image.resizeImage(rect: rect, size: size)
     }
 }
