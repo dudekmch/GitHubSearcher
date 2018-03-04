@@ -7,7 +7,7 @@ class ImageDownloadService {
 
     private init() { }
 
-    func getImagae(users: [User], result: @escaping (User) -> Void) {
+    func getImagae(for users: [User], result: @escaping (User) -> Void) {
         for user in users {
             guard let avatarUrl = user.avatarURL else { return }
             Alamofire.request(avatarUrl).responseImage { apiResponse in

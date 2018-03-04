@@ -31,10 +31,10 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
             gitHubApiService.searchUsers(searchTerm: term, result: { (response) in
                 guard let users = response.models else { return }
                 var usersWithAvatar = [User]()
-                self.imgDownloadService.getImagae(users: users, result: { user in
+                self.imgDownloadService.getImagae(for: users, result: { user in
                    usersWithAvatar.append(user)
                     if(users.count == usersWithAvatar.count){
-                        let response = Searcher.UserWithAvatar.Response.init(users: usersWithAvatar)
+                        let response = Searcher.Data.Response.init(data: usersWithAvatar)
                          self.presenter?.presentUsers(response: response)
                     }
                 })

@@ -24,6 +24,11 @@ enum Searcher {
             init() {
                 self.success = false
             }
+            
+            init(data: [T]){
+                self.success = true
+                self.models = data
+            }
 
             var success: Bool
             var models: [T]?
@@ -31,29 +36,6 @@ enum Searcher {
 
         struct ViewModel<T: ResponseModel> {
             let dataList: [T]
-        }
-    }
-
-    enum UserWithAvatar {
-        struct Request {
-            let userList: [User]
-        }
-
-        struct Response {
-            init(users: [User]) {
-                self.success = true
-                self.models = users
-            }
-
-            init() {
-                self.success = false
-            }
-
-            var success: Bool
-            var models: [User]?
-        }
-        struct ViewModel {
-            let dataList: [User]
         }
     }
 }
