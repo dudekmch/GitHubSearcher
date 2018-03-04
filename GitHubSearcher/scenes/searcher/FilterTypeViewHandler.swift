@@ -3,7 +3,7 @@ import UIKit
 
 protocol FilterTypeDisplayingLogic {
     func filterTypeViewHandler()
-    func beginTypingHideView()
+    func beginTypingHideFilterView()
 }
 
 protocol FilterTypeButtonsLogic {
@@ -68,7 +68,7 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
         }
     }
 
-    func beginTypingHideView() {
+    func beginTypingHideFilterView() {
         if isFilterTypeViewDisplayed {
             self.hideView()
         }
