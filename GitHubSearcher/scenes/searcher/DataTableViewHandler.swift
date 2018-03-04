@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import AlamofireImage
 
 protocol DataTableViewProvider {
     func getDataListCount(for currentFilterType: FilterType?) -> Int
@@ -51,7 +52,7 @@ class DataTableViewHandler: DataTableViewProvider {
     private func createUserCell(with indexPathRow: Int, from list: [User], for tableView: UITableView) -> UserTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
         let user = list[indexPathRow]
-        cell.setData(avatar: prepareAvatarFrom(image: #imageLiteral(resourceName: "mock-avatar")), login: user.login, score: formatScore(score: user.score))
+        cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: formatScore(score: user.score))
         return cell
     }
 
@@ -59,9 +60,10 @@ class DataTableViewHandler: DataTableViewProvider {
         let score = String(score.rounded(toPlaces: 1))
         return score
     }
-    
-    private func prepareAvatarFrom(image: UIImage) -> UIImage {
-        if let resizedImage = resize(image: image) {
+
+    private func prepareAvatarFrom(image: UIImage?) -> UIImage {
+        guard let imageToResize = image else { return #imageLiteral(resourceName: "na-avatar") }
+        if let resizedImage = resize(image: imageToResize) {
             return resizedImage
         }
         return #imageLiteral(resourceName: "na-avatar")
@@ -72,4 +74,5 @@ class DataTableViewHandler: DataTableViewProvider {
         let size = CGSize.init(width: 40, height: 40)
         return image.resizeImage(rect: rect, size: size)
     }
+
 }

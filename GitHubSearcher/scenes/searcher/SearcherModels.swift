@@ -24,6 +24,11 @@ enum Searcher {
             init() {
                 self.success = false
             }
+            
+            init(data: [T]){
+                self.success = true
+                self.models = data
+            }
 
             var success: Bool
             var models: [T]?

@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class User: ResponseModel {
     
@@ -12,6 +13,7 @@ class User: ResponseModel {
     let subscriptionsURL: URL
     let organizationsURL: URL
     let repositoriesURL: URL
+    var avatarImage: UIImage?
     
     init(login: String, id: Int, score: Double, avatarURL: String?, userURL: String, followersURL: String, subscriptionsURL: String, organizationsURL: String, repositoriesURL: String) {
         self.login = login

@@ -20,6 +20,7 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func setData(avatar: UIImage, login: String, score: String){
+        self.contentView.contentMode = .scaleAspectFit
         self.avatarImageView.image = avatar
         self.loginLabel.text = login
         self.scoreLabel.text = "score: \(score)"
