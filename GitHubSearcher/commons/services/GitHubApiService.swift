@@ -1,5 +1,4 @@
 import Alamofire
-import AlamofireImage
 
 typealias JSON = Dictionary<String, Any>
 

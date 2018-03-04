@@ -14,8 +14,6 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
 
     var presenter: SearcherPresentationLogic?
     var gitHubApiService = GitHubApiService.shared
-    var imgDownloadService = ImageDownloadService.shared
-    var worker = SearcherWorker()
     var name: String?
     var filterType: FilterType?
 
@@ -29,17 +27,9 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
         switch filter {
         case .users:
             gitHubApiService.searchUsers(searchTerm: term, result: { (response) in
-                guard let users = response.models else { return }
-                var usersWithAvatar = [User]()
-                self.imgDownloadService.getImagae(for: users, result: { user in
-                   usersWithAvatar.append(user)
-                    if(users.count == usersWithAvatar.count){
-                        let response = Searcher.Data.Response.init(data: usersWithAvatar)
-                         self.presenter?.presentUsers(response: response)
-                    }
-                })
-                
+                self.downloadAvatars(for: response)
             })
+
         case .repositories:
             gitHubApiService.searchRepositories(searchTerm: term, result: { (response) in
                 self.presenter?.presentRepositories(response: response)
@@ -47,33 +37,27 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
         }
     }
 
-//    private func downloadAvatarForUsers(response: Searcher.Data.Response<User>) {
-//        guard let userList = response.models else { return }
-//        var usersWithAvatar = Array<User>()
-//        for user in userList {
-//            guard let avatarUrl = user.avatarURL else { return }
-//            worker.getDataFromUrl(url: avatarUrl, completion: { data, response, error in
-//                guard let data = data, error == nil else { return }
-//                DispatchQueue.main.async() {
-//                    user.avatarImage = UIImage(data: data)
-//                    usersWithAvatar.append(user)
-//                }
-//                if(usersWithAvatar.count != userList.count){
-//                let userWithAvatarResponse = Searcher.Data.Response.init(models: usersWithAvatar)
-//                self.presenter?.presentUsers(response: userWithAvatarResponse)
-//                }
-//            })
-//        }
-//        let usersWithAvatar = userList.map { userWithOutAvatar in
-//            guard let avatarUrl = userWithOutAvatar.avatarURL else { return }
-//            worker.getDataFromUrl(url: avatarUrl, completion: { data, response, error in
-//                guard let data = data, error == nil else { return }
-//                DispatchQueue.main.async() {
-//                    userWithOutAvatar.avatarImage = UIImage(data: data)
-//                }
-//            })
-//    }
-//    }
+    private func downloadAvatars(for usersResponse: Searcher.Data.Response<User>){
+        guard let users = usersResponse.models else { return }
+        var handledUserCounter = 0
+        for user in users {
+            guard let avatarURL = user.avatarURL else { return }
+            URLSession.shared.dataTask(with: avatarURL, completionHandler: { (data, responseURL, errorURL) -> Void in
+                if errorURL != nil {
+                    print(errorURL ?? "error")
+                    return
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    user.avatarImage = UIImage(data: data!)
+                    handledUserCounter += 1
+                    if handledUserCounter == users.count {
+                        self.presenter?.presentUsers(response: usersResponse)
+                    }
+                })
+            }).resume()
+            
+        }
+    }
 
 //MARK: Set data store
 
