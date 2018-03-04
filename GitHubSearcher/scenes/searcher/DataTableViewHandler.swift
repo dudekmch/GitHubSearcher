@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import AlamofireImage
 
 protocol DataTableViewProvider {
     func getDataListCount(for currentFilterType: FilterType?) -> Int
