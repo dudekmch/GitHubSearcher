@@ -89,7 +89,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     var userList: [User]?
     var repositoryList: [Repository]?
     var avatarList: [UIImage]?
-    
+
     private let percentDisplayedCellToLoadNew = 70
 
 
@@ -164,9 +164,8 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         interactor?.setDataStore(name: mockDataStorName, filterType: .users)
         router?.routeToDetails()
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let dataTableViewHandler = self.dataTableViewHandler else { return }
         if countPercentOfDisplayedCells(indexPath: indexPath) >= percentDisplayedCellToLoadNew {
             
         }
@@ -176,9 +175,10 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         let nib = UINib(nibName: identifire, bundle: nil)
         searcherTableView.register(nib, forCellReuseIdentifier: identifire)
     }
-    
+
     private func countPercentOfDisplayedCells(indexPath: IndexPath) -> Int {
-       return (indexPath.row / dataTableViewHandler!.getDataListCount(for: filterTypeViewHandler?.currentFilterType))*100
+        guard let dataTableViewHandler = self.dataTableViewHandler else { return 0 }
+        return (indexPath.row / dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType)) * 100
     }
 
 }
@@ -195,7 +195,7 @@ extension SearcherViewController: UITextFieldDelegate {
         }
         return true
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         filterTypeViewHandler?.beginTypingHideView()
     }

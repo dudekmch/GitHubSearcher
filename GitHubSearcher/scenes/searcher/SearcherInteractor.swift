@@ -26,12 +26,12 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     private func searchDataFrom(filterType filter: FilterType, for term: String) {
         switch filter {
         case .users:
-            gitHubApiService.searchUsers(searchTerm: term, result: { (response) in
+            gitHubApiService.searchUsers(searchTerm: term, page: 1, result: { (response) in
                 self.downloadAvatars(for: response)
             })
 
         case .repositories:
-            gitHubApiService.searchRepositories(searchTerm: term, result: { (response) in
+            gitHubApiService.searchRepositories(searchTerm: term, page: 1,result: { (response) in
                 self.presenter?.presentRepositories(response: response)
             })
         }
