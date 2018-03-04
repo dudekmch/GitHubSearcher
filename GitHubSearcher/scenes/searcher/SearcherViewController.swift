@@ -89,6 +89,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     var userList: [User]?
     var repositoryList: [Repository]?
     var avatarList: [UIImage]?
+    
+    private let percentDisplayedCellToLoadNew = 70
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
@@ -162,10 +164,21 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         interactor?.setDataStore(name: mockDataStorName, filterType: .users)
         router?.routeToDetails()
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let dataTableViewHandler = self.dataTableViewHandler else { return }
+        if countPercentOfDisplayedCells(indexPath: indexPath) >= percentDisplayedCellToLoadNew {
+            
+        }
+    }
 
     private func registerNib(identifire: String) {
         let nib = UINib(nibName: identifire, bundle: nil)
         searcherTableView.register(nib, forCellReuseIdentifier: identifire)
+    }
+    
+    private func countPercentOfDisplayedCells(indexPath: IndexPath) -> Int {
+       return (indexPath.row / dataTableViewHandler!.getDataListCount(for: filterTypeViewHandler?.currentFilterType))*100
     }
 
 }
