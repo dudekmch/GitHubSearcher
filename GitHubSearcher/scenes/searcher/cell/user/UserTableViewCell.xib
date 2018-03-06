@@ -42,12 +42,10 @@
                 <constraints>
                     <constraint firstItem="FWv-5P-62Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="5C6-hP-F8y"/>
                     <constraint firstItem="cGI-78-JYi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="71H-XQ-uJc"/>
-                    <constraint firstAttribute="bottom" secondItem="FWv-5P-62Y" secondAttribute="bottom" constant="2" id="Dye-v8-zIt"/>
-                    <constraint firstItem="FWv-5P-62Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="OR1-B2-YJW"/>
+                    <constraint firstItem="FWv-5P-62Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9LW-bO-HRj"/>
                     <constraint firstItem="JxA-ky-esg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PYF-4h-quM"/>
                     <constraint firstAttribute="trailing" secondItem="JxA-ky-esg" secondAttribute="trailing" constant="20" id="XgN-rA-YQZ"/>
                     <constraint firstItem="cGI-78-JYi" firstAttribute="leading" secondItem="FWv-5P-62Y" secondAttribute="trailing" constant="20" id="lWv-TM-Go3"/>
-                    <constraint firstItem="FWv-5P-62Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qGf-hH-i7H"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

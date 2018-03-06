@@ -107,24 +107,37 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     private func downloadAvatars(for usersResponse: Searcher.Data.Response<User>) {
         guard let users = usersResponse.models else { return }
         var handledUserCounter = 0
+//        let dispatchQueue = DispatchQueue(label: "pl.cookieIT.gitHubSearcher.avatarDownloading", qos: .userInteractive)
         for user in users {
             guard let avatarURL = user.avatarURL else { return }
-            //TODO: change qos ??!!
-            DispatchQueue(label: "pl.cookieIT.gitHubSearcher.avatarDownloading", qos: .userInteractive).async {
-                do {
-                    let imageData = try Data.init(contentsOf: avatarURL)
-                    let image = UIImage.init(data: imageData)
-                    user.avatarImage = image
+            //TODO: change qos ??!! This solution is slow
+//            dispatchQueue.async {
+//                do {
+//                    let imageData = try Data.init(contentsOf: avatarURL)
+//                    let image = UIImage.init(data: imageData)
+//                    user.avatarImage = image
+//                    handledUserCounter += 1
+//                    if handledUserCounter == users.count {
+//                        self.presenter?.presentUsers(response: usersResponse)
+//                    }
+//                } catch {
+//                    print(error)
+//                }
+            URLSession.shared.dataTask(with: avatarURL, completionHandler: { (data, responseURL, errorURL) -> Void in
+                if errorURL != nil {
+                    print(errorURL!)
+                    return
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    user.avatarImage = UIImage(data: data!)
                     handledUserCounter += 1
                     if handledUserCounter == users.count {
                         self.presenter?.presentUsers(response: usersResponse)
                     }
-                } catch {
-                    print(error)
-                }
-            }
+                })
+            }).resume()
         }
     }
-
 }
+
 
