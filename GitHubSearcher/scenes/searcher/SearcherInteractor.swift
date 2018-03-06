@@ -19,14 +19,14 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
     var userForDetailsView: User?
     var repositoryForDetailsView: Repository?
     var filterType: FilterType?
-    
+
     var presenter: SearcherPresentationLogic?
     var gitHubApiService = GitHubApiService.shared
 
     var totalCountOfPages: Int = 0
     var currentPageNumber: Int = 0
     var nextPageNumber: Int = 0
-    
+
 
     // MARK: Search data
 
@@ -89,7 +89,7 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
         self.currentPageNumber = self.nextPageNumber
         self.nextPageNumber += 1
     }
-    
+
     private func initianlUserSearch(for usersResponse: Searcher.Data.Response<User>) {
         guard let countOfPages = usersResponse.countOfPages else { return }
         self.totalCountOfPages = countOfPages
@@ -109,20 +109,20 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
         var handledUserCounter = 0
         for user in users {
             guard let avatarURL = user.avatarURL else { return }
-            
-            URLSession.shared.dataTask(with: avatarURL, completionHandler: { (data, responseURL, errorURL) -> Void in
-                if errorURL != nil {
-                    print(errorURL ?? "error")
-                    return
-                }
-                DispatchQueue.main.async(execute: { () -> Void in
-                    user.avatarImage = UIImage(data: data!)
+            //TODO: change qos ??!!
+            DispatchQueue(label: "pl.cookieIT.gitHubSearcher.avatarDownloading", qos: .userInteractive).async {
+                do {
+                    let imageData = try Data.init(contentsOf: avatarURL)
+                    let image = UIImage.init(data: imageData)
+                    user.avatarImage = image
                     handledUserCounter += 1
                     if handledUserCounter == users.count {
                         self.presenter?.presentUsers(response: usersResponse)
                     }
-                })
-            }).resume()
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 

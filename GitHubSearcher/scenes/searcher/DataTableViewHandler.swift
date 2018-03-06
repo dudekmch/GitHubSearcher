@@ -44,14 +44,14 @@ class DataTableViewHandler: DataTableViewProvider {
     private func createRepositoryCell(with indexPathRow: Int, from list: [Repository], for tableView: UITableView) -> RepositoryTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier) as! RepositoryTableViewCell
         let repository = list[indexPathRow]
-        cell.setData(name: String(repository.id), score: String(indexPathRow), description: repository.description, userName: repository.owner)
+        cell.setData(name: repository.name, score: formatScore(score: repository.score), description: repository.description, userName: repository.owner)
         return cell
     }
 
     private func createUserCell(with indexPathRow: Int, from list: [User], for tableView: UITableView) -> UserTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
         let user = list[indexPathRow]
-        cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: String(user.id), score: String(indexPathRow))
+        cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: formatScore(score: user.score))
         return cell
     }
 
