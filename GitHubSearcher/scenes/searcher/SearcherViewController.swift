@@ -19,7 +19,7 @@ protocol FilterTypeViewUIElements {
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData, FilterTypeViewUIElements {
     var interactor: SearcherBusinessLogic?
-    var router: (NSObjectProtocol & SearcherRoutingLogic & SearcherDataPassing)?
+    var router: (NSObjectProtocol & SearcherRoutingLogic)?
     var filterTypeViewHandler: (FilterTypeDisplayingLogic & FilterTypeButtonsLogic & FilterTypeValue & FilterTypeButtonConfigurator)?
     var dataTableViewHandler: DataTableViewProvider?
     // MARK: Object lifecycle
@@ -53,17 +53,6 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         viewController.dataTableViewHandler = dataTableViewProvider
     }
 
-    // MARK: Routing
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-
     // MARK: View lifecycle
 
     override func viewDidLoad() {
@@ -84,11 +73,12 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     @IBOutlet weak var showFilterTypeViewButton: UIButton!
     @IBOutlet weak var setUserFilterTypeButton: UIButton!
     @IBOutlet weak var setRepositoryFilterTypeButton: UIButton!
-
+    @IBOutlet weak var filterViewBottomConstraint: NSLayoutConstraint!
+    
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNew = 70
+    private let percentDisplayedCellToLoadNewData = 70
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
@@ -122,7 +112,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties()
         filterTypeViewHandler?.configureShowFilterTypeViewButton()
         searchTermTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
-            for: UIControlEvents.editingChanged)
+            for: UIControlEvents.valueChanged)
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
         setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
         setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
@@ -173,13 +163,13 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mockDataStorName = "name"
-        interactor?.setDataStore(name: mockDataStorName, filterType: .users)
-        router?.routeToDetails()
+        guard let filter = interactor?.filterType else { return }
+        prepareDataForDetailsView(filterType: filter, cellIndexRow: indexPath.row)
+        showDetailsView(filterType: filter)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if countPercentOfDisplayedCells(indexPath: indexPath) == percentDisplayedCellToLoadNew {
+        if countPercentOfDisplayedCells(indexPath: indexPath) == percentDisplayedCellToLoadNewData {
             if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
                 loadMoreData(with: filterType, for: searchTerm)
             }
@@ -196,13 +186,33 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         let result = (Double(indexPath.row) / Double(dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType))) * 100
         return Int(result)
     }
+    
+    private func prepareDataForDetailsView(filterType: FilterType, cellIndexRow: Int){
+        switch filterType {
+        case .users:
+            guard let users = userList else { return }
+            interactor?.userForDetailsView = users[cellIndexRow]
+        case .repositories:
+            guard let repositories = repositoryList else { return }
+            interactor?.repositoryForDetailsView = repositories[cellIndexRow]
+        }
+    }
+    
+    private func showDetailsView(filterType: FilterType){
+        switch filterType {
+        case .users:
+            router?.routeToDetails()
+        case .repositories:
+            router?.routeToDetails()
+        }
+    }
 
 }
 
 //MARK: Methods of UITextFieldDelegate
 
 extension SearcherViewController: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
         if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {

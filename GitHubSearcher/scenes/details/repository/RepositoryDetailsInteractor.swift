@@ -5,13 +5,13 @@ protocol RepositoryDetailsBusinessLogic {
 }
 
 protocol RepositoryDetailsDataStore {
-    //var name: String { get set }
+    var repository: Repository? { get set }
 }
 
 class RepositoryDetailsInteractor: RepositoryDetailsBusinessLogic, RepositoryDetailsDataStore {
     var presenter: RepositoryDetailsPresentationLogic?
     var worker: RepositoryDetailsWorker?
-    //var name: String = ""
+    var repository: Repository?
     
     // MARK: Do something
     

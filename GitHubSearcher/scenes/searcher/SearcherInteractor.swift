@@ -3,28 +3,36 @@ import UIKit
 protocol SearcherBusinessLogic {
     func searchData(request: Searcher.Data.Request)
     func loadMoreData(request: Searcher.Data.Request)
-    func setDataStore(name: String, filterType: FilterType)
+    var userForDetailsView: User? { get set }
+    var repositoryForDetailsView: Repository? { get set }
+    var filterType: FilterType? { get set }
 }
 
 protocol SearcherDataStore {
-    var name: String? { get set }
+    var userForDetailsView: User? { get set }
+    var repositoryForDetailsView: Repository? { get set }
     var filterType: FilterType? { get set }
 }
 
 class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
 
+    var userForDetailsView: User?
+    var repositoryForDetailsView: Repository?
+    var filterType: FilterType?
+    
     var presenter: SearcherPresentationLogic?
     var gitHubApiService = GitHubApiService.shared
-    var name: String?
-    var filterType: FilterType?
+
     var totalCountOfPages: Int = 0
     var currentPageNumber: Int = 0
     var nextPageNumber: Int = 0
+    
 
     // MARK: Search data
 
     func searchData(request: Searcher.Data.Request) {
         searchDataDispatcher(request: request, pagination: false)
+        filterType = request.filterType
     }
 
     func loadMoreData(request: Searcher.Data.Request) {
@@ -49,7 +57,6 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
             gitHubApiService.searchUsers(searchTerm: term, page: currentPageNumber, result: { (response) in
                 guard let countOfPages = response.countOfPages else { return }
                 self.totalCountOfPages = countOfPages
-                print("count of pages: \(countOfPages)")
                 self.downloadAvatars(for: response)
             })
 
@@ -102,6 +109,7 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
         var handledUserCounter = 0
         for user in users {
             guard let avatarURL = user.avatarURL else { return }
+            
             URLSession.shared.dataTask(with: avatarURL, completionHandler: { (data, responseURL, errorURL) -> Void in
                 if errorURL != nil {
                     print(errorURL ?? "error")
@@ -115,15 +123,8 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
                     }
                 })
             }).resume()
-
         }
     }
 
-//MARK: Set data store
-
-    func setDataStore(name: String, filterType: FilterType) {
-        self.name = name
-        self.filterType = filterType
-    }
 }
 

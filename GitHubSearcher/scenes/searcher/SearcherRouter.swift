@@ -4,11 +4,7 @@ import UIKit
     func routeToDetails()
 }
 
-protocol SearcherDataPassing {
-    var dataStore: SearcherDataStore? { get }
-}
-
-class SearcherRouter: NSObject, SearcherRoutingLogic, SearcherDataPassing {
+class SearcherRouter: NSObject, SearcherRoutingLogic {
     weak var viewController: SearcherViewController?
     var dataStore: SearcherDataStore?
     
@@ -51,11 +47,11 @@ class SearcherRouter: NSObject, SearcherRoutingLogic, SearcherDataPassing {
     // MARK: Passing data
     
     private func passDataToUserDetails(source: SearcherDataStore, destination: inout UserDetailsDataStore) {
-       
+       destination.user = source.userForDetailsView
     }
     
     private func passDataToRepositoryDetails(source: SearcherDataStore, destination: inout RepositoryDetailsDataStore) {
-       
+       destination.repository = source.repositoryForDetailsView
     }
 }
 
