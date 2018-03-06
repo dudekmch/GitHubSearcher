@@ -1,7 +1,7 @@
 import UIKit
 
 protocol UserDetailsBusinessLogic {
-    func doSomething(request: UserDetails.Something.Request)
+    func getUser()
 }
 
 protocol UserDetailsDataStore {
@@ -9,17 +9,14 @@ protocol UserDetailsDataStore {
 }
 
 class UserDetailsInteractor: UserDetailsBusinessLogic, UserDetailsDataStore {
+    
     var presenter: UserDetailsPresentationLogic?
     var worker: UserDetailsWorker?
     var user: User?
     
-    // MARK: Do something
-    
-    func doSomething(request: UserDetails.Something.Request) {
-        worker = UserDetailsWorker()
-        worker?.doSomeWork()
-        
-        let response = UserDetails.Something.Response()
-        presenter?.presentSomething(response: response)
+    func getUser() {
+        let response = UserDetails.Data.Response.init(user: user)
+        presenter?.presentUser(response: response)
     }
+   
 }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol UserDetailsDisplayLogic: class {
-    func displaySomething(viewModel: UserDetails.Something.ViewModel)
+    func displayUserDetails(viewModel: UserDetails.Data.ViewModel)
 }
 
 class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
@@ -53,7 +53,7 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         self.navigationController?.isNavigationBarHidden = false
         repositoriesTableView.dataSource = self
         repositoriesTableView.delegate = self
-        doSomething()
+        getUserDetails()
     }
     
     // MARK: Do something
@@ -63,12 +63,11 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var repositoriesTableView: UITableView!
     
-    func doSomething() {
-        let request = UserDetails.Something.Request()
-        interactor?.doSomething(request: request)
+    private func getUserDetails() {
+        interactor?.getUser()
     }
     
-    func displaySomething(viewModel: UserDetails.Something.ViewModel) {
+    func displayUserDetails(viewModel: UserDetails.Data.ViewModel) {
         //nameTextField.text = viewModel.name
     }
 }
