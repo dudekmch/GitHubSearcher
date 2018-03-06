@@ -8,6 +8,16 @@ enum Searcher {
         return modelsJSON.flatMap { T(json: $0) }
     }
 
+    static func countOfPages(from json: JSON) -> Int? {
+        guard let totalCount = json["total_count"] else { return nil }
+        let totalCountOfResults: Int = totalCount as! Int
+        if (totalCountOfResults % 100 == 0) {
+            return totalCountOfResults / 100
+        } else {
+            return (totalCountOfResults / 100) + 1
+        }
+    }
+
     enum Data {
         struct Request {
             let searchTerm: String
@@ -19,6 +29,7 @@ enum Searcher {
             init(json: JSON) {
                 self.success = true
                 self.models = Searcher.models(from: json)
+                self.countOfPages = Searcher.countOfPages(from: json)
             }
 
             init() {
@@ -27,6 +38,8 @@ enum Searcher {
 
             var success: Bool
             var models: [T]?
+            var countOfPages: Int?
+
         }
 
         struct ViewModel<T: ResponseModel> {

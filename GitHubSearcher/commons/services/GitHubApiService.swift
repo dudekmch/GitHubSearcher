@@ -8,8 +8,8 @@ class GitHubApiService {
 
     private init() { }
 
-    func searchUsers(searchTerm: String, result: @escaping (_ response: Searcher.Data.Response<User>) -> Void) {
-        Alamofire.request("https://api.github.com/search/users?q=\(searchTerm)&per_page=100")
+    func searchUsers(searchTerm: String, page: Int, result: @escaping (_ response: Searcher.Data.Response<User>) -> Void) {
+        Alamofire.request("https://api.github.com/search/users?q=\(searchTerm)&per_page=100&page=\(page)")
             .responseJSON { apiResponse in
                 switch apiResponse.result {
                 case .success:
@@ -22,8 +22,8 @@ class GitHubApiService {
         }
     }
 
-    func searchRepositories(searchTerm: String, result: @escaping (_ response: Searcher.Data.Response<Repository>) -> Void) {
-        Alamofire.request("https://api.github.com/search/repositories?q=\(searchTerm)&per_page=100")
+    func searchRepositories(searchTerm: String, page: Int, result: @escaping (_ response: Searcher.Data.Response<Repository>) -> Void) {
+        Alamofire.request("https://api.github.com/search/repositories?q=\(searchTerm)&per_page=100&page=\(page)")
             .responseJSON { apiResponse in
                 switch apiResponse.result {
                 case .success:
