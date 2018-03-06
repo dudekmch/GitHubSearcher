@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		84A07EE614A7B0E4F51BFA8E /* Pods_GitHubSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */; };
+		F4C949D3204F351100E2F3FD /* UserDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C949D1204F351000E2F3FD /* UserDetailsTableViewCell.swift */; };
+		F4C949D4204F351100E2F3FD /* UserDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C949D2204F351000E2F3FD /* UserDetailsTableViewCell.xib */; };
+		F4C949D6204F35FF00E2F3FD /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C949D5204F35FF00E2F3FD /* UIViewControllerExtension.swift */; };
 		F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */; };
 		F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215220417C0C00FD72A7 /* Assets.xcassets */; };
 		F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */; };
@@ -71,6 +74,9 @@
 		7BECB81967B79B96D8D0BF7B /* Pods-GitHubSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.release.xcconfig"; sourceTree = "<group>"; };
 		B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD169C8C532B68570DF789C /* Pods-GitHubSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.debug.xcconfig"; sourceTree = "<group>"; };
+		F4C949D1204F351000E2F3FD /* UserDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		F4C949D2204F351000E2F3FD /* UserDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		F4C949D5204F35FF00E2F3FD /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F4FE214820417C0C00FD72A7 /* GitHubSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4FE215220417C0C00FD72A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,6 +149,15 @@
 				B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4C949CE204F34FA00E2F3FD /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F4C949D1204F351000E2F3FD /* UserDetailsTableViewCell.swift */,
+				F4C949D2204F351000E2F3FD /* UserDetailsTableViewCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		F4FE213F20417C0C00FD72A7 = {
@@ -247,6 +262,7 @@
 				F4FE221D204351F600FD72A7 /* Formatter.swift */,
 				F4FE2238204AA35400FD72A7 /* DoubleExtension.swift */,
 				F4FE2242204AB40900FD72A7 /* UIImageExtension.swift */,
+				F4C949D5204F35FF00E2F3FD /* UIViewControllerExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -290,6 +306,7 @@
 		F4FE21EB2042D16B00FD72A7 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				F4C949CE204F34FA00E2F3FD /* cell */,
 				F4FE21ED2042D1D400FD72A7 /* UserDetailsPresenter.swift */,
 				F4FE21EE2042D1D400FD72A7 /* UserDetailsWorker.swift */,
 				F4FE21EF2042D1D400FD72A7 /* UserDetailsRouter.swift */,
@@ -415,6 +432,7 @@
 				F4FE21CE2041BE7300FD72A7 /* RepositoryTableViewCell.xib in Resources */,
 				F4FE2241204AAC0D00FD72A7 /* UserTableViewCell.xib in Resources */,
 				F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */,
+				F4C949D4204F351100E2F3FD /* UserDetailsTableViewCell.xib in Resources */,
 				F4FE218C204195AA00FD72A7 /* Searcher.storyboard in Resources */,
 				F4FE21FA2042D29800FD72A7 /* UserDetails.storyboard in Resources */,
 			);
@@ -484,6 +502,7 @@
 				F4FE22132042FD2300FD72A7 /* User.swift in Sources */,
 				F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */,
 				F4FE22032042D3BB00FD72A7 /* RepositoryDetailsRouter.swift in Sources */,
+				F4C949D3204F351100E2F3FD /* UserDetailsTableViewCell.swift in Sources */,
 				F4FE21F62042D1D400FD72A7 /* UserDetailsModels.swift in Sources */,
 				F4FE219C2041A4A200FD72A7 /* SearcherViewController.swift in Sources */,
 				F4FE22012042D3BB00FD72A7 /* RepositoryDetailsPresenter.swift in Sources */,
@@ -492,6 +511,7 @@
 				F4FE2239204AA35400FD72A7 /* DoubleExtension.swift in Sources */,
 				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
+				F4C949D6204F35FF00E2F3FD /* UIViewControllerExtension.swift in Sources */,
 				F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */,
 				F4FE222A2045F02500FD72A7 /* FilterTypeViewHandler.swift in Sources */,
 				F4FE21F52042D1D400FD72A7 /* UserDetailsRouter.swift in Sources */,

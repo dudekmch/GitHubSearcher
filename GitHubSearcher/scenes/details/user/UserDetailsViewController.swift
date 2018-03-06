@@ -40,8 +40,9 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        repositoriesTableView.dataSource = self
-        repositoriesTableView.delegate = self
+        detailsTableView.dataSource = self
+        detailsTableView.delegate = self
+        self.registerNib(identifire: UserDetailsTableViewCell.identifier, target: detailsTableView)
         getUserDetails()
     }
 
@@ -49,9 +50,10 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var login: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var repositoriesTableView: UITableView!
+    @IBOutlet weak var detailsTableView: UITableView!
 
     var user: User?
+    var userUrlDict: [String : URL]?
 
     private func getUserDetails() {
         interactor?.getUser()
@@ -60,6 +62,8 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     func displayUserDetails(viewModel: UserDetails.Data.ViewModel) {
         self.user = viewModel.user
         prepareUserDetails()
+        userUrlDict = prepareUserUrlDictionary()
+        detailsTableView.reloadData()
     }
 
     private func prepareUserDetails() {
@@ -67,6 +71,17 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         avatarImageView.image = resizeAvatar(image: user.avatarImage)
         login.text = user.login
         scoreLabel.text = user.score.formatDoubleToString(toPlaceRounded: 1)
+    }
+    
+    private func prepareUserUrlDictionary() -> [String : URL]?{
+        guard let user = self.user else { return nil }
+        var initialDict = [String : URL]()
+        initialDict["User"] = user.userURL
+        initialDict["Repositories"] = user.repositoriesURL
+        initialDict["Followers"] = user.followersURL
+        initialDict["Subscriptions"] = user.subscriptionsURL
+        initialDict["Organizations"] = user.organizationsURL
+        return initialDict
     }
 
     private func resizeAvatar(image: UIImage?) -> UIImage? {
@@ -80,10 +95,12 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
 
 extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        guard let dict = self.userUrlDict else { return 0 }
+        return dict.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserDetailsTableViewCell.identifier) as! UserDetailsTableViewCell
         return UITableViewCell()
     }
 

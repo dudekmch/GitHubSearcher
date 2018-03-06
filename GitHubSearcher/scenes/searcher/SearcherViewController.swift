@@ -60,8 +60,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         searcherTableView.delegate = self
         searcherTableView.dataSource = self
         searchTermTextField.delegate = self
-        registerNib(identifire: UserTableViewCell.identifier)
-        registerNib(identifire: RepositoryTableViewCell.identifier)
+        self.registerNib(identifire: UserTableViewCell.identifier, target: searcherTableView)
+        self.registerNib(identifire: RepositoryTableViewCell.identifier, target: searcherTableView)
         preparUIElements()
     }
 
@@ -166,11 +166,6 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
                 loadMoreData(with: filterType, for: searchTerm)
             }
         }
-    }
-
-    private func registerNib(identifire: String) {
-        let nib = UINib(nibName: identifire, bundle: nil)
-        searcherTableView.register(nib, forCellReuseIdentifier: identifire)
     }
 
     private func countPercentOfDisplayedCells(indexPath: IndexPath) -> Int {

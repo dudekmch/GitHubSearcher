@@ -58,8 +58,8 @@
                     </view>
                     <connections>
                         <outlet property="avatarImageView" destination="hFK-Ao-y0O" id="d1S-1z-Yij"/>
+                        <outlet property="detailsTableView" destination="d4g-Q4-Q4Y" id="6hZ-aW-CBW"/>
                         <outlet property="login" destination="J78-Vu-5Kw" id="9xn-V5-PnL"/>
-                        <outlet property="repositoriesTableView" destination="d4g-Q4-Q4Y" id="6hZ-aW-CBW"/>
                         <outlet property="scoreLabel" destination="acS-su-DeR" id="yQz-g4-DA6"/>
                     </connections>
                 </viewController>
