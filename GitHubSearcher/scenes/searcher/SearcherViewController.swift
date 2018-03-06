@@ -78,7 +78,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNewData = 70
+    private let percentDisplayedCellToLoadNewData = 30
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
@@ -111,18 +111,10 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         filterTypeView.isHidden = true
         filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties()
         filterTypeViewHandler?.configureShowFilterTypeViewButton()
-        searchTermTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
-            for: UIControlEvents.valueChanged)
+
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
         setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
         setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
-    }
-
-    //TODO: dynamic get data
-    @objc private func searcherTextFieldDidChange(_ textField: UITextField) {
-//        guard let searchText = textField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
-//        filterTypeViewHandler?.beginTypingHide(view: filterTypeView)
-//        searchData(with: filterType, for: searchText)
     }
 
     @objc private func filterTypeDisplayingHandler(_ button: UIButton) {
@@ -212,6 +204,13 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: Methods of UITextFieldDelegate
 
 extension SearcherViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        guard let searchTerm = textField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return false }
+//        filterTypeViewHandler?.beginTypingHideFilterView()
+//        searchData(with: filterType, for: searchTerm)
+        return true
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
