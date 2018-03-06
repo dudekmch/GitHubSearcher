@@ -32,7 +32,7 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
     }
 
     private let filterTypeViewElements: FilterTypeViewUIElements
-    
+
 
     func configureShowFilterTypeViewButton() {
         filterTypeViewElements.showFilterTypeViewButton.setTitle("Filter", for: UIControlState.normal)
@@ -75,20 +75,22 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
     }
 
     private func hideView() {
+        let view = filterTypeViewElements.filterTypeView!
         UIView.animate(withDuration: 0.3, animations: {
-            self.filterTypeViewElements.filterTypeView.alpha = 0
-        }, completion: {
-                (value: Bool) in
+            view.center.y += view.frame.height
+        }, completion: { value in
                 self.filterTypeViewElements.filterTypeView.isHidden = true
+                view.center.y -= view.frame.height
             })
     }
 
     private func showView() {
-        filterTypeViewElements.filterTypeView.alpha = 0
         filterTypeViewElements.filterTypeView.isHidden = false
+        let view = filterTypeViewElements.filterTypeView!
+        view.center.y += view.frame.height
         UIView.animate(withDuration: 0.3, animations: {
-            self.filterTypeViewElements.filterTypeView.alpha = 1
-        }, completion: nil)
+            view.center.y -= view.frame.height
+        })
     }
 
     private func setupSetUserFilterTypeButton() {
