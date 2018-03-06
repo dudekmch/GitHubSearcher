@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,19 +11,19 @@
             <objects>
                 <viewController storyboardIdentifier="UserDetailsViewController" id="f9N-g4-Zab" customClass="UserDetailsViewController" customModule="GitHubSearcher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7w3-bO-iXp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-Q4-Q4Y">
-                                <rect key="frame" x="8" y="255" width="359" height="404"/>
+                                <rect key="frame" x="8" y="255" width="584" height="337"/>
                                 <color key="backgroundColor" red="0.55932092666625977" green="0.085684813559055328" blue="0.1281314492225647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="hFK-Ao-y0O">
-                                <rect key="frame" x="8" y="28" width="359" height="133"/>
+                                <rect key="frame" x="8" y="28" width="584" height="133"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acS-su-DeR">
-                                <rect key="frame" x="8" y="214" width="359" height="21"/>
+                                <rect key="frame" x="8" y="214" width="584" height="21"/>
                                 <color key="backgroundColor" red="0.60264706611633301" green="0.74604612588882446" blue="0.92070174217224121" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.60264706611633301" green="0.74604612588882446" blue="0.92070174217224121" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -35,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J78-Vu-5Kw">
-                                <rect key="frame" x="8" y="177" width="359" height="21"/>
+                                <rect key="frame" x="8" y="177" width="584" height="21"/>
                                 <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -62,9 +58,9 @@
                     </view>
                     <connections>
                         <outlet property="avatarImageView" destination="hFK-Ao-y0O" id="d1S-1z-Yij"/>
+                        <outlet property="login" destination="J78-Vu-5Kw" id="9xn-V5-PnL"/>
                         <outlet property="repositoriesTableView" destination="d4g-Q4-Q4Y" id="6hZ-aW-CBW"/>
                         <outlet property="scoreLabel" destination="acS-su-DeR" id="yQz-g4-DA6"/>
-                        <outlet property="usernameLabel" destination="J78-Vu-5Kw" id="9xn-V5-PnL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cd7-Mr-eOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
