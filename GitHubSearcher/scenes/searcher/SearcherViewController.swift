@@ -65,6 +65,11 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         self.registerNib(identifire: RepositoryTableViewCell.identifier, target: searcherTableView)
         preparUIElements()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
 
     //MARK: Properties
 

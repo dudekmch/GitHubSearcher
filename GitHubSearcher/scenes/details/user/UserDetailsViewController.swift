@@ -40,21 +40,17 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        detailsTableView.dataSource = self
-        detailsTableView.delegate = self
-        self.registerNib(identifire: UserDetailsTableViewCell.identifier, target: detailsTableView)
         getUserDetails()
     }
 
-
+    @IBOutlet weak var loginTitleLabel: UILabel!
+    @IBOutlet weak var scoreTitleLabel: UILabel!
+    @IBOutlet weak var goGitHubButton: UIButton!
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var login: UILabel!
+    @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var detailsTableView: UITableView!
 
     var user: User?
-    var userUrlDict: [String : URL]?
-    var userUrlNameSet: [String]?
 
     private func getUserDetails() {
         interactor?.getUser()
@@ -63,49 +59,47 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     func displayUserDetails(viewModel: UserDetails.Data.ViewModel) {
         self.user = viewModel.user
         prepareUserDetails()
-        userUrlDict = prepareUserUrlDictionary()
-        userUrlNameSet = Array(userUrlDict!.keys)
-        detailsTableView.reloadData()
     }
 
     private func prepareUserDetails() {
         guard let user = self.user else { return }
+        prepareAvatar(for: user)
+        prepareLabels(for: user)
+        prepareGoGitHubButton(for: user)
+    }
+
+    private func prepareAvatar(for user: User) {
         avatarImageView.image = resizeAvatar(image: user.avatarImage)
-        login.text = user.login
+        avatarImageView.addShadow(to: .left)
+    }
+
+    private func prepareGoGitHubButton(for user: User) {
+        goGitHubButton.setTitle("Check on GitHub", for: UIControlState.normal)
+        goGitHubButton.roundCorners()
+        goGitHubButton.addShadow(to: .left)
+        goGitHubButton.addTarget(self, action: #selector(goToURL(_:)), for: UIControlEvents.touchUpInside)
+    }
+
+    private func prepareLabels(for user: User) {
+        loginTitleLabel.text = "Login"
+        loginLabel.text = user.login
+        scoreTitleLabel.text = "Score"
         scoreLabel.text = user.score.formatDoubleToString(toPlaceRounded: 1)
     }
-    
-    private func prepareUserUrlDictionary() -> [String : URL]?{
-        guard let user = self.user else { return nil }
-        var initialDict = [String : URL]()
-        initialDict["User"] = user.userURL
-        initialDict["Repositories"] = user.repositoriesURL
-        initialDict["Followers"] = user.followersURL
-        initialDict["Subscriptions"] = user.subscriptionsURL
-        initialDict["Organizations"] = user.organizationsURL
-        return initialDict
-    }
+
 
     private func resizeAvatar(image: UIImage?) -> UIImage? {
         guard let image = image else { return nil }
-        let rect = CGRect.init(x: 0, y: 0, width: 250, height: 250)
-        let size = CGSize.init(width: 250, height: 250)
+        let rect = CGRect.init(x: 0, y: 0, width: 300, height: 300)
+        let size = CGSize.init(width: 300, height: 300)
         return image.resizeImage(rect: rect, size: size)
     }
 
-}
-
-extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let dict = self.userUrlDict else { return 0 }
-        return dict.count
+    @objc private func goToURL(_ button: UIButton) {
+        guard let url = user?.userURL else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UserDetailsTableViewCell.identifier) as! UserDetailsTableViewCell
-        cell.setUserDetailsCell(urlName: userUrlNameSet?[indexPath.row] , url: userUrlDict?[userUrlNameSet![indexPath.row]])
-        return cell
-    }
-
 
 }
