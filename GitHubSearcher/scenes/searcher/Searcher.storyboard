@@ -51,19 +51,25 @@
                                 <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKC-B1-V7x">
-                                        <rect key="frame" x="50" y="20" width="40" height="30"/>
+                                        <rect key="frame" x="50" y="20" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="etl-sh-i90"/>
+                                        </constraints>
                                         <state key="normal" title="Users">
-                                            <color key="titleColor" red="0.55932092666625977" green="0.085684813559055328" blue="0.1281314492225647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYV-Oh-CWC">
-                                        <rect key="frame" x="185" y="20" width="85" height="30"/>
+                                        <rect key="frame" x="170" y="20" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="gkF-H6-EiK"/>
+                                        </constraints>
                                         <state key="normal" title="Repositories">
-                                            <color key="titleColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="gYV-Oh-CWC" firstAttribute="top" secondItem="SUL-Id-DTI" secondAttribute="top" constant="20" id="Ea3-s0-2eU"/>
                                     <constraint firstAttribute="bottom" secondItem="gYV-Oh-CWC" secondAttribute="bottom" constant="20" id="LOy-dt-f9I"/>
@@ -122,6 +128,7 @@
                         <outlet property="setRepositoryFilterTypeButton" destination="gYV-Oh-CWC" id="Tn1-fP-7a4"/>
                         <outlet property="setUserFilterTypeButton" destination="XKC-B1-V7x" id="cM0-oc-i1g"/>
                         <outlet property="showFilterTypeViewButton" destination="LFm-h0-Iyh" id="sp4-Co-HNU"/>
+                        <outlet property="sortButton" destination="c9d-Cy-9dm" id="Npm-ig-VB2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aow-8d-WYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
