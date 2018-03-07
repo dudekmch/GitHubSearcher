@@ -4,6 +4,7 @@ import UIKit
 protocol DataTableViewProvider {
     func getDataListCount(for currentFilterType: FilterType?) -> Int
     func prepareCellWithData(for currentFilterType: FilterType?, with indexPath: IndexPath, register tableView: UITableView) -> UITableViewCell
+    func sortData(for currentFilterType: FilterType?)
 }
 
 class DataTableViewHandler: DataTableViewProvider {
@@ -12,7 +13,7 @@ class DataTableViewHandler: DataTableViewProvider {
         self.controller = controller
     }
 
-    private let controller: SearchViewData
+    private var controller: SearchViewData
 
     func getDataListCount(for currentFilterType: FilterType?) -> Int {
         guard
@@ -38,6 +39,18 @@ class DataTableViewHandler: DataTableViewProvider {
             guard let repositoryList = controller.repositoryList else { return UITableViewCell() }
 
             return createRepositoryCell(with: indexPath.row, from: repositoryList, for: tableView)
+        }
+    }
+
+    func sortData(for currentFilterType: FilterType?) {
+        guard let currentFilter = currentFilterType else { return }
+        switch currentFilter {
+        case .users:
+            guard let data = controller.userList else { return }
+            controller.userList = data.sorted { $0.id < $1.id }
+        case .repositories:
+            guard let data = controller.repositoryList else { return }
+            controller.repositoryList = data.sorted { $0.id < $1.id }
         }
     }
 

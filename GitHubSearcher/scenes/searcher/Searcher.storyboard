@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nCm-p6-XSr">
-                                <rect key="frame" x="66" y="72" width="184" height="40"/>
+                                <rect key="frame" x="46" y="72" width="204" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bpn-EY-nfW"/>
                                 </constraints>
@@ -90,10 +90,9 @@
                                 <state key="normal" title="Filter"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9d-Cy-9dm">
-                                <rect key="frame" x="8" y="72" width="50" height="40"/>
+                                <rect key="frame" x="8" y="72" width="30" height="40"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="GHq-Jf-aNI"/>
                                     <constraint firstAttribute="height" constant="40" id="bLs-RV-bVm"/>
                                 </constraints>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

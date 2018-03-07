@@ -6,8 +6,8 @@ protocol SearcherDisplayLogic: class {
 }
 
 protocol SearchViewData {
-    var userList: [User]? { get }
-    var repositoryList: [Repository]? { get }
+    var userList: [User]? { get set }
+    var repositoryList: [Repository]? { get set }
 }
 
 protocol FilterTypeViewUIElements {
@@ -118,6 +118,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
         setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
         setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
+        sortButton.addTarget(self, action: #selector(sortDataList), for: UIControlEvents.touchUpInside)
     }
 
     @objc private func filterTypeDisplayingHandler(_ button: UIButton) {
@@ -131,6 +132,12 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
 
     @objc private func repositoriesFilterTypeButtonHandler(_ button: UIButton) {
         filterTypeViewHandler?.repositoriesFilterTypeButtonSelected()
+    }
+    
+    @objc private func sortDataList(_ button: UIButton){
+        dataTableViewHandler?.sortData(for: filterTypeViewHandler?.currentFilterType)
+        searcherTableView.reloadData()
+        
     }
 
     private func hideKeyboard() {
