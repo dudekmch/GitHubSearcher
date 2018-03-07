@@ -57,20 +57,17 @@ class DataTableViewHandler: DataTableViewProvider {
     private func createRepositoryCell(with indexPathRow: Int, from list: [Repository], for tableView: UITableView) -> RepositoryTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier) as! RepositoryTableViewCell
         let repository = list[indexPathRow]
-        cell.setData(name: repository.name, score: formatScore(score: repository.score), description: repository.description, userName: repository.owner)
+        let score = repository.score.formatDoubleToString(toPlaceRounded: 1)
+        cell.setData(name: repository.name, score: score, description: repository.description, userName: repository.owner)
         return cell
     }
 
     private func createUserCell(with indexPathRow: Int, from list: [User], for tableView: UITableView) -> UserTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
         let user = list[indexPathRow]
-        cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: formatScore(score: user.score))
+        let score = user.score.formatDoubleToString(toPlaceRounded: 1)
+        cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: score)
         return cell
-    }
-
-    private func formatScore(score: Double) -> String {
-        let score = String(score.rounded(toPlaces: 1))
-        return score
     }
 
     private func prepareAvatarFrom(image: UIImage?) -> UIImage {
