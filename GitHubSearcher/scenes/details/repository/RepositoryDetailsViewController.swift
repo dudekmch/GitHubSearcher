@@ -1,27 +1,27 @@
 import UIKit
 
 protocol RepositoryDetailsDisplayLogic: class {
-    func displaySomething(viewModel: RepositoryDetails.Something.ViewModel)
+    func displayRepository(viewModel: RepositoryDetails.Data.ViewModel)
 }
 
 class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDisplayLogic {
     var interactor: RepositoryDetailsBusinessLogic?
     var router: (NSObjectProtocol & RepositoryDetailsRoutingLogic & RepositoryDetailsDataPassing)?
-    
+
     // MARK: Object lifecycle
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: Setup
-    
+
     private func setup() {
         let viewController = self
         let interactor = RepositoryDetailsInteractor()
@@ -34,52 +34,115 @@ class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDispla
         router.viewController = viewController
         router.dataStore = interactor
     }
-    
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
+
+
     // MARK: View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        usersTableView.delegate = self
-        usersTableView.dataSource = self
-        doSomething()
+        getRepositoryDetails()
     }
-    
-    // MARK: Do something
-    
+
+    var repository: Repository?
+
+    private let dataNotAvailable = "N/A"
+
+    @IBOutlet weak var repositoryNameTitleLabel: UILabel!
     @IBOutlet weak var repositoryNameLabel: UILabel!
+    @IBOutlet weak var scoreTitleLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var usersTableView: UITableView!
-    
-    func doSomething() {
-        let request = RepositoryDetails.Something.Request()
-        interactor?.doSomething(request: request)
+    @IBOutlet weak var createdTitleLabel: UILabel!
+    @IBOutlet weak var createdLabel: UILabel!
+    @IBOutlet weak var updatedTitleLabel: UILabel!
+    @IBOutlet weak var updateLabel: UILabel!
+    @IBOutlet weak var languageTitleLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var ownerTitleLabel: UILabel!
+    @IBOutlet weak var ownerLabel: UILabel!
+    @IBOutlet weak var descriptionTitleLabel: UILabel!
+    @IBOutlet weak var descritpionLabel: UILabel!
+    @IBOutlet weak var goToGithubButton: UIButton!
+
+    private func getRepositoryDetails() {
+        interactor?.getRepository()
     }
-    
-    func displaySomething(viewModel: RepositoryDetails.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
+
+    func displayRepository(viewModel: RepositoryDetails.Data.ViewModel) {
+        repository = viewModel.repository
+        prepareDetails()
     }
+
+    private func prepareDetails() {
+        guard let repository = repository else { return }
+        prepareNameLabels(for: repository)
+        prepareScoreLabels(for: repository)
+        prepareCreatedLabels(for: repository)
+        prepareUpdatedLabels(for: repository)
+        prepareLanguageLabels(for: repository)
+        prepareOwnerLabels(for: repository)
+        prepareDescriptionLabels(for: repository)
+        prepareGoToGithubButton(for: repository)
+    }
+
+    private func prepareNameLabels(for repo: Repository) {
+        repositoryNameTitleLabel.text = "Repository Name"
+        repositoryNameLabel.text = repo.name
+    }
+
+    private func prepareScoreLabels(for repo: Repository) {
+        scoreTitleLabel.text = "Score"
+        scoreLabel.text = repo.score.formatDoubleToString(toPlaceRounded: 1)
+    }
+
+    private func prepareCreatedLabels(for repo: Repository) {
+        createdTitleLabel.text = "Created"
+        createdLabel.text = String(describing: repo.created)
+    }
+
+    private func prepareUpdatedLabels(for repo: Repository) {
+        updatedTitleLabel.text = "Updated"
+        updateLabel.text = String(describing: repo.updated)
+    }
+
+    private func prepareLanguageLabels(for repo: Repository) {
+        languageTitleLabel.text = "Language"
+        if let language = repo.language {
+            languageLabel.text = language
+        } else {
+            languageLabel.text = dataNotAvailable
+        }
+    }
+
+    private func prepareOwnerLabels(for repo: Repository) {
+        ownerTitleLabel.text = "Owner"
+        ownerLabel.text = repo.owner
+    }
+
+    private func prepareDescriptionLabels(for repo: Repository) {
+        descriptionTitleLabel.text = "Description"
+        descritpionLabel.textAlignment = .center
+        if let description = repo.description {
+            descritpionLabel.text = description
+        } else {
+            descritpionLabel.text = dataNotAvailable
+        }
+    }
+
+    private func prepareGoToGithubButton(for repo: Repository) {
+        goToGithubButton.setTitle("Check on GitHub", for: UIControlState.normal)
+        goToGithubButton.roundCorners()
+        goToGithubButton.addShadow(to: .left)
+        goToGithubButton.addTarget(self, action: #selector(goToURL(_:)), for: UIControlEvents.touchUpInside)
+    }
+
+    @objc private func goToURL(_ button: UIButton) {
+        guard let url = repository?.repositoryURL else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
 }
 
-extension RepositoryDetailsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        return UITableViewCell()
-    }
-    
-    
-}
+

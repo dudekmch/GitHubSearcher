@@ -1,7 +1,7 @@
 import UIKit
 
 protocol RepositoryDetailsBusinessLogic {
-    func doSomething(request: RepositoryDetails.Something.Request)
+    func getRepository()
 }
 
 protocol RepositoryDetailsDataStore {
@@ -13,13 +13,8 @@ class RepositoryDetailsInteractor: RepositoryDetailsBusinessLogic, RepositoryDet
     var worker: RepositoryDetailsWorker?
     var repository: Repository?
     
-    // MARK: Do something
-    
-    func doSomething(request: RepositoryDetails.Something.Request) {
-        worker = RepositoryDetailsWorker()
-        worker?.doSomeWork()
-        
-        let response = RepositoryDetails.Something.Response()
-        presenter?.presentSomething(response: response)
+    func getRepository() {
+        let response = RepositoryDetails.Data.Response.init(repository: repository)
+        presenter?.presentRepository(response: response)
     }
 }

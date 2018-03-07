@@ -1,19 +1,23 @@
 import UIKit
 
 enum RepositoryDetails {
-    // MARK: Use cases
     
-    enum Something {
+    enum Data {
         struct Request {
-            
         }
         
         struct Response {
-            
+            init(repository: Repository?){
+                self.repository = repository
+            }
+            var repository: Repository?
         }
         
         struct ViewModel {
-            
+            init(repository: Repository?){
+                self.repository = repository
+            }
+            var repository: Repository?
         }
     }
 }
