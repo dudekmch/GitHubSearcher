@@ -54,6 +54,7 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
 
     var user: User?
     var userUrlDict: [String : URL]?
+    var userUrlNameSet: [String]?
 
     private func getUserDetails() {
         interactor?.getUser()
@@ -63,6 +64,7 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         self.user = viewModel.user
         prepareUserDetails()
         userUrlDict = prepareUserUrlDictionary()
+        userUrlNameSet = Array(userUrlDict!.keys)
         detailsTableView.reloadData()
     }
 
@@ -101,7 +103,8 @@ extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserDetailsTableViewCell.identifier) as! UserDetailsTableViewCell
-        return UITableViewCell()
+        cell.setUserDetailsCell(urlName: userUrlNameSet?[indexPath.row] , url: userUrlDict?[userUrlNameSet![indexPath.row]])
+        return cell
     }
 
 
