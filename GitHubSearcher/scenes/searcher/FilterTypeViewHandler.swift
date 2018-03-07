@@ -14,6 +14,7 @@ protocol FilterTypeButtonsLogic {
 protocol FilterTypeButtonConfigurator {
     func configureDefaultFilterTypeButtonsProperties()
     func configureShowFilterTypeViewButton()
+    func setupSortButton()
 }
 
 protocol FilterTypeValue {
@@ -35,8 +36,9 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
 
 
     func configureShowFilterTypeViewButton() {
-        filterTypeViewElements.showFilterTypeViewButton.setTitle("Filter", for: UIControlState.normal)
+        filterTypeViewElements.showFilterTypeViewButton.setTitle("Filters", for: UIControlState.normal)
         filterTypeViewElements.showFilterTypeViewButton.roundCorners()
+        filterTypeViewElements.showFilterTypeViewButton.backgroundColor = .lightGray
     }
 
     func configureDefaultFilterTypeButtonsProperties() {
@@ -47,13 +49,13 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
     func usersFilterTypeButtonSelected() {
         currentFilterType = .users
         filterTypeViewElements.setUserFilterTypeButton.backgroundColor = .green
-        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .blue
+        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .lightGray
         filterTypeViewHandler()
     }
 
     func repositoriesFilterTypeButtonSelected() {
         currentFilterType = .repositories
-        filterTypeViewElements.setUserFilterTypeButton.backgroundColor = .blue
+        filterTypeViewElements.setUserFilterTypeButton.backgroundColor = .lightGray
         filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .green
         filterTypeViewHandler()
     }
@@ -73,10 +75,17 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
             self.hideView()
         }
     }
+    
+    func setupSortButton() {
+        filterTypeViewElements.sortButton.setTitle("Sort by ID", for: UIControlState.normal)
+        filterTypeViewElements.sortButton.backgroundColor = .lightGray
+        filterTypeViewElements.sortButton.roundCorners()
+    }
+
 
     private func hideView() {
         let view = filterTypeViewElements.filterTypeView!
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             view.center.y += view.frame.height
         }, completion: { value in
                 self.filterTypeViewElements.filterTypeView.isHidden = true
@@ -100,10 +109,9 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
     }
 
     private func setupSetRepositoryFilterTypeButton() {
-        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .blue
+        filterTypeViewElements.setRepositoryFilterTypeButton.backgroundColor = .lightGray
         filterTypeViewElements.setRepositoryFilterTypeButton.setTitle("Repositories", for: UIControlState.normal)
         filterTypeViewElements.setRepositoryFilterTypeButton.roundCorners()
     }
-
 
 }
