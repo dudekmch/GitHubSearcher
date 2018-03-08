@@ -35,4 +35,13 @@ class GitHubApiService {
                 }
         }
     }
+
+    func getExtraDataFor(user: User, result: @escaping (_ response: UserDetails.Followers.Response) -> Void) {
+        Alamofire.request(user.userApiURL).responseJSON { apiResponse in
+            if let json = apiResponse.result.value as? JSON {
+                result(UserDetails.Followers.Response(json: json, user: user))
+            } 
+        }
+
+    }
 }

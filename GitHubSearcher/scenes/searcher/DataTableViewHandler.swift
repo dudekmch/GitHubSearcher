@@ -12,6 +12,8 @@ class DataTableViewHandler: DataTableViewProvider {
     init(of controller: SearchViewData) {
         self.controller = controller
     }
+    
+    private let dataNotAvailable = "N/A"
 
     private var controller: SearchViewData
 
@@ -65,8 +67,13 @@ class DataTableViewHandler: DataTableViewProvider {
     private func createUserCell(with indexPathRow: Int, from list: [User], for tableView: UITableView) -> UserTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier) as! UserTableViewCell
         let user = list[indexPathRow]
-        let score = user.score.formatDoubleToString(toPlaceRounded: 1)
-        cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: score)
+        if let score = user.score {
+            let formattedScore = score.formatDoubleToString(toPlaceRounded: 1)
+            cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: formattedScore)
+        } else {
+            cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: dataNotAvailable)
+        }
+
         return cell
     }
 

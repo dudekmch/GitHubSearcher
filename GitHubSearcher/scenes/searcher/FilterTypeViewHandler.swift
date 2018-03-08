@@ -77,7 +77,7 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
     }
     
     func setupSortButton() {
-        filterTypeViewElements.sortButton.setTitle("Sort by ID", for: UIControlState.normal)
+        filterTypeViewElements.sortButton.setTitle(" Sort by ID ", for: UIControlState.normal)
         filterTypeViewElements.sortButton.backgroundColor = .lightGray
         filterTypeViewElements.sortButton.roundCorners()
     }
