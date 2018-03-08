@@ -40,8 +40,17 @@ class GitHubApiService {
         Alamofire.request(user.userApiURL).responseJSON { apiResponse in
             if let json = apiResponse.result.value as? JSON {
                 result(UserDetails.Followers.Response(json: json, user: user))
-            } 
+            }
         }
+    }
 
+    func getRepositriesDataForUser(url: URL, result: @escaping (_ response: UserDetails.UserRepositories.Response) -> Void) {
+        Alamofire.request(url).responseJSON { apiResponse in
+            if let jsonList = apiResponse.result.value as? [JSON] {
+                print("Dupa")
+                result(UserDetails.UserRepositories.Response.init(jsonList: jsonList))
+            }
+        }
     }
 }
+

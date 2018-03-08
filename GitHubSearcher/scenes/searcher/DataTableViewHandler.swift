@@ -12,7 +12,7 @@ class DataTableViewHandler: DataTableViewProvider {
     init(of controller: SearchViewData) {
         self.controller = controller
     }
-    
+
     private let dataNotAvailable = "N/A"
 
     private var controller: SearchViewData
@@ -59,8 +59,13 @@ class DataTableViewHandler: DataTableViewProvider {
     private func createRepositoryCell(with indexPathRow: Int, from list: [Repository], for tableView: UITableView) -> RepositoryTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier) as! RepositoryTableViewCell
         let repository = list[indexPathRow]
-        let score = repository.score.formatDoubleToString(toPlaceRounded: 1)
-        cell.setData(name: repository.name, score: score, description: repository.description, userName: repository.owner)
+        if let score = repository.score {
+            let formattedScore = score.formatDoubleToString(toPlaceRounded: 1)
+            cell.setData(name: repository.name, score: formattedScore, description: repository.description, userName: repository.owner)
+        } else {
+            cell.setData(name: repository.name, score: dataNotAvailable, description: repository.description, userName: repository.owner)
+
+        }
         return cell
     }
 

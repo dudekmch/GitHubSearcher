@@ -7,7 +7,11 @@ enum UserDetails {
         let followersCount: Int = followers as! Int
         return followersCount
     }
-
+    
+    static func repositories(from jsonList: [JSON]) -> [Repository]? {
+        let modelsJSON: [JSON] = jsonList
+        return modelsJSON.flatMap { Repository(json: $0) }
+    }
 
     enum Data {
         struct Request {
@@ -53,6 +57,35 @@ enum UserDetails {
                 self.user = userWithFollowers
             }
             var user: User
+        }
+    }
+    
+    enum UserRepositories {
+        struct Request {
+            let urlRepositories: URL
+        }
+        
+        struct Response {
+            
+            init(jsonList: [JSON]) {
+                self.success = true
+                self.models = UserDetails.repositories(from: jsonList)
+            }
+            
+            init() {
+                self.success = false
+            }
+            
+            var success: Bool
+            var models: [Repository]?
+            
+        }
+        
+        struct ViewModel {
+            init(allStarsFromRepositories: Int?){
+                self.stars = allStarsFromRepositories
+            }
+            var stars: Int?
         }
     }
 }

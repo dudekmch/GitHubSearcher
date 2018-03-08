@@ -92,7 +92,12 @@ class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDispla
 
     private func prepareScoreLabels(for repo: Repository) {
         scoreTitleLabel.text = "Score"
-        scoreLabel.text = repo.score.formatDoubleToString(toPlaceRounded: 1)
+        if let score = repo.score {
+            scoreLabel.text = score.formatDoubleToString(toPlaceRounded: 1)
+        } else {
+            scoreLabel.text = dataNotAvailable
+        }
+        
     }
 
     private func prepareCreatedLabels(for repo: Repository) {

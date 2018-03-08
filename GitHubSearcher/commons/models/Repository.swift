@@ -11,10 +11,11 @@ class Repository: ResponseModel {
     let created: Date
     let updated: Date
     let language: String?
-    let score: Double
+    let score: Double?
     let owner: String?
+    var stars: Int?
 
-    init(id: Int, name: String, fullName: String, privateRepository: Bool, repositoryURL: String, description: String?, created: String, updated: String, language: String?, score: Double, owner: Owner?) {
+    init(id: Int, name: String, fullName: String, privateRepository: Bool, repositoryURL: String, description: String?, created: String, updated: String, language: String?, score: Double?, owner: Owner?, stars: Int?) {
         self.id = id
         self.name = name
         self.fullName = fullName
@@ -30,6 +31,7 @@ class Repository: ResponseModel {
         } else {
             self.owner = nil
         }
+        self.stars = stars
     }
 
     convenience required init?(json: JSON) {
@@ -41,14 +43,15 @@ class Repository: ResponseModel {
             let repositoryURL = json["html_url"] as? String,
             let created = json["created_at"] as? String,
             let updated = json["updated_at"] as? String,
-            let score = json["score"] as? Double,
             let owner = json["owner"] as? JSON
             else { return nil }
 
         let description = json["description"] as? String
         let language = json["language"] as? String
+        let stars = json["stargazers_count"] as? Int
+        let score = json["score"] as? Double
 
-        self.init(id: id, name: name, fullName: fullName, privateRepository: privateRepository, repositoryURL: repositoryURL, description: description, created: created, updated: updated, language: language, score: score, owner: Owner.init(json: owner))
+        self.init(id: id, name: name, fullName: fullName, privateRepository: privateRepository, repositoryURL: repositoryURL, description: description, created: created, updated: updated, language: language, score: score, owner: Owner.init(json: owner), stars: stars)
     }
 
     class Owner {
