@@ -97,12 +97,12 @@ class RepositoryDetailsViewController: UIViewController, RepositoryDetailsDispla
 
     private func prepareCreatedLabels(for repo: Repository) {
         createdTitleLabel.text = "Created"
-        createdLabel.text = String(describing: repo.created)
+        createdLabel.text = repo.created.formatToString()
     }
 
     private func prepareUpdatedLabels(for repo: Repository) {
         updatedTitleLabel.text = "Updated"
-        updateLabel.text = String(describing: repo.updated)
+        updateLabel.text = repo.updated.formatToString()
     }
 
     private func prepareLanguageLabels(for repo: Repository) {
