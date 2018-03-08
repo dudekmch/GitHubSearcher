@@ -1,9 +1,7 @@
 import UIKit
 
 protocol UserDetailsDisplayLogic: class {
-    func displayUserDetails(viewModel: UserDetails.Data.ViewModel)
-    func displayFollowersCount(viewModel: UserDetails.Followers.ViewModel)
-    func displayUserRepositoriesStars(viewModel: UserDetails.UserRepositories.ViewModel)
+    func displayUserDetails(viewModel: UserDetails.UserWithFollowersAndRepositories.ViewModel)
 }
 
 class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
@@ -67,24 +65,11 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         interactor?.getUser()
     }
 
-    func displayUserDetails(viewModel: UserDetails.Data.ViewModel) {
+    func displayUserDetails(viewModel: UserDetails.UserWithFollowersAndRepositories.ViewModel) {
         self.user = viewModel.user
-        guard let user = self.user else { return }
-        let request = UserDetails.Followers.Request.init(user: user)
-        interactor?.addFollowersDataToUser(request: request)
-
-    }
-
-    func displayFollowersCount(viewModel: UserDetails.Followers.ViewModel) {
-        self.user = viewModel.user
-        guard let user = self.user else { return }
-        let request = UserDetails.UserRepositories.Request.init(urlRepositories: user.repositoriesURL)
-        interactor?.getUserRepositories(request: request)
-    }
-
-    func displayUserRepositoriesStars(viewModel: UserDetails.UserRepositories.ViewModel) {
         self.repositoriesStarsSum = viewModel.stars
-        prepareUserDetails()
+         prepareUserDetails()
+
     }
 
     private func prepareUserDetails() {
