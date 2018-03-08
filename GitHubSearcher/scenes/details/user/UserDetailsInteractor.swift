@@ -2,7 +2,6 @@ import UIKit
 
 protocol UserDetailsBusinessLogic {
     func getUser()
-    func getFollowerList(request: UserDetails.Followers.Request)
 }
 
 protocol UserDetailsDataStore {
@@ -17,14 +16,20 @@ class UserDetailsInteractor: UserDetailsBusinessLogic, UserDetailsDataStore {
     var gitHubApi = GitHubApiService.shared
     
     func getUser() {
-        let response = UserDetails.Data.Response.init(user: user)
-        presenter?.presentUser(response: response)
+        guard let user = self.user else { return }
+        addFollowersDataToUser(user: user)
     }
     
-    func getFollowerList(request: UserDetails.Followers.Request){
-        gitHubApi.getExtraDataFor(user: request.user, result: { response in
-            self.presenter?.presentUserWithFollowers(response: response)
+    private func addFollowersDataToUser(user: User){
+        gitHubApi.getExtraDataFor(user: user, result: { response in
+            self.getUserRepositoriesFrom(url: user.repositoriesURL, user: response.user)
         })
+    }
+    
+    private func getUserRepositoriesFrom(url: URL, user: User){
+        gitHubApi.getRepositriesDataForUser(url: url, user: user) { response in
+            self.presenter?.presentUser(response: response, user: user)
+        }
     }
    
 }

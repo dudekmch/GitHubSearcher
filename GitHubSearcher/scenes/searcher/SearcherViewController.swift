@@ -85,7 +85,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNewData = 30
+    private let percentDisplayedCellToLoadNewData = 80
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
@@ -216,14 +216,13 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearcherViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        guard let searchTerm = textField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return false }
-//        filterTypeViewHandler?.beginTypingHideFilterView()
-//        searchData(with: filterType, for: searchTerm)
+        guard let searchTerm = textField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return false }
+        filterTypeViewHandler?.beginTypingHideFilterView()
+        searchData(with: filterType, for: searchTerm)
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
         if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
             filterTypeViewHandler?.beginTypingHideFilterView()
             searchData(with: filterType, for: searchTerm)

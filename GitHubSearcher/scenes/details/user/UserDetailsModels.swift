@@ -7,34 +7,14 @@ enum UserDetails {
         let followersCount: Int = followers as! Int
         return followersCount
     }
-
-
-    enum Data {
-        struct Request {
-        }
-
-        struct Response {
-            init(user: User?) {
-                self.user = user
-            }
-            var user: User?
-        }
-
-        struct ViewModel {
-            init(user: User?) {
-                self.user = user
-            }
-            var user: User?
-        }
+    
+    static func repositories(from jsonList: [JSON]) -> [Repository]? {
+        let modelsJSON: [JSON] = jsonList
+        return modelsJSON.flatMap { Repository(json: $0) }
     }
-
 
     enum Followers {
         struct Request {
-            init(user: User) {
-                self.user = user
-            }
-            let user: User
         }
 
         struct Response {
@@ -53,6 +33,38 @@ enum UserDetails {
                 self.user = userWithFollowers
             }
             var user: User
+        }
+    }
+    
+    enum UserWithFollowersAndRepositories {
+        struct Request {
+        }
+        
+        struct Response {
+            
+            init(jsonList: [JSON], user: User?) {
+                self.success = true
+                self.models = UserDetails.repositories(from: jsonList)
+                self.user = user
+            }
+            
+            init() {
+                self.success = false
+            }
+            
+            var success: Bool
+            var models: [Repository]?
+            var user: User?
+            
+        }
+        
+        struct ViewModel {
+            init(allStarsFromRepositories: Int?, userWithFollowers: User){
+                self.stars = allStarsFromRepositories
+                self.user = userWithFollowers
+            }
+            var stars: Int?
+            var user: User?
         }
     }
 }

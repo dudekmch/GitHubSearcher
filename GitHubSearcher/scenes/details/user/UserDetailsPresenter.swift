@@ -1,20 +1,19 @@
 import UIKit
 
 protocol UserDetailsPresentationLogic {
-    func presentUser(response: UserDetails.Data.Response)
-    func presentUserWithFollowers(response: UserDetails.Followers.Response)
+    func presentUser(response: UserDetails.UserWithFollowersAndRepositories.Response, user: User?)
 }
 
 class UserDetailsPresenter: UserDetailsPresentationLogic {
     weak var viewController: UserDetailsDisplayLogic?
     
-    func presentUser(response: UserDetails.Data.Response) {
-        let viewModel = UserDetails.Data.ViewModel(user: response.user)
+    func presentUser(response: UserDetails.UserWithFollowersAndRepositories.Response, user: User?){
+        let starsSum = response.models?.map({ repo -> Int in
+            guard let stars = repo.stars else { return 0 }
+            return stars
+        })
+        guard let sum = starsSum, let userWithFollowers = user  else { return }
+        let viewModel = UserDetails.UserWithFollowersAndRepositories.ViewModel.init(allStarsFromRepositories: sum.reduce(0, +), userWithFollowers: userWithFollowers)
         viewController?.displayUserDetails(viewModel: viewModel)
-    }
-    
-    func presentUserWithFollowers(response: UserDetails.Followers.Response) {
-        let viewModel = UserDetails.Followers.ViewModel.init(userWithFollowers: response.user)
-        viewController?.displayFollowersCount(viewModel: viewModel)
     }
 }

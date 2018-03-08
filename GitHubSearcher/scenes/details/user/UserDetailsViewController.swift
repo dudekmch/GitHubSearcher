@@ -1,8 +1,7 @@
 import UIKit
 
 protocol UserDetailsDisplayLogic: class {
-    func displayUserDetails(viewModel: UserDetails.Data.ViewModel)
-    func displayFollowersCount(viewModel: UserDetails.Followers.ViewModel)
+    func displayUserDetails(viewModel: UserDetails.UserWithFollowersAndRepositories.ViewModel)
 }
 
 class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
@@ -53,8 +52,12 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var followersTitleLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var starsTitleLabel: UILabel!
+    @IBOutlet weak var starsLabel: UILabel!
+
 
     var user: User?
+    var repositoriesStarsSum: Int?
 
     private let dataNotAvailable = "N/A"
 
@@ -62,17 +65,11 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         interactor?.getUser()
     }
 
-    func displayUserDetails(viewModel: UserDetails.Data.ViewModel) {
+    func displayUserDetails(viewModel: UserDetails.UserWithFollowersAndRepositories.ViewModel) {
         self.user = viewModel.user
-        guard let user = self.user else { return }
-        let request = UserDetails.Followers.Request.init(user: user)
-        interactor?.getFollowerList(request: request)
+        self.repositoriesStarsSum = viewModel.stars
+         prepareUserDetails()
 
-    }
-
-    func displayFollowersCount(viewModel: UserDetails.Followers.ViewModel) {
-        self.user = viewModel.user
-        prepareUserDetails()
     }
 
     private func prepareUserDetails() {
@@ -81,6 +78,7 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         prepareLabels(for: user)
         prepareGoGitHubButton(for: user)
         prepareFollowersLabels(for: user)
+        prepareStarsCount()
     }
 
     private func prepareAvatar(for user: User) {
@@ -113,13 +111,21 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         } else {
             followersLabel.text = dataNotAvailable
         }
+    }
 
+    private func prepareStarsCount() {
+        starsTitleLabel.text = "Stars"
+        if let stars = repositoriesStarsSum {
+            starsLabel.text = String(stars)
+        } else {
+            starsLabel.text = dataNotAvailable
+        }
     }
 
     private func resizeAvatar(image: UIImage?) -> UIImage? {
         guard let image = image else { return nil }
-        let rect = CGRect.init(x: 0, y: 0, width: 300, height: 300)
-        let size = CGSize.init(width: 300, height: 300)
+        let rect = CGRect.init(x: 0, y: 0, width: 275, height: 275)
+        let size = CGSize.init(width: 275, height: 275)
         return image.resizeImage(rect: rect, size: size)
     }
 
