@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		84A07EE614A7B0E4F51BFA8E /* Pods_GitHubSearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */; };
+		F4C949D6204F35FF00E2F3FD /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C949D5204F35FF00E2F3FD /* UIViewControllerExtension.swift */; };
+		F4C949E22051CFA800E2F3FD /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C949E12051CFA800E2F3FD /* DateExtension.swift */; };
 		F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */; };
 		F4FE215320417C0C00FD72A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215220417C0C00FD72A7 /* Assets.xcassets */; };
 		F4FE215620417C0C00FD72A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4FE215420417C0C00FD72A7 /* LaunchScreen.storyboard */; };
@@ -71,6 +73,8 @@
 		7BECB81967B79B96D8D0BF7B /* Pods-GitHubSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.release.xcconfig"; sourceTree = "<group>"; };
 		B24BE9989DEBC93D51825F3F /* Pods_GitHubSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD169C8C532B68570DF789C /* Pods-GitHubSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubSearcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubSearcher/Pods-GitHubSearcher.debug.xcconfig"; sourceTree = "<group>"; };
+		F4C949D5204F35FF00E2F3FD /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		F4C949E12051CFA800E2F3FD /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F4FE214820417C0C00FD72A7 /* GitHubSearcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4FE214B20417C0C00FD72A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4FE215220417C0C00FD72A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				F4FE221D204351F600FD72A7 /* Formatter.swift */,
 				F4FE2238204AA35400FD72A7 /* DoubleExtension.swift */,
 				F4FE2242204AB40900FD72A7 /* UIImageExtension.swift */,
+				F4C949D5204F35FF00E2F3FD /* UIViewControllerExtension.swift */,
+				F4C949E12051CFA800E2F3FD /* DateExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 			files = (
 				F4FE22132042FD2300FD72A7 /* User.swift in Sources */,
 				F4FE21B72041AE1100FD72A7 /* UIViewExtension.swift in Sources */,
+				F4C949E22051CFA800E2F3FD /* DateExtension.swift in Sources */,
 				F4FE22032042D3BB00FD72A7 /* RepositoryDetailsRouter.swift in Sources */,
 				F4FE21F62042D1D400FD72A7 /* UserDetailsModels.swift in Sources */,
 				F4FE219C2041A4A200FD72A7 /* SearcherViewController.swift in Sources */,
@@ -492,6 +499,7 @@
 				F4FE2239204AA35400FD72A7 /* DoubleExtension.swift in Sources */,
 				F4FE21BB2041AF7D00FD72A7 /* ShadowSide.swift in Sources */,
 				F4FE214C20417C0C00FD72A7 /* AppDelegate.swift in Sources */,
+				F4C949D6204F35FF00E2F3FD /* UIViewControllerExtension.swift in Sources */,
 				F4FE221E204351F600FD72A7 /* Formatter.swift in Sources */,
 				F4FE222A2045F02500FD72A7 /* FilterTypeViewHandler.swift in Sources */,
 				F4FE21F52042D1D400FD72A7 /* UserDetailsRouter.swift in Sources */,

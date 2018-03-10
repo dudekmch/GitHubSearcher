@@ -1,16 +1,15 @@
 import UIKit
 
 protocol RepositoryDetailsPresentationLogic {
-    func presentSomething(response: RepositoryDetails.Something.Response)
+    func presentRepository(response: RepositoryDetails.Data.Response)
 }
 
 class RepositoryDetailsPresenter: RepositoryDetailsPresentationLogic {
     weak var viewController: RepositoryDetailsDisplayLogic?
-    
-    // MARK: Do something
-    
-    func presentSomething(response: RepositoryDetails.Something.Response) {
-        let viewModel = RepositoryDetails.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+
+
+    func presentRepository(response: RepositoryDetails.Data.Response) {
+        let viewModel = RepositoryDetails.Data.ViewModel(repository: response.repository)
+        viewController?.displayRepository(viewModel: viewModel)
     }
 }

@@ -6,8 +6,8 @@ protocol SearcherDisplayLogic: class {
 }
 
 protocol SearchViewData {
-    var userList: [User]? { get }
-    var repositoryList: [Repository]? { get }
+    var userList: [User]? { get set }
+    var repositoryList: [Repository]? { get set }
 }
 
 protocol FilterTypeViewUIElements {
@@ -15,6 +15,7 @@ protocol FilterTypeViewUIElements {
     var showFilterTypeViewButton: UIButton! { get set }
     var setUserFilterTypeButton: UIButton! { get set }
     var setRepositoryFilterTypeButton: UIButton! { get set }
+    var sortButton: UIButton! { get set }
 }
 
 class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchViewData, FilterTypeViewUIElements {
@@ -60,9 +61,14 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         searcherTableView.delegate = self
         searcherTableView.dataSource = self
         searchTermTextField.delegate = self
-        registerNib(identifire: UserTableViewCell.identifier)
-        registerNib(identifire: RepositoryTableViewCell.identifier)
+        self.registerNib(identifire: UserTableViewCell.identifier, target: searcherTableView)
+        self.registerNib(identifire: RepositoryTableViewCell.identifier, target: searcherTableView)
         preparUIElements()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
 
     //MARK: Properties
@@ -74,11 +80,12 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     @IBOutlet weak var setUserFilterTypeButton: UIButton!
     @IBOutlet weak var setRepositoryFilterTypeButton: UIButton!
     @IBOutlet weak var filterViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sortButton: UIButton!
     
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNewData = 30
+    private let percentDisplayedCellToLoadNewData = 80
 
 
     private func searchData(with filter: FilterType, for searchTerm: String) {
@@ -113,9 +120,11 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         filterTypeViewHandler?.configureShowFilterTypeViewButton()
         searchTermTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
                                       for: UIControlEvents.editingChanged)
+        filterTypeViewHandler?.setupSortButton()
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
         setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
         setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
+        sortButton.addTarget(self, action: #selector(sortDataList), for: UIControlEvents.touchUpInside)
     }
 
     @objc private func filterTypeDisplayingHandler(_ button: UIButton) {
@@ -135,6 +144,10 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
         filterTypeViewHandler?.beginTypingHideFilterView()
         searchData(with: filterType, for: searchTerm)
+
+    @objc private func sortDataList(_ button: UIButton){
+        dataTableViewHandler?.sortData(for: filterTypeViewHandler?.currentFilterType)
+        searcherTableView.reloadData()
     }
 
     private func hideKeyboard() {
@@ -176,11 +189,6 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    private func registerNib(identifire: String) {
-        let nib = UINib(nibName: identifire, bundle: nil)
-        searcherTableView.register(nib, forCellReuseIdentifier: identifire)
-    }
-
     private func countPercentOfDisplayedCells(indexPath: IndexPath) -> Int {
         guard let dataTableViewHandler = self.dataTableViewHandler else { return 0 }
         let result = (Double(indexPath.row) / Double(dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType))) * 100
@@ -214,7 +222,6 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearcherViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
         if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
             filterTypeViewHandler?.beginTypingHideFilterView()
             searchData(with: filterType, for: searchTerm)

@@ -12,13 +12,13 @@ class SearcherPresenter: SearcherPresentationLogic {
 
     func presentUsers(response: Searcher.Data.Response<User>) {
         guard let userList = response.models else { return }
-        let viewModel = Searcher.Data.ViewModel(dataList: userList.sorted { $0.id < $1.id })
+        let viewModel = Searcher.Data.ViewModel(dataList: userList)
         viewController?.displayUsers(viewModel: viewModel)
     }
 
     func presentRepositories(response: Searcher.Data.Response<Repository>) {
         guard let repositoryList = response.models else { return }
-        let viewModel = Searcher.Data.ViewModel(dataList: repositoryList.sorted { $0.id < $1.id })
+        let viewModel = Searcher.Data.ViewModel(dataList: repositoryList)
         viewController?.displayRepositories(viewModel: viewModel)
     }
 }
