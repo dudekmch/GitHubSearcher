@@ -72,6 +72,7 @@ class FilterTypeViewHandler: FilterTypeDisplayingLogic, FilterTypeButtonsLogic, 
 
     func beginTypingHideFilterView() {
         if isFilterTypeViewDisplayed {
+            isFilterTypeViewDisplayed = false
             self.hideView()
         }
     }

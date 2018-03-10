@@ -57,7 +57,7 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
             gitHubApiService.searchUsers(searchTerm: term, page: currentPageNumber, result: { (response) in
                 guard let countOfPages = response.countOfPages else { return }
                 self.totalCountOfPages = countOfPages
-                self.downloadAvatars(for: response)
+                self.presenter?.presentUsers(response: response)
             })
 
         case .repositories:
@@ -77,67 +77,19 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
             gitHubApiService.searchUsers(searchTerm: term, page: nextPageNumber, result: { (response) in
                 guard let countOfPages = response.countOfPages else { return }
                 self.totalCountOfPages = countOfPages
-                self.downloadAvatars(for: response)
+                self.presenter?.presentMoreUsers(response: response)
             })
         case .repositories:
             gitHubApiService.searchRepositories(searchTerm: term, page: nextPageNumber, result: { (response) in
                 guard let countOfPages = response.countOfPages else { return }
                 self.totalCountOfPages = countOfPages
-                self.presenter?.presentRepositories(response: response)
+                self.presenter?.presentMoreRepositories(response: response)
             })
         }
         self.currentPageNumber = self.nextPageNumber
         self.nextPageNumber += 1
     }
-
-    private func initianlUserSearch(for usersResponse: Searcher.Data.Response<User>) {
-        guard let countOfPages = usersResponse.countOfPages else { return }
-        self.totalCountOfPages = countOfPages
-        self.downloadAvatars(for: usersResponse)
-    }
-
-    private func userSearchWithPagination(for usersResponse: Searcher.Data.Response<User>) {
-        guard let countOfPages = usersResponse.countOfPages else { return }
-        self.totalCountOfPages = countOfPages
-        if self.currentPageNumber > self.totalCountOfPages { return }
-        self.currentPageNumber += 1
-        self.downloadAvatars(for: usersResponse)
-    }
-
-    private func downloadAvatars(for usersResponse: Searcher.Data.Response<User>) {
-        guard let users = usersResponse.models else { return }
-        var handledUserCounter = 0
-//        let dispatchQueue = DispatchQueue(label: "pl.cookieIT.gitHubSearcher.avatarDownloading", qos: .userInteractive)
-        for user in users {
-            guard let avatarURL = user.avatarURL else { return }
-            //TODO: change qos ??!! This solution is slow
-//            dispatchQueue.async {
-//                do {
-//                    let imageData = try Data.init(contentsOf: avatarURL)
-//                    let image = UIImage.init(data: imageData)
-//                    user.avatarImage = image
-//                    handledUserCounter += 1
-//                    if handledUserCounter == users.count {
-//                        self.presenter?.presentUsers(response: usersResponse)
-//                    }
-//                } catch {
-//                    print(error)
-//                }
-            URLSession.shared.dataTask(with: avatarURL, completionHandler: { (data, responseURL, errorURL) -> Void in
-                if errorURL != nil {
-                    print(errorURL!)
-                    return
-                }
-                DispatchQueue.main.async(execute: { () -> Void in
-                    user.avatarImage = UIImage(data: data!)
-                    handledUserCounter += 1
-                    if handledUserCounter == users.count {
-                        self.presenter?.presentUsers(response: usersResponse)
-                    }
-                })
-            }).resume()
-        }
-    }
+    
 }
 
 

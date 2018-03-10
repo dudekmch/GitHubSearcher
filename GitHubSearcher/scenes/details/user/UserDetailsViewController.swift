@@ -2,6 +2,7 @@ import UIKit
 
 protocol UserDetailsDisplayLogic: class {
     func displayUserDetails(viewModel: UserDetails.UserWithFollowersAndRepositories.ViewModel)
+    func displayAvatar(viewModel: UserDetails.UserWithAvatar.ViewModel)
 }
 
 class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
@@ -69,12 +70,21 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
         self.user = viewModel.user
         self.repositoriesStarsSum = viewModel.stars
          prepareUserDetails()
-
+         downloadAvatarFor(user: user)
+    }
+    
+    func displayAvatar(viewModel: UserDetails.UserWithAvatar.ViewModel){
+        guard let user = viewModel.userWithAvatar else { return }
+        prepareAvatar(for: user)
+    }
+    
+    private func downloadAvatarFor(user: User?){
+        let request = UserDetails.UserWithAvatar.Request.init(user: user)
+        interactor?.downloadAvatar(request: request)
     }
 
     private func prepareUserDetails() {
         guard let user = self.user else { return }
-        prepareAvatar(for: user)
         prepareLabels(for: user)
         prepareGoGitHubButton(for: user)
         prepareFollowersLabels(for: user)
@@ -124,8 +134,8 @@ class UserDetailsViewController: UIViewController, UserDetailsDisplayLogic {
 
     private func resizeAvatar(image: UIImage?) -> UIImage? {
         guard let image = image else { return nil }
-        let rect = CGRect.init(x: 0, y: 0, width: 275, height: 275)
-        let size = CGSize.init(width: 275, height: 275)
+        let rect = CGRect.init(x: 0, y: 0, width: 250, height: 250)
+        let size = CGSize.init(width: 250, height: 250)
         return image.resizeImage(rect: rect, size: size)
     }
 

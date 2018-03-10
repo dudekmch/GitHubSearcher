@@ -67,4 +67,20 @@ enum UserDetails {
             var user: User?
         }
     }
+    
+    enum UserWithAvatar {
+        struct Request {
+            let user: User?
+        }
+        
+        struct Response {
+            let user: User?
+            
+        }
+        
+        struct ViewModel {
+            let userWithAvatar: User?
+        }
+    }
+    
 }
