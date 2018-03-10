@@ -144,6 +144,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
         filterTypeViewHandler?.beginTypingHideFilterView()
         searchData(with: filterType, for: searchTerm)
+    }
 
     @objc private func sortDataList(_ button: UIButton){
         dataTableViewHandler?.sortData(for: filterTypeViewHandler?.currentFilterType)
