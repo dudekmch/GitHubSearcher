@@ -89,8 +89,8 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNewData = 90
     private let secondDelayOfRequestSending: Double = 1
+    private let countCellBeforeEndListToLoadNewData = 20
 
 
     @objc private func searchData() {
@@ -216,15 +216,14 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == countPercentOfDisplayedCells() {
+        if indexPath.row == countOfDisplayedCells() {
             loadMoreData()
         }
     }
 
-    private func countPercentOfDisplayedCells() -> Int {
+    private func countOfDisplayedCells() -> Int {
         guard let dataTableViewHandler = self.dataTableViewHandler else { return 0 }
-        let result = dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType) - 20
-        return Int(result)
+        return dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType) - countCellBeforeEndListToLoadNewData
     }
 
     private func prepareDataForDetailsView(filterType: FilterType, cellIndexRow: Int) {

@@ -11,7 +11,6 @@ class GitHubApiService {
     func searchUsers(searchTerm: String, page: Int, result: @escaping (_ response: Searcher.Data.Response<User>) -> Void) {
         Alamofire.request("https://api.github.com/search/users?q=\(searchTerm)&per_page=100&page=\(page)")
             .responseJSON { apiResponse in
-                print(searchTerm)
                 switch apiResponse.result {
                 case .success:
                     if let json = apiResponse.result.value as? JSON {
@@ -26,7 +25,6 @@ class GitHubApiService {
     func searchRepositories(searchTerm: String, page: Int, result: @escaping (_ response: Searcher.Data.Response<Repository>) -> Void) {
         Alamofire.request("https://api.github.com/search/repositories?q=\(searchTerm)&per_page=100&page=\(page)")
             .responseJSON { apiResponse in
-                 print(page)
                 switch apiResponse.result {
                 case .success:
                     if let json = apiResponse.result.value as? JSON {
