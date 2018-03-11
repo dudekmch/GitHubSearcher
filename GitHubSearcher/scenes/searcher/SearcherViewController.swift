@@ -3,6 +3,9 @@ import UIKit
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Data.ViewModel<User>)
     func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
+    func displayMoreUsers(viewModel: Searcher.Data.ViewModel<User>)
+    func displayMoreRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
+    func turnOffLoadingIndicatorView()
 }
 
 protocol SearchViewData {
@@ -65,7 +68,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         self.registerNib(identifire: RepositoryTableViewCell.identifier, target: searcherTableView)
         preparUIElements()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
@@ -79,38 +82,63 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     @IBOutlet weak var showFilterTypeViewButton: UIButton!
     @IBOutlet weak var setUserFilterTypeButton: UIButton!
     @IBOutlet weak var setRepositoryFilterTypeButton: UIButton!
-    @IBOutlet weak var filterViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var sortButton: UIButton!
-    
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+
+
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNewData = 80
+    private let secondDelayOfRequestSending: Double = 1
+    private let countCellBeforeEndListToLoadNewData = 20
 
 
-    private func searchData(with filter: FilterType, for searchTerm: String) {
-        guard let filterType = filterTypeViewHandler?.currentFilterType else { return }
-        let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: filterType)
-        userList = [User]()
-        repositoryList = [Repository]()
-        interactor?.searchData(request: request)
-        scrollToFirstRow()
+    @objc private func searchData() {
+        guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
+        if !searchTerm.isEmpty {
+            userList = [User]()
+            repositoryList = [Repository]()
+            searcherTableView.reloadData()
+            scrollToFirstRow()
+            loadingIndicatorView.startAnimating()
+            let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: filterType)
+            interactor?.searchData(request: request)
+        }
     }
 
-    private func loadMoreData(with filter: FilterType, for searchTerm: String) {
-        guard let filterType = filterTypeViewHandler?.currentFilterType else { return }
+    private func loadMoreData() {
+        guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
+        loadingIndicatorView.startAnimating()
         let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: filterType)
         interactor?.loadMoreData(request: request)
     }
 
-    func displayUsers(viewModel: Searcher.Data.ViewModel<User>) {
+    func displayMoreUsers(viewModel: Searcher.Data.ViewModel<User>) {
         self.userList?.append(contentsOf: viewModel.dataList)
         searcherTableView.reloadData()
+        loadingIndicatorView.stopAnimating()
+    }
+
+    func displayMoreRepositories(viewModel: Searcher.Data.ViewModel<Repository>) {
+        self.repositoryList?.append(contentsOf: viewModel.dataList)
+        searcherTableView.reloadData()
+        loadingIndicatorView.stopAnimating()
+    }
+
+    func displayUsers(viewModel: Searcher.Data.ViewModel<User>) {
+        userList = viewModel.dataList
+        searcherTableView.reloadData()
+        loadingIndicatorView.stopAnimating()
     }
 
     func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>) {
-        self.repositoryList?.append(contentsOf: viewModel.dataList)
+        repositoryList = viewModel.dataList
         searcherTableView.reloadData()
+        loadingIndicatorView.stopAnimating()
+    }
+    
+    func turnOffLoadingIndicatorView(){
+        loadingIndicatorView.stopAnimating()
     }
 
     private func preparUIElements() {
@@ -119,15 +147,17 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
         filterTypeViewHandler?.configureDefaultFilterTypeButtonsProperties()
         filterTypeViewHandler?.configureShowFilterTypeViewButton()
         searchTermTextField.addTarget(self, action: #selector(searcherTextFieldDidChange(_:)),
-                                      for: UIControlEvents.editingChanged)
+            for: UIControlEvents.editingChanged)
         filterTypeViewHandler?.setupSortButton()
         showFilterTypeViewButton.addTarget(self, action: #selector(filterTypeDisplayingHandler(_:)), for: UIControlEvents.touchUpInside)
         setUserFilterTypeButton.addTarget(self, action: #selector(usersFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
         setRepositoryFilterTypeButton.addTarget(self, action: #selector(repositoriesFilterTypeButtonHandler(_:)), for: UIControlEvents.touchUpInside)
         sortButton.addTarget(self, action: #selector(sortDataList), for: UIControlEvents.touchUpInside)
+        loadingIndicatorView.hidesWhenStopped = true
     }
 
     @objc private func filterTypeDisplayingHandler(_ button: UIButton) {
+        loadingIndicatorView.isHidden = true
         filterTypeViewHandler?.filterTypeViewHandler()
         hideKeyboard()
     }
@@ -139,16 +169,20 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     @objc private func repositoriesFilterTypeButtonHandler(_ button: UIButton) {
         filterTypeViewHandler?.repositoriesFilterTypeButtonSelected()
     }
-    
-    @objc private func searcherTextFieldDidChange(_ button: UIButton){
-        guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
+
+    @objc private func searcherTextFieldDidChange(_ button: UIButton) {
         filterTypeViewHandler?.beginTypingHideFilterView()
-        searchData(with: filterType, for: searchTerm)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(searchData), object: nil)
+        delaySearchData()
     }
 
-    @objc private func sortDataList(_ button: UIButton){
+    @objc private func sortDataList(_ button: UIButton) {
         dataTableViewHandler?.sortData(for: filterTypeViewHandler?.currentFilterType)
         searcherTableView.reloadData()
+    }
+
+    private func delaySearchData() {
+        self.perform(#selector(searchData), with: nil, afterDelay: secondDelayOfRequestSending)
     }
 
     private func hideKeyboard() {
@@ -156,10 +190,9 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     }
 
     private func scrollToFirstRow() {
-        let indexSet = IndexSet.init(integer: 0)
-        self.searcherTableView.reloadSections(indexSet, with: .top)
+        self.searcherTableView.setContentOffset(CGPoint.zero, animated: false)
     }
-    
+
 }
 
 //MARK: Methods of TableViewDelegate, DataSource
@@ -183,20 +216,17 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if countPercentOfDisplayedCells(indexPath: indexPath) == percentDisplayedCellToLoadNewData {
-            if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
-                loadMoreData(with: filterType, for: searchTerm)
-            }
+        if indexPath.row == countOfDisplayedCells() {
+            loadMoreData()
         }
     }
 
-    private func countPercentOfDisplayedCells(indexPath: IndexPath) -> Int {
+    private func countOfDisplayedCells() -> Int {
         guard let dataTableViewHandler = self.dataTableViewHandler else { return 0 }
-        let result = (Double(indexPath.row) / Double(dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType))) * 100
-        return Int(result)
+        return dataTableViewHandler.getDataListCount(for: filterTypeViewHandler?.currentFilterType) - countCellBeforeEndListToLoadNewData
     }
-    
-    private func prepareDataForDetailsView(filterType: FilterType, cellIndexRow: Int){
+
+    private func prepareDataForDetailsView(filterType: FilterType, cellIndexRow: Int) {
         switch filterType {
         case .users:
             guard let users = userList else { return }
@@ -206,8 +236,8 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
             interactor?.repositoryForDetailsView = repositories[cellIndexRow]
         }
     }
-    
-    private func showDetailsView(filterType: FilterType){
+
+    private func showDetailsView(filterType: FilterType) {
         switch filterType {
         case .users:
             router?.routeToDetails()
@@ -221,12 +251,10 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: Methods of UITextFieldDelegate
 
 extension SearcherViewController: UITextFieldDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
-            filterTypeViewHandler?.beginTypingHideFilterView()
-            searchData(with: filterType, for: searchTerm)
-        }
+        filterTypeViewHandler?.beginTypingHideFilterView()
+        hideKeyboard()
         return true
     }
 
