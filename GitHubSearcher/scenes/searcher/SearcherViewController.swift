@@ -3,6 +3,8 @@ import UIKit
 protocol SearcherDisplayLogic: class {
     func displayUsers(viewModel: Searcher.Data.ViewModel<User>)
     func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
+    func displayMoreUsers(viewModel: Searcher.Data.ViewModel<User>)
+    func displayMoreRepositories(viewModel: Searcher.Data.ViewModel<Repository>)
 }
 
 protocol SearchViewData {
@@ -84,34 +86,42 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     var userList: [User]?
     var repositoryList: [Repository]?
 
-    private let percentDisplayedCellToLoadNewData = 80
-    private let delayOfRequestSending: Double = 1
+    private let percentDisplayedCellToLoadNewData = 90
+    private let secondDelayOfRequestSending: Double = 1
 
 
     @objc private func searchData() {
         guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
         if !searchTerm.isEmpty {
+              scrollToFirstRow()
             let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: filterType)
-            userList = [User]()
-            repositoryList = [Repository]()
             interactor?.searchData(request: request)
-            scrollToFirstRow()
         }
     }
 
-    private func loadMoreData(with filter: FilterType, for searchTerm: String) {
-        guard let filterType = filterTypeViewHandler?.currentFilterType else { return }
+    private func loadMoreData() {
+        guard let searchTerm = searchTermTextField.text, let filterType = filterTypeViewHandler?.currentFilterType else { return }
         let request = Searcher.Data.Request(searchTerm: searchTerm, filterType: filterType)
         interactor?.loadMoreData(request: request)
     }
 
-    func displayUsers(viewModel: Searcher.Data.ViewModel<User>) {
+    func displayMoreUsers(viewModel: Searcher.Data.ViewModel<User>) {
         self.userList?.append(contentsOf: viewModel.dataList)
         searcherTableView.reloadData()
     }
 
-    func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>) {
+    func displayMoreRepositories(viewModel: Searcher.Data.ViewModel<Repository>) {
         self.repositoryList?.append(contentsOf: viewModel.dataList)
+        searcherTableView.reloadData()
+    }
+
+    func displayUsers(viewModel: Searcher.Data.ViewModel<User>) {
+        userList = viewModel.dataList
+        searcherTableView.reloadData()
+    }
+
+    func displayRepositories(viewModel: Searcher.Data.ViewModel<Repository>) {
+        repositoryList = viewModel.dataList
         searcherTableView.reloadData()
     }
 
@@ -154,7 +164,7 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     }
 
     private func delaySearchData() {
-        self.perform(#selector(searchData), with: nil, afterDelay: delayOfRequestSending)
+        self.perform(#selector(searchData), with: nil, afterDelay: secondDelayOfRequestSending)
     }
 
     private func hideKeyboard() {
@@ -162,8 +172,9 @@ class SearcherViewController: UIViewController, SearcherDisplayLogic, SearchView
     }
 
     private func scrollToFirstRow() {
-        let indexSet = IndexSet.init(integer: 0)
-        self.searcherTableView.reloadSections(indexSet, with: .top)
+//        let indexSet = IndexSet.init(integer: 0)
+//        self.searcherTableView.reloadSections(indexSet, with: .top)
+         self.searcherTableView.setContentOffset(CGPoint.zero, animated: true)
     }
 
 }
@@ -190,9 +201,7 @@ extension SearcherViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if countPercentOfDisplayedCells(indexPath: indexPath) == percentDisplayedCellToLoadNewData {
-            if let filterType = filterTypeViewHandler?.currentFilterType, let searchTerm = searchTermTextField.text {
-                loadMoreData(with: filterType, for: searchTerm)
-            }
+            loadMoreData()
         }
     }
 

@@ -74,7 +74,7 @@ class DataTableViewHandler: DataTableViewProvider {
         let user = list[indexPathRow]
         if let score = user.score {
             let formattedScore = score.formatDoubleToString(toPlaceRounded: 1)
-            cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: formattedScore)
+            cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: String(indexPathRow), score: formattedScore)
         } else {
             cell.setData(avatar: prepareAvatarFrom(image: user.avatarImage), login: user.login, score: dataNotAvailable)
         }
