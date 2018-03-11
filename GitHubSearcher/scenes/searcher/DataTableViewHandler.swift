@@ -61,7 +61,7 @@ class DataTableViewHandler: DataTableViewProvider {
         let repository = list[indexPathRow]
         if let score = repository.score {
             let formattedScore = score.formatDoubleToString(toPlaceRounded: 1)
-            cell.setData(name: repository.name, score: formattedScore, description: repository.description, userName: repository.owner)
+            cell.setData(name: String(indexPathRow), score: formattedScore, description: repository.description, userName: repository.owner)
         } else {
             cell.setData(name: repository.name, score: dataNotAvailable, description: repository.description, userName: repository.owner)
 

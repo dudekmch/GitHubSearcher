@@ -73,46 +73,40 @@ class SearcherInteractor: SearcherBusinessLogic, SearcherDataStore {
 
 
     private func loadMoreData(filterType filter: FilterType, for term: String) {
-        if currentPageNumber >= totalCountOfPages { return }
         switch filter {
         case .users:
+            if currentPageNumber >= totalCountOfPages {
+                let noMorePageResponse = Searcher.Data.Response<User>.init()
+                self.presenter?.presentMoreUsers(response: noMorePageResponse)
+                return
+            }
             gitHubApiService.searchUsers(searchTerm: term, page: nextPageNumber, result: { (response) in
-                guard let countOfPages = response.countOfPages else { return }
-                self.totalCountOfPages = countOfPages
                 self.downloadAvatars(for: response, presenterMethod: { response in
-                     self.presenter?.presentMoreUsers(response: response)
+                    self.presenter?.presentMoreUsers(response: response)
                 })
             })
         case .repositories:
+            if currentPageNumber >= totalCountOfPages {
+                let noMorePageResponse = Searcher.Data.Response<Repository>.init()
+                self.presenter?.presentMoreRepositories(response: noMorePageResponse)
+                return
+            }
             gitHubApiService.searchRepositories(searchTerm: term, page: nextPageNumber, result: { (response) in
-                guard let countOfPages = response.countOfPages else { return }
-                self.totalCountOfPages = countOfPages
-                self.presenter?.presentRepositories(response: response)
+                self.presenter?.presentMoreRepositories(response: response)
             })
         }
         self.currentPageNumber = self.nextPageNumber
         self.nextPageNumber += 1
     }
 
-    private func downloadAvatars(for usersResponse: Searcher.Data.Response<User>, presenterMethod: @escaping (_ response: Searcher.Data.Response<User>) -> ())  {
-        guard let users = usersResponse.models else { return }
+    private func downloadAvatars(for usersResponse: Searcher.Data.Response<User>, presenterMethod: @escaping (_ response: Searcher.Data.Response<User>) -> ()) {
+        guard let users = usersResponse.models else {
+            self.presenter?.presentMoreUsers(response: usersResponse)
+            return
+        }
         var handledUserCounter = 0
-//        let dispatchQueue = DispatchQueue(label: "pl.cookieIT.gitHubSearcher.avatarDownloading", qos: .userInteractive)
         for user in users {
             guard let avatarURL = user.avatarURL else { return }
-            //TODO: change qos ??!! This solution is slow
-//            dispatchQueue.async {
-//                do {
-//                    let imageData = try Data.init(contentsOf: avatarURL)
-//                    let image = UIImage.init(data: imageData)
-//                    user.avatarImage = image
-//                    handledUserCounter += 1
-//                    if handledUserCounter == users.count {
-//                        self.presenter?.presentUsers(response: usersResponse)
-//                    }
-//                } catch {
-//                    print(error)
-//                }
             URLSession.shared.dataTask(with: avatarURL, completionHandler: { (data, responseURL, errorURL) -> Void in
                 if errorURL != nil {
                     print(errorURL!)

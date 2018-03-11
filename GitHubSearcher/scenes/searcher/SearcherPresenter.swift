@@ -9,29 +9,36 @@ protocol SearcherPresentationLogic {
 
 class SearcherPresenter: SearcherPresentationLogic {
     weak var viewController: SearcherDisplayLogic?
-    
-    // MARK: Do something
+
     func presentUsers(response: Searcher.Data.Response<User>) {
-        guard let userList = response.models else { return }
+        let userList = turnOffLoadingIndicator(response: response)
         let viewModel = Searcher.Data.ViewModel(dataList: userList)
         viewController?.displayUsers(viewModel: viewModel)
     }
-    
+
     func presentMoreUsers(response: Searcher.Data.Response<User>) {
-        guard let userList = response.models else { return }
+        let userList = turnOffLoadingIndicator(response: response)
         let viewModel = Searcher.Data.ViewModel(dataList: userList)
         viewController?.displayMoreUsers(viewModel: viewModel)
     }
-    
+
     func presentRepositories(response: Searcher.Data.Response<Repository>) {
-        guard let repositoryList = response.models else { return }
+        let repositoryList = turnOffLoadingIndicator(response: response)
         let viewModel = Searcher.Data.ViewModel(dataList: repositoryList)
         viewController?.displayRepositories(viewModel: viewModel)
     }
-    
+
     func presentMoreRepositories(response: Searcher.Data.Response<Repository>) {
-        guard let repositoryList = response.models else { return }
+        let repositoryList = turnOffLoadingIndicator(response: response)
         let viewModel = Searcher.Data.ViewModel(dataList: repositoryList)
         viewController?.displayMoreRepositories(viewModel: viewModel)
+    }
+
+    private func turnOffLoadingIndicator<T>(response: Searcher.Data.Response<T>) -> [T] {
+        guard let dataList = response.models else {
+            viewController?.turnOffLoadingIndicatorView()
+            return [T]()
+        }
+        return dataList
     }
 }

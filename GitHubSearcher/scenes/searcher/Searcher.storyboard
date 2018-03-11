@@ -44,7 +44,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRo-ia-3as">
-                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
+                                <rect key="frame" x="0.0" y="133" width="320" height="435"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUL-Id-DTI">
@@ -98,23 +98,30 @@
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Sort"/>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2S8-aE-RQh">
+                                <rect key="frame" x="8" y="113" width="304" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aRo-ia-3as" firstAttribute="top" secondItem="nCm-p6-XSr" secondAttribute="bottom" constant="8" id="5OY-dO-5V7"/>
+                            <constraint firstItem="2S8-aE-RQh" firstAttribute="top" secondItem="nCm-p6-XSr" secondAttribute="bottom" constant="1" id="4Qz-vS-Owr"/>
+                            <constraint firstItem="2S8-aE-RQh" firstAttribute="top" secondItem="LFm-h0-Iyh" secondAttribute="bottom" constant="1" id="4f0-FA-uGN"/>
                             <constraint firstItem="aRo-ia-3as" firstAttribute="bottom" secondItem="9hg-sl-HgO" secondAttribute="bottom" id="8u3-V2-8L1"/>
+                            <constraint firstItem="2S8-aE-RQh" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" constant="8" id="BWR-Ki-P7M"/>
                             <constraint firstItem="SUL-Id-DTI" firstAttribute="trailing" secondItem="9hg-sl-HgO" secondAttribute="trailing" id="BYR-5C-osm"/>
                             <constraint firstItem="aRo-ia-3as" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" id="D20-VX-agH"/>
+                            <constraint firstItem="2S8-aE-RQh" firstAttribute="top" secondItem="c9d-Cy-9dm" secondAttribute="bottom" constant="1" id="HMK-Z4-onj"/>
+                            <constraint firstItem="aRo-ia-3as" firstAttribute="top" secondItem="2S8-aE-RQh" secondAttribute="bottom" id="M2e-ZM-sZu"/>
                             <constraint firstItem="aRo-ia-3as" firstAttribute="trailing" secondItem="9hg-sl-HgO" secondAttribute="trailing" id="Mm9-pl-R0e"/>
                             <constraint firstItem="9hg-sl-HgO" firstAttribute="bottom" secondItem="SUL-Id-DTI" secondAttribute="bottom" id="Pko-PA-iIL"/>
+                            <constraint firstItem="9hg-sl-HgO" firstAttribute="trailing" secondItem="2S8-aE-RQh" secondAttribute="trailing" constant="8" id="RY2-u4-6Fz"/>
                             <constraint firstItem="c9d-Cy-9dm" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" constant="8" id="UL0-du-w36"/>
                             <constraint firstItem="9hg-sl-HgO" firstAttribute="trailing" secondItem="nCm-p6-XSr" secondAttribute="trailing" constant="70" id="URJ-MI-S7h"/>
                             <constraint firstItem="nCm-p6-XSr" firstAttribute="leading" secondItem="c9d-Cy-9dm" secondAttribute="trailing" constant="8" id="V6l-VM-nYS"/>
-                            <constraint firstItem="aRo-ia-3as" firstAttribute="top" secondItem="LFm-h0-Iyh" secondAttribute="bottom" constant="8" id="Vrc-gi-f6s"/>
                             <constraint firstItem="LFm-h0-Iyh" firstAttribute="leading" secondItem="nCm-p6-XSr" secondAttribute="trailing" constant="8" id="a55-gJ-dX7"/>
                             <constraint firstItem="SUL-Id-DTI" firstAttribute="leading" secondItem="9hg-sl-HgO" secondAttribute="leading" id="imR-Cj-OTx"/>
                             <constraint firstItem="nCm-p6-XSr" firstAttribute="top" secondItem="9hg-sl-HgO" secondAttribute="top" constant="8" id="jfp-Ka-LVg"/>
-                            <constraint firstItem="aRo-ia-3as" firstAttribute="top" secondItem="c9d-Cy-9dm" secondAttribute="bottom" constant="8" id="wEt-1Q-aVc"/>
                             <constraint firstItem="9hg-sl-HgO" firstAttribute="trailing" secondItem="LFm-h0-Iyh" secondAttribute="trailing" constant="8" id="zhU-df-QLo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9hg-sl-HgO"/>
@@ -122,6 +129,7 @@
                     <navigationItem key="navigationItem" id="ua3-j8-sUN"/>
                     <connections>
                         <outlet property="filterTypeView" destination="SUL-Id-DTI" id="eSe-nH-J3z"/>
+                        <outlet property="loadingIndicatorView" destination="2S8-aE-RQh" id="6aS-mE-mvk"/>
                         <outlet property="searchTermTextField" destination="nCm-p6-XSr" id="NTE-QF-BEz"/>
                         <outlet property="searcherTableView" destination="aRo-ia-3as" id="ZZN-XF-4TH"/>
                         <outlet property="setRepositoryFilterTypeButton" destination="gYV-Oh-CWC" id="Tn1-fP-7a4"/>
